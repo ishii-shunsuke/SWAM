@@ -7,4 +7,7 @@ class Users::OrdersController < ApplicationController
 
 	def show
 	end
+
+	def new_when_order
+	end
 end
