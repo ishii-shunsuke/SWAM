@@ -10,6 +10,7 @@ class Users::ShippingAddressesController < ApplicationController
 	end
 
 	def index
+		@shipping_addresses = ShippingAddress.all
 	end
 
 	def edit
