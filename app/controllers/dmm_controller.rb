@@ -1,2 +1,0 @@
-class DmmController < ApplicationController
-end
