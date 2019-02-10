@@ -22,7 +22,7 @@ body {
 .container {
   width: auto;
   max-width: 680px;
-  padding: 0 15px;
+  padding: 0px 15px;
 }
 
 .footer {
@@ -40,4 +40,8 @@ body {
 
 .guest {
 	color: #fff;
+}
+
+.shipping-title {
+	margin-top: 100px;
 }
