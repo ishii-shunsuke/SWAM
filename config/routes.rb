@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 	get '/order/set_address', to:'users/orders#set_address'
 	get '/order/confirmation/:shipping_address_id', to:'users/orders#new'
 	get '/order/complete', to:'users/orders#show'
-	get '/shipping_address/index', to:'users/shipping_addresses#index'
-	get '/shipping_address/new', to:'users/shipping_addresses#new'
-	get '/shipping_address/:id/edit', to:'users/shipping_addresses#edit'
+	namespace :users do
+		resources :shipping_addresses
+	end
+	# get '/shipping_address/index', to:'users/shipping_addresses#index'
+	# get '/shipping_address/new', to:'users/shipping_addresses#new'
+	# get '/shipping_address', to:'users/shipping_addresses#create'
+	# get '/shipping_address/:id/edit', to:'users/shipping_addresses#edit'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 end
