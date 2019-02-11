@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 		resources :shipping_addresses
 	end
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
+	get 'carts/index' => 'carts#index'
+	delete 'carts/:id' => 'carts#destroy'
 end
