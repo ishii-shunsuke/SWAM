@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+devise_for :users
 	root 'users/products#top'
 	get '/admins/top', to:'admins/products#top'
 	get '/order/set_address', to:'users/orders#set_address'
