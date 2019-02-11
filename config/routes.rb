@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	get '/admins/top', to:'admins/products#top'
 	get '/order/set_address', to:'users/orders#set_address'
 	get '/order/confirmation/:shipping_address_id', to:'users/orders#new'
+	post '/order', to:'users/orders#create'
 	get '/order/complete', to:'users/orders#show'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	namespace :users do
