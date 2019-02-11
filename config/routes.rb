@@ -7,9 +7,5 @@ Rails.application.routes.draw do
 	namespace :users do
 		resources :shipping_addresses
 	end
-	# get '/shipping_address/index', to:'users/shipping_addresses#index'
-	# get '/shipping_address/new', to:'users/shipping_addresses#new'
-	# get '/shipping_address', to:'users/shipping_addresses#create'
-	# get '/shipping_address/:id/edit', to:'users/shipping_addresses#edit'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 end
