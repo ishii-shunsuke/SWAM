@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
-<<<<<<< Updated upstream
-
-=======
-<<<<<<< HEAD
-　　devise_for :users
-=======
   devise_for :users
->>>>>>> 5daf07961a676d894b610a74c8e8f2266492ea46
 	root 'users/products#top'
 	get '/admins/top', to:'admins/products#top'
 	get '/order/set_address', to:'users/orders#set_address'
@@ -23,5 +16,4 @@ Rails.application.routes.draw do
 		resources :products
 		resources :orders, only: [:index, :update]
 	end
->>>>>>> Stashed changes
 end
