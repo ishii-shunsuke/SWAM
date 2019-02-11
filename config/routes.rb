@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-　　devise_for :users
+
+
 	root 'users/products#top'
 	get '/admins/top', to:'admins/products#top'
 	get '/order/set_address', to:'users/orders#set_address'
 	get '/order/confirmation/:shipping_address_id', to:'users/orders#new'
 	get '/order/complete', to:'users/orders#show'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
+	get '/products/:id' => 'users/products#show'
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]
