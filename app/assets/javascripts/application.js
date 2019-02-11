@@ -17,3 +17,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+
+$(function() {
+    $('#formTag input[type=radio]').change( function() {
+        $('#formTag').attr('action', `/order/confirmation/${this.value}`);
+    });
+})
