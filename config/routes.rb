@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	get '/shipping_address/index', to:'users/shipping_addresses#index'
 	get '/shipping_address/new', to:'users/shipping_addresses#new'
 	get '/shipping_address/:id/edit', to:'users/shipping_addresses#edit'
-	get 'carts/index' => 'carts#index'
-	delete 'carts/:id' => 'carts#destroy'
+	get '/users' => 'users#show'
+	get '/carts/index' => 'carts#index'
+	delete '/carts/:id' => 'carts#destroy'
 end
