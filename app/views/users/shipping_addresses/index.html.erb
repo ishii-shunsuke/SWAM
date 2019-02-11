@@ -5,27 +5,29 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">名前</th>
-		      <th scope="col">郵便番号</th>
+		      <th scope="col">電話番号</th>
 		      <th scope="col">住所</th>
 		      <th scope="col"></th>
 		    </tr>
 		  </thead>
-		  <tbody>
-		    <tr>
-		      <td>山田太郎</td>
-		      <td>000-0000</td>
-		      <td>千葉県浦安市ああああああああああああああああ</td>
-		      <td>
-		      	<button type="button" class="btn btn-info">
-		   			<a href="#" class="text-dark">編集</a>
-		   		</button>
-		   		<button type="button" class="btn btn-danger">
-		   			<a href="#" class="text-dark">削除</a>
-		   		</button>
-		   	　</td>
-		    </tr>
-		    ...
-		  </tbody>
+		  <% @shipping_addresses.each do |shipping_address| %>
+			  <tbody>
+			    <tr>
+			      <td><%= shipping_address.last_name + shipping_address.first_name %></td>
+			      <td><%= shipping_address.phone_number %></td>
+			      <td><%= "#{shipping_address.prefectures}" + "#{shipping_address.city}" + "#{shipping_address.block}" %></td>
+			      <td>
+			      	<button type="button" class="btn btn-info float-right">
+			   			<a href="#" class="text-dark">編集</a>
+			   		</button>
+			   		<button type="button" class="btn btn-danger float-right">
+			   			<a href="#" class="text-dark">削除</a>
+			   		</button>
+			   	　</td>
+			    </tr>
+			    ...
+			  </tbody>
+		  <% end %>
 	   </table>
 	   <div class="float-right">
 	   		<button type="button" class="btn btn-success rounded-pill">

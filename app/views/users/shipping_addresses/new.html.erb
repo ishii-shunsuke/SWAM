@@ -1,63 +1,49 @@
 <main role="main" class="flex-shrink-0">
     <div class="container">
       <h1 class="shipping-title text-white">配送先の追加</h1>
-	  <form class="text-white">
+	  <%= form_for([:users, @shipping_address], html: {class: 'text-white'}) do |f|  %>
 	  	  <div class="form-row">
 		    <div class="col">
-		        <label for="lastName">姓</label>
-		      	<input type="text" class="form-control" id="lastName" placeholder="姓">
+		        <%= f.label :last_name,"姓" %>
+		      	<%= f.text_field :last_name, class:"form-control", placeholder:"山田" %>
 		    </div>
 		    <div class="col">
-		    	<label for="firstName">名</label>
-		        <input type="text" class="form-control" id="firstName" placeholder="名">
+		    	<%= f.label :first_name,"名" %>
+		        <%= f.text_field :first_name, class:"form-control", placeholder:"太郎" %>
 		    </div>
   		  </div>
   		  <div class="form-row mt-4">
 		    <div class="col">
-		        <label for="lastName">姓(カナ)</label>
-		      	<input type="text" class="form-control" id="lastNameKana" placeholder="姓(カナ)">
+		    	<%= f.label :last_name_kana,"姓(カナ)" %>
+		      	<%= f.text_field :last_name_kana, class:"form-control", placeholder:"ヤマダ" %>
 		    </div>
 		    <div class="col">
-		    	<label for="firstName">名(カナ)</label>
-		        <input type="text" class="form-control" id="firstNameKana" placeholder="名(カナ)">
+		    	<%= f.label :first_name_kana,"名(カナ)" %>
+		        <%= f.text_field :first_name_kana, class:"form-control", placeholder:"タロウ" %>
 		    </div>
   		  </div>
 		  <div class="form-row mt-4">
-		    <div class="form-group col-md-6">
-		      <label for="inputEmail4">Eメール</label>
-		      <input type="email" class="form-control" id="inputEmail4" placeholder="Eメール">
-		    </div>
-		    <div class="form-group col-md-6">
-		      <label for="inputPassword4">パスワード</label>
-		      <input type="password" class="form-control" id="inputPassword4" placeholder="パスワード">
-		    </div>
-		  </div>
-		  <div class="form-row mt-4">
 		    <div class="form-group col-md-2">
-		      <label for="inputZip">郵便番号</label>
-		      <input type="text" class="form-control" id="inputZip" placeholder="000-0000">
+		      <%= f.label :post_number,"郵便番号" %>
+		      <%= f.text_field :post_number, class:"form-control", placeholder:"000-0000" %>
 		    </div>
 		    <div class="form-group col-md-4">
-		      <label for="inputState">都道府県</label>
-		      <select id="inputState" class="form-control">
-		        <option selected>選択...</option>
-		        <option>...</option>
-		      </select>
+		      <%= f.label :prefectures,"都道府県" %>
+		      <%= f.select :prefectures, [["北海道", 0], ["青森県", 1]], {}, {class:"form-control"} %>
 		    </div>
 		    <div class="form-group col-md-6">
-		      <label for="inputCity">市町村</label>
-		      <input type="text" class="form-control" id="inputCity">
+		      <%= f.label :city,"市町村" %>
+		      <%= f.text_field :city, class:"form-control" %>
 		    </div>
 		  </div>
 		  <div class="form-group mt-4">
-		    <label for="inputAddress">番地・建物名</label>
-		    <input type="text" class="form-control" id="inputAddress" placeholder="1丁目2番3号">
+		    <%= f.label :block,"番地・建物名" %>
+		    <%= f.text_field :block, class:"form-control", placeholder:"1丁目2番3号"%>
 		  </div>
 		  <div class="form-group mt-4">
-		    <label for="phoneNumber">電話番号</label>
-		    <input type="text" class="form-control" id="phoneNumber" placeholder="090-0000-0000">
-		  </div>
-		  <button type="submit" class="btn btn-success mb-5 mt-4">追加する</button>
-	  </form>
+		    <%= f.label :phone_number,"電話番号" %>
+		    <%= f.text_field :phone_number, class:"form-control", placeholder:"090-0000-0000"%>
+		  	<%= f.submit "追加する", class:"btn btn-success mb-5 mt-4" %>
+	  <% end %>
     </div>
 </main>
