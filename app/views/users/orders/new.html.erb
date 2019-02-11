@@ -12,16 +12,18 @@
 		      <th scope="col">数量</th>
 		    </tr>
 		  </thead>
+		  <%= @carts.each do |cart, product| %>
 		  <tbody>
 		    <tr>
 		      <td>ジャケット画像</td>
-		      <td>HOME</td>
-		      <td>Mr.children</td>
-		      <td>1900円</td>
-		      <td>1</td>
+		      <td><%= cart.product.title %></td>
+		      <td><%= cart.product.artist_id.artist_name %></td>
+		      <td><%= cart.product.price %></td>
+		      <td><%= cart.number %></td>
 		    </tr>
 		    ...
 		  </tbody>
+		  <% end %>
 	   </table>
 
 	   <h5 class="text-white">配送先</h5>
@@ -35,9 +37,9 @@
 		  </thead>
 		  <tbody>
 		    <tr>
-		      <td>山田太郎</td>
-		      <td>000-0000</td>
-		      <td>千葉県浦安市</td>
+		      <td><%= @shipping_address.last_name + @shipping_address.first_name %></td>
+		      <td><%= @shipping_address.phone_number %></td>
+		      <td><%= "#{@shipping_address.prefectures}" + "#{@shipping_address.city}" + "#{@shipping_address.block}" %></td>
 		    </tr>
 		    ...
 		  </tbody>
