@@ -14,9 +14,13 @@ class Users::ShippingAddressesController < ApplicationController
 	end
 
 	def edit
+		@shipping_address = ShippingAddress.find(params[:id])
 	end
 
 	def update
+		shipping_address = ShippingAddress.find(params[:id])
+		shipping_address.update(shipping_address_params)
+		redirect_to users_shipping_addresses_path
 	end
 
 	private

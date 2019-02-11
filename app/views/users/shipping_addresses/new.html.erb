@@ -29,7 +29,7 @@
 		    </div>
 		    <div class="form-group col-md-4">
 		      <%= f.label :prefectures,"都道府県" %>
-		      <%= f.select :prefectures, [["北海道", 0], ["青森県", 1]], {}, {class:"form-control"} %>
+		      <%= f.select :prefectures, ShippingAddress.prefectures.keys, {prompt: '選択してください'}, {class:"form-control"} %>
 		    </div>
 		    <div class="form-group col-md-6">
 		      <%= f.label :city,"市町村" %>
