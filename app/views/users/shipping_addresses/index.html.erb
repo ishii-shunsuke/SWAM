@@ -18,10 +18,10 @@
 			      <td><%= "#{shipping_address.prefectures}" + "#{shipping_address.city}" + "#{shipping_address.block}" %></td>
 			      <td>
 			      	<button type="button" class="btn btn-info float-right">
-			   			<a href="#" class="text-dark">編集</a>
+			   			<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id), class:"text-dark" %>
 			   		</button>
 			   		<button type="button" class="btn btn-danger float-right">
-			   			<a href="#" class="text-dark">削除</a>
+			   			<%= link_to "削除", users_shipping_address_path(shipping_address.id), class:"text-dark", method: :delete, "data-confirm" => "本当に削除しますか？" %>
 			   		</button>
 			   	　</td>
 			    </tr>
@@ -31,12 +31,12 @@
 	   </table>
 	   <div class="float-right">
 	   		<button type="button" class="btn btn-success rounded-pill">
-	   			<a href="#" class="text-white">配送先の追加</a>
+	   			<%= link_to "配送先の追加", new_users_shipping_address_path, class:"text-white" %>
 	   		</button>
 	   </div>
 	   <div class="float-left mt-5">
 	   		<button type="button" class="btn btn-light">
-	   			<a href="#" class="text-dark">戻る</a>
+	   			<%= link_to "マイページに戻る", users_path, class:"text-dark" %>
 	   		</button>
 	   </div>
     </div>
