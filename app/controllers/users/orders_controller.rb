@@ -4,9 +4,33 @@ class Users::OrdersController < ApplicationController
 	end
 
 	def new
-		@order = Order.new
 		@carts = Cart.all
 		@shipping_address = ShippingAddress.find(params[:shipping_address_id])
+		session[:shipping_address_id] = params[:shipping_address_id]
+	end
+
+	def create
+		shipping_address_id = session[:shipping_address_id]
+		shipping_address = ShippingAddress.find(shipping_address_id)
+		#Order作成
+		order = Order.new
+		order.shipping_name = shipping_address.last_name + shipping_address.first_name
+		order.shipping_post_number = shipping_address.post_number
+		order.shipping_address = "#{shipping_address.prefectures}" + "#{shipping_address.city}" + "#{shipping_address.block}"
+		order.user_id = 1
+		order.save
+		#BuyProducts作成
+ 		carts = Cart.all
+		carts.each do |cart|
+			buy_product = BuyProduct.new
+			buy_product.product_id = cart.product_id
+			buy_product.buy_title = cart.product.title
+			buy_product.buy_price = cart.product.price
+			buy_product.buy_number = cart.number
+			buy_product.order_id = order.id
+			buy_product.save
+		end
+		redirect_to order_complete_path
 	end
 
 	def show
