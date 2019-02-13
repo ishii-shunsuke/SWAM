@@ -12,16 +12,15 @@
 		      <th scope="col">数量</th>
 		    </tr>
 		  </thead>
-		  <%= @carts.each do |cart, product| %>
+		  <% @carts.each do |cart, product| %>
 		  <tbody>
 		    <tr>
 		      <td>ジャケット画像</td>
 		      <td><%= cart.product.title %></td>
-		      <td><%= cart.product.artist_id.artist_name %></td>
+		      <td>アーティスト名</td>
 		      <td><%= cart.product.price %></td>
 		      <td><%= cart.number %></td>
 		    </tr>
-		    ...
 		  </tbody>
 		  <% end %>
 	   </table>
@@ -41,13 +40,12 @@
 		      <td><%= @shipping_address.phone_number %></td>
 		      <td><%= "#{@shipping_address.prefectures}" + "#{@shipping_address.city}" + "#{@shipping_address.block}" %></td>
 		    </tr>
-		    ...
 		  </tbody>
 	   </table>
 	   <div class="d-flex flex-column">
 		   <div class="float-left mt-3">
 		   		<button type="button" class="btn btn-danger btn-lg">
-		   			<a href="#" class="text-white">注文を確定する</a>
+		   			<%= link_to "注文を確定する", order_path, method: :post, class:"text-white" %>
 		   		</button>
 		   </div>
 		   <div class="float-left mt-5">

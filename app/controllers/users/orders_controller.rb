@@ -17,18 +17,20 @@ class Users::OrdersController < ApplicationController
 		order.shipping_name = shipping_address.last_name + shipping_address.first_name
 		order.shipping_post_number = shipping_address.post_number
 		order.shipping_address = "#{shipping_address.prefectures}" + "#{shipping_address.city}" + "#{shipping_address.block}"
+		order.user_id = 1
 		order.save
 		#BuyProducts作成
  		carts = Cart.all
-		@carts.each do |cart|
-			buy_product = BuyProducts.new
+		carts.each do |cart|
+			buy_product = BuyProduct.new
 			buy_product.product_id = cart.product_id
 			buy_product.buy_title = cart.product.title
 			buy_product.buy_price = cart.product.price
 			buy_product.buy_number = cart.number
 			buy_product.order_id = order.id
-			buy_prodcut.save
+			buy_product.save
 		end
+		redirect_to order_complete_path
 	end
 
 	def show
