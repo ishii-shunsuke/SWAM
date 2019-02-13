@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 	root 'users/products#top'
 	get '/admins/top', to:'admins/products#top'
+	get '/users', to:'users#show', as:'users'
 	get '/order/set_address', to:'users/orders#set_address'
 	get '/order/confirmation/:shipping_address_id', to:'users/orders#new', as:'order_confirmation'
 	post '/order', to:'users/orders#create'

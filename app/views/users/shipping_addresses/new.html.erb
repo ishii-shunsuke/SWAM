@@ -43,7 +43,12 @@
 		  <div class="form-group mt-4">
 		    <%= f.label :phone_number,"電話番号" %>
 		    <%= f.text_field :phone_number, class:"form-control", placeholder:"090-0000-0000"%>
-		  	<%= f.submit "追加する", class:"btn btn-success mb-5 mt-4" %>
+		    <div class="d-inline-flex flex-column">
+			  	<%= f.submit "追加する", class:"btn btn-success mb-5 mt-4" %>
+			    <button type="button" class="btn btn-light">
+		  			<%= link_to "配送先一覧に戻る", users_shipping_addresses_path, class:"text-dark" %>
+		  		</button>
+		  	</div>
 	  <% end %>
     </div>
 </main>

@@ -18,8 +18,12 @@
         </ul>
       </div>
       <div class="float-right">
-        <span class="guest">ゲストさんこんにちは</span>  <a href="#">ログイン</a><br>
-        <span class="guest float-right">新規会員登録は <a href="#">こちら</a></span>
+        <% if logged_in? %>
+          <span class="guest"><%= full_name(current_user) %>さんこんにちは</span>  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <span class="guest">ゲストさんこんにちは</span>  <%= link_to "ログイン", new_user_session_path %><br>
+          <span class="guest float-right">新規会員登録は <%= link_to "こちら", new_user_registration_path %>
+        <% end %>
       </div>
     </nav>
 </header>
