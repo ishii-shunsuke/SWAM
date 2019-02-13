@@ -13,9 +13,9 @@
 		  <% @shipping_addresses.each do |shipping_address| %>
 			  <tbody>
 			    <tr>
-			      <td><%= shipping_address.last_name + shipping_address.first_name %></td>
+			      <td><%= full_name(shipping_address) %></td>
 			      <td><%= shipping_address.phone_number %></td>
-			      <td><%= "#{shipping_address.prefectures}" + "#{shipping_address.city}" + "#{shipping_address.block}" %></td>
+			      <td><%= full_address(shipping_address) %></td>
 			      <td>
 			      	<button type="button" class="btn btn-info float-right">
 			   			<%= link_to "編集", edit_users_shipping_address_path(shipping_address.id), class:"text-dark" %>
