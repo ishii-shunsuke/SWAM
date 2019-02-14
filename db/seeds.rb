@@ -11,3 +11,6 @@ user = User.new(last_name: "山田", first_name: "太郎", phone_number: "090-11
 user.save!
 Cart.create(product_id: 1, user_id: 1)
 Cart.create(product_id: 2, user_id: 1)
+
+admin = Admin.new(email:"a@a", password: "aaaaaa")
+admin.save!
