@@ -22,7 +22,7 @@
             <td class="text-white">アーティスト</td>
             <td>
            <!--  <%= f.label :artist_id %> -->
-            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name %>
+            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :include_blank => true %>
             <input type="text" name="name" list="artist" class="mt-4">
             <!-- <datalist id="artist">
             <option value="Mr.children"></option>
@@ -33,7 +33,9 @@
 
         <tr>
             <td class="text-white">アルバム/シングル名</td>
-            <td> <form><input type="text" class="form-control mt-4" id="title"></form></td>
+            <td> <%= f.text_field :title, class:"product_title mt-4", placeholder:"title"%>
+
+                <!-- <form><input type="text" class="form-control mt-4" id="title"></form> --></td>
         </tr>
 
         <tr>
@@ -43,18 +45,35 @@
 
         <tr>
             <td class="text-white">値段</td>
-            <td> <input type="text" class="mt-4" id="price"><span class="text-white">円</span></td>
+            <td><%= f.text_field :price, class:"product_price mt-4", placeholder:"値段"%><span class="text-white">円</span></td>
         </tr>
 
         <tr>
             <td class="text-white">レーベル名</td>
-            <td><input type="text" name="name" list="label" class="mt-4">
+            <td>
+
             <datalist id="label">
             <option value="TOY'S FACTORY"></option>
             <option value="ワーナーミュージック"></option>
             <option value="エイベックス"></option>
             </datalist></td>
         </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <tr>
             <td class="text-white">曲名</td>

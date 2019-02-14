@@ -1,7 +1,12 @@
 <div class="nested-fields well well-compact">
   <div class="form-group mt-4">
     <%= f.label :Disc %>
-    <%= f.number_field :disc_number %><br>
+    <% number_field_tag 'quantity', nil, in: 1...10 %>
+<input id="quantity" name="quantity" min="1" max="20" type="number" />
+
+<!-- 
+    <%= f.number_field :disc_number, :value => @disc_number %></br>
+ -->
     <%= link_to_remove_association "削除", f %>
   </div>
 
