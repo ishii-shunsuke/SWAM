@@ -6,16 +6,8 @@
 	<table class="condensed text-white">
 		<tr>
 			<td class="text-white">年代</td>
-			<td><select name="年代">
-        	<option value="1860">1980年代前半</option>
-        	<option value="1860">1980年代後半</option>
-        	<option value="1860">1990年代前半</option>
-        	<option value="1860">1990年代後半</option>
-        	<option value="1860">2000年代前半</option>
-        	<option value="1860">2000年代後半</option>
-        	<option value="1860">2010年代後半</option>
-        	<option value="1860">2010年代後半</option>
-            </select></td>
+			<td><%= f.select :period,[["1980年代前半","1980年代前半"],["1980年代後半","1980年代後半"],["1990年代前半","1990年代前半"],["1990年代後半","1990年代後半"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代前後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
+
         </tr>
 
         <tr>
@@ -40,40 +32,26 @@
 
         <tr>
             <td class="text-white mt-4">ジャケット画像</td>
-            <td><div class="form-group has-icon"><label class="control-label sr-only" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", class: "jacket_image mt-4" %></div></td>
+            <td><div class="form-group has-icon"><label class="control-label sr-only mt-4" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100'%></div></td>
+
         </tr>
 
         <tr>
             <td class="text-white">値段</td>
-            <td><%= f.text_field :price, class:"product_price mt-4", placeholder:"値段"%><span class="text-white">円</span></td>
+            <td> <% number_field_tag 'price', nil, in: 1...1000000 %><input id="price" name="price" min="1" max="1000000" type="number" /><span class="text-white">円</span></td>
         </tr>
 
         <tr>
             <td class="text-white">レーベル名</td>
             <td>
-
+                <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :include_blank => true %>
+<!-- 
             <datalist id="label">
             <option value="TOY'S FACTORY"></option>
             <option value="ワーナーミュージック"></option>
             <option value="エイベックス"></option>
-            </datalist></td>
+            </datalist> --></td>
         </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <tr>
             <td class="text-white">曲名</td>
@@ -100,7 +78,7 @@
 
         <tr>
             <td class="text-white">在庫数</td>
-            <td><input type="text" class="mt-4" id="title"><span class="text-white">枚</span></td>
+            <td><% number_field_tag 'stock', nil %><input id="stock" name="stock" min="1"  type="number" /><span class="text-white">枚</span></td>
         </tr>
 
 

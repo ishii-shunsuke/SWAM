@@ -51,18 +51,20 @@
         <td>編集</td>
         <td>削除</td>
       </tr>
+      <% @products.each do |product|%>
       <tr>
-        <td>aa</td>
-        <td>HOME</td>
-        <td>Mr.children</td>
-        <td>1919円</td>
-        <td>トイズファクトリー</td>
-        <td>J-pop</td>
-        <td>3個</td>
+        <td><%= product.jacket_image %></td>
+        <td><%= product.title %></td>
+        <td><%= product.artist.artist_name %></td>
+        <td><%= product.price %><span>円</span></td>
+        <td><%= label.label_name %></td>
+        <td><%= category.category_name %></td>
+        <td><%= product.stock %><span>個</span></td>
         <td><button type="button" class="btn btn-primary btn-enter">編集</button></td>
         <td><button type="button" class="btn btn-danger btn-enter">削除</button></td>
       </tr>
 
+        <% end %>
 
     </table>
 
