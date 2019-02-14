@@ -7,19 +7,23 @@
       <div class="collapse navbar-collapse" id="navbar-header">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">トップ <span class="sr-only">(現位置)</span></a>
+            <%= link_to "トップ", root_path, class:"nav-link" %> <span class="sr-only">(現位置)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">マイページ</a>
+            <%= link_to 'マイページ', users_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">カート</a>
+            <%= link_to 'カート', carts_path, class:"nav-link" %>
           </li>
         </ul>
       </div>
       <div class="float-right">
-        <span class="guest">ゲストさんこんにちは</span>  <a href="#">ログイン</a><br>
-        <span class="guest float-right">新規会員登録は <a href="#">こちら</a></span>
+        <% if logged_in? %>
+          <span class="guest"><%= full_name(current_user) %>さんこんにちは</span>  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <span class="guest">ゲストさんこんにちは</span>  <%= link_to "ログイン", new_user_session_path %><br>
+          <span class="guest float-right">新規会員登録は <%= link_to "こちら", new_user_registration_path %>
+        <% end %>
       </div>
     </nav>
 </header>
