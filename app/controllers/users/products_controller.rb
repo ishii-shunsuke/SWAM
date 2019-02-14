@@ -1,4 +1,7 @@
 class Users::ProductsController < ApplicationController
+   def top
+   end
+
    def show
    end
 
