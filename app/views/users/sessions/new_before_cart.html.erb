@@ -2,7 +2,7 @@
 <h2 class="text-white">ユーザーログインページ</h2>
 </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: cart_sign_in_path) do |f| %>
   <div class="field login-title text-white text-big">
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
