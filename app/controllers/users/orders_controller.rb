@@ -55,6 +55,11 @@ class Users::OrdersController < ApplicationController
 			buy_product.buy_number = cart.number
 			buy_product.order_id = order.id
 			buy_product.save
+
+			#在庫減らす
+			product = cart.product
+			product.stock -= cart.number
+			product.save
 		end
 		redirect_to order_complete_path
 	end
