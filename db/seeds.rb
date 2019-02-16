@@ -112,4 +112,6 @@ ShippingAddress.create(
 	phone_number: "090-0000-0000",
 	)
 
+admin = Admin.new(email:"a@a", password: "aaaaaa")
+admin.save!
 
