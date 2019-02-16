@@ -1,12 +1,13 @@
 class Users::OrdersController < ApplicationController
 	include ApplicationHelper
+	before_action :authenticate_user!
 
 	def set_address
-		@shipping_addresses = ShippingAddress.all
+		@shipping_addresses = ShippingAddress.where(user_id: current_user.id)
 	end
 
 	def new
-		@carts = Cart.all
+		@carts = Cart.where(user_id: current_user.id)
 		#アカウントの登録住所を配送先にする場合
 		if params[:shipping_address_id] == "0"
 			@shipping_address = ShippingAddress.new
@@ -17,7 +18,17 @@ class Users::OrdersController < ApplicationController
 			@shipping_address.city = current_user.city
 			@shipping_address.block = current_user.block
 		else
-			@shipping_address = ShippingAddress.find(params[:shipping_address_id])
+			#url直打ちを弾く
+			shipping_addresses = ShippingAddress.where(user_id: current_user.id)
+			shipping_ids = []
+			shipping_addresses.each do |f|
+				shipping_ids.push(f.id)
+			end
+			if shipping_ids.include?(params[:shipping_address_id].to_i)
+				@shipping_address = ShippingAddress.find(params[:shipping_address_id])
+			else
+				render body: "forbidden"
+			end
 		end
 		session[:shipping_address_id] = params[:shipping_address_id]
 	end
@@ -55,6 +66,11 @@ class Users::OrdersController < ApplicationController
 			buy_product.buy_number = cart.number
 			buy_product.order_id = order.id
 			buy_product.save
+
+			#在庫減らす
+			product = cart.product
+			product.stock -= cart.number
+			product.save
 		end
 		redirect_to order_complete_path
 	end

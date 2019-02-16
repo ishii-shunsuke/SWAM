@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
 	has_many :carts
 	has_many :users, through: :carts
-	has_many :artists
-	has_many :labels
-	has_many :categories
+	belongs_to :artist
+	belongs_to :label
+	belongs_to :categories
 	has_many :discs
 end
