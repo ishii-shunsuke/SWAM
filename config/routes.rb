@@ -19,6 +19,7 @@ devise_for :users, controllers: {
 	get '/order/complete', to:'users/orders#show'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	post '/order_address', to:'users/shipping_addresses#create_when_order'
+	get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new_before_cart'
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]
