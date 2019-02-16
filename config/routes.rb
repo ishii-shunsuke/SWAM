@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-devise_for :users
+
+devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
+devise_for :users, controllers: {
+   sessions:      'users/sessions',
+   passwords:     'users/passwords',
+   registrations: 'users/registrations'
+}
 	root 'users/products#top'
 	get '/admins/top', to:'admins/products#top'
 	get '/users', to:'users#show', as:'users'
@@ -9,6 +19,7 @@ devise_for :users
 	get '/order/complete', to:'users/orders#show'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	post '/order_address', to:'users/shipping_addresses#create_when_order'
+	get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new_before_cart'
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]

@@ -50,6 +50,10 @@ user = User.new(
 	password: "aaaaaa")
 user.save!
 
+admin = Admin.new(email:"a@a", password: "aaaaaa")
+admin.save!
+
+
 user = User.new(
 	last_name: "有村",
 	first_name: "架純",
@@ -111,5 +115,3 @@ ShippingAddress.create(
     block: "花園2-13-1",
 	phone_number: "090-0000-0000",
 	)
-
-
