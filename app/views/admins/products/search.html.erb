@@ -1,7 +1,7 @@
 <main role="main" class="flex-shrink-0">
     <div class="container admin-title">
       <h1 class="product-index text-white">商品一覧</h1>
-<%= search_form_for([:admins, @q]) do |f| %>
+<%= search_form_for(@q, url:admins_products_search_path) do |f| %>
 <!-- <input type="text" class="form-control keyword">
 　　　<div>
           <select name="年代">

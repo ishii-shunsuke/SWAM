@@ -12,5 +12,5 @@ class User < ApplicationRecord
   has_many :orders
   has_many :carts
   has_many :products, through: :carts
-  acts_as_paranoid
+  # acts_as_paranoid
 end

@@ -28,6 +28,7 @@ devise_for :users, controllers: {
 		resources :users, only: [:index, :show, :edit ,:update, :destroy]
 		resources :products
 		resources :orders, only: [:index, :update]
+		get 'products/search', to: 'products#search'
 	end
 
 	devise_scope :user do
