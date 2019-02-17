@@ -10,9 +10,15 @@
 
         </tr>
 
-        <tr>
+ <tr>
             <td class="text-white">アーティスト</td>
             <td>
+
+                <%= f.fields_for :artists do |artist| %>
+                <%= artist.text_field :artist_name %>
+
+    <% end %>
+
            <!--  <%= f.label :artist_id %> -->
             <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :include_blank => true %>
             <input type="text" name="name" list="artist" class="mt-4">
@@ -23,7 +29,7 @@
             </datalist> --></td>
         </tr>
 
-        <tr>
+<tr>
             <td class="text-white">アルバム/シングル名</td>
             <td> <%= f.text_field :title, class:"product_title mt-4", placeholder:"title"%>
 
@@ -44,13 +50,23 @@
         <tr>
             <td class="text-white">レーベル名</td>
             <td>
-                <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :include_blank => true %>
-<!-- 
+                <%= f.fields_for :labels do |label| %>
+                <%= label.text_field :label_name %>
+                <% end %>
+<!--
             <datalist id="label">
             <option value="TOY'S FACTORY"></option>
             <option value="ワーナーミュージック"></option>
             <option value="エイベックス"></option>
             </datalist> --></td>
+        </tr>
+
+        <tr>
+            <td class="text-white">ジャンル</td>
+            <td>
+                <%= f.collection_select :category_id, Category.all, :id, :category_name, :include_blank => true %></td>
+                <td><%= f.text_field :title, class:"product_title mt-4", placeholder:"title"%><
+
         </tr>
 
         <tr>
@@ -84,11 +100,13 @@
 
 
 
+
     </table>
-<%= f.submit "追加", class:"btn btn-primary btn-enter text-white mb-4" %>
+<%= f.submit "商品追加", class:"btn btn-primary btn-enter text-white mb-4" %>
 <% end %>
 
 </div>
 
 </div>
 </main>
+

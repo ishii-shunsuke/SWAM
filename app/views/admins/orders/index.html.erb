@@ -14,12 +14,14 @@
             <td>ステータス選択</td>
             <td>ステータス</td>
         </tr>
+         <% @orders.each do |order|%>
+        <% @buy_products.each do |buy_product|%>
         <tr>
         	<td rowspan="2">佐藤花子</td>
-        	<td rowspan="2">1月6日</td>
-        	<td>Ambition</td>
-        	<td>2枚</td>
-        	<td>1200円</td>
+        	<td rowspan="2"><%= order.created_at %></td>
+        	<td><%= order.created_at %></td>
+        	<td><%= buy_product.buy_number%><span>枚</span></td>
+        	<td><%= buy_product.buy_price%><span>円</span></td>
         	<td rowspan="2">2200円</td>
         	<td rowspan="2">東京区渋谷神泉</td>
         	<td rowspan="2"><select name="ステータス">
@@ -29,6 +31,8 @@
             </select></td>
             <td rowspan="2"><button type="button" class="btn btn-success btn-enter">準備中</button></td>
         </tr>
+        <% end %>
+
         <tr>
         	<td>DIVIDE</td>
         	<td>1枚</td>

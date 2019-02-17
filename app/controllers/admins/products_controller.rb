@@ -1,9 +1,8 @@
 class Admins::ProductsController < ApplicationController
 
-    def index
-      @product = Product.new
+  def index
     	@products = Product.all
-    end
+  end
 
 	def new
 		@product = Product.new
@@ -15,11 +14,21 @@ class Admins::ProductsController < ApplicationController
     # @product = current_user.product.build(product_params)
 		@product=Product.new(product_params)
 		@product.save
-    end
+
+logger.debug @product.errors.inspect
+
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    @discs = @product.discs
+    @songs = @discs.find(params[:id]).songs
+  end
 
 private
    def product_params
-      params.require(:product).permit(:title,:jacket_image,:price,:period,:stock, discs_attributes: [:id, :disc_number, :_destroy],songs_attributes: [:id, :name, :song_number, :_destroy])
+      params.require(:product).permit(:title,:jacket_image,:price,:period,:stock, discs_attributes: [:id, :disc_number, :_destroy],songs_attributes: [:id, :name, :song_number, :_destroy],artists_attributes: [:id, :artist_name, :product_id, :_destroy],labels_attributes: [:id, :label_name, :product_id, :_destroy])
    end
+
 
 end

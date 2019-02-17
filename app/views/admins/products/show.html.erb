@@ -5,40 +5,45 @@
 	<table>
 		<tr>
             <td>アーティスト名</td>
-            <td>Mr.children</td>
+            <td><%=@product.artist.artist_name %></td>
         </tr>
         <tr>
             <td>アルバム/シングル名</td>
-            <td>Home</td>
+            <td><%=@product.title %></td>
         </tr>
         <tr>
             <td>ジャケット画像</td>
-            <td></td>
+            <td><%= attachment_image_tag @product,:jacket_image, fallback: "no_image.png", size: '100x100' %></td>
         </tr>
         <tr>
             <td>値段</td>
-            <td>1919円</td>
+            <td><%=@product.price %><span>円</span></td>
         </tr>
         <tr>
             <td>レーベル名</td>
-            <td>トイズファクトリー</td>
+            <td><%=@product.label.label_name %></td>
         </tr>
         <tr>
             <td>ジャンル</td>
-            <td>J-pop</td>
+            <td><%=@product.category.category_name %></td>
         </tr>
         <tr>
-            <td>曲名</td>
-            <td>Disk1…</td>
+             <td>曲名</td>
+            <td><span>Disk</span><% @discs.each do |disc|%><%= disc.disc_number%><% end %><br>
+            <span>1.</span><% @songs.each do |song|%>
+            <%= song.name %><% end %>
+            </td>
+
         </tr>
         <tr>
             <td>在庫数</td>
-            <td>10枚</td>
+            <td><%=@product.stock %><span>枚</span></td>
         </tr>
     </table>
    </div>
 
-<button type="button" class="btn btn-success btn-enter">編集</button> <button type="button" class="btn btn-danger btn-enter">削除</button>
+   <%= link_to "編集", edit_admins_product_path(@product.id), class:"btn btn-success btn-enter" %>
+   <%= link_to "削除", admins_products_path(@product), class:"btn btn-danger btn-enter", method: :delete %>
 
 </div>
 </div>
