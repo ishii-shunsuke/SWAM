@@ -42,7 +42,7 @@ user = User.new(
     birthday: "1991-11-16",
 	gender: 0,
     phone_number: "090-0000-0000",
-    email: "aaa@aaa.com",
+    email: "aaazzz@yamadfa.com",
     post_number: "000-0000",
     prefectures: 1,
 	city: "札幌市",
@@ -78,12 +78,16 @@ user = User.new(
     birthday: "1993-2-21",
 	gender: 0,
     phone_number: "090-2222-2222",
-    email: "suda@suda.com",
+    email: "sudazzz@suda.com",
     post_number: "222-2222",
     prefectures: 2,
 	city: "青森市",
     block: "中央区3-1",
+<<<<<<< Updated upstream
 	password: "sudasuda")
+=======
+	password: "sudasudasuda")
+>>>>>>> Stashed changes
 user.save!
 
 Cart.create(product_id: 1, user_id: 1, number:3)
