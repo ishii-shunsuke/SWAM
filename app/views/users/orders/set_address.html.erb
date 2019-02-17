@@ -1,8 +1,8 @@
 <main role="main" class="flex-shrink-0">
     <div class="container">
       <h1 class="shipping-title text-white">配送先の設定</h1>
-      <%= form_tag(order_confirmation_path(1), method: :get, id:"formTag") do %>
-	      <h6 class="text-white mt-3">アカウントの登録住所に設定する　<%= radio_button_tag :shipping_address_id, 1, checked: true %></h6>
+      <%= form_tag(order_confirmation_path(0), method: :get, id:"formTag") do %>
+	      <h6 class="text-white mt-3">アカウントの登録住所に設定する　<%= radio_button_tag :shipping_address_id, 0, checked: true %></h6>
 	      <table class="table text-white">
 			  <thead>
 			    <tr>
@@ -15,9 +15,9 @@
 			  <% @shipping_addresses.each do |shipping_address| %>
 				  <tbody>
 				    <tr>
-				      <td><%= shipping_address.last_name + shipping_address.first_name %></td>
+				      <td><%= full_name(shipping_address) %></td>
 				      <td><%= shipping_address.phone_number %></td>
-				      <td><%= "#{shipping_address.prefectures}" + "#{shipping_address.city}" + "#{shipping_address.block}" %></td>
+				      <td><%= full_address(shipping_address) %></td>
 				      <td><%= radio_button_tag :shipping_address_id, shipping_address.id %></td>
 				    </tr>
 				    ...

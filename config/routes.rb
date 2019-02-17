@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
+devise_for :users, controllers: {
+   sessions:      'users/sessions',
+   passwords:     'users/passwords',
+   registrations: 'users/registrations'
+}
 	root 'users/products#top'
 	get '/admins/top', to:'admins/products#top'
+	get '/users', to:'users#show', as:'users'
 	get '/order/set_address', to:'users/orders#set_address'
 	get '/order/confirmation/:shipping_address_id', to:'users/orders#new', as:'order_confirmation'
 	post '/order', to:'users/orders#create'
@@ -18,4 +29,9 @@ Rails.application.routes.draw do
 		resources :products
 		resources :orders, only: [:index, :update]
 	end
+
+	devise_scope :user do
+    get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new_before_cart'
+    post '/users/carts', to:'users/sessions#create_before_cart', as:'cart_sign_in'
+  end
 end

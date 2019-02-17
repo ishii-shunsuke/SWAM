@@ -1,0 +1,43 @@
+<main>
+	<div class="container">
+		<div class="text-white">
+			<h1 class="user-title text-center">ユーザー一覧</h1>
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" class="form-control keyword">
+				</div>
+                <div class="col-md-2">
+                  
+                </div>
+           </div>
+           <div class="row">
+           	<div class="col text-center">
+           		<table class="table table-hover table-bordered">
+      <tr>
+        <td>名前</td>
+        <td>都道府県</td>
+        <td>メールアドレス</td>
+        <td>電話番号</td>
+        <td>編集</td>
+        <td>削除</td>
+      </tr>
+
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= full_name(user) %></td>
+        <td><%= full_address(user) %></td>
+        <td><%= user.email_address %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= link_to "編集", edit_admins_user_path(user.id), class: "btn btn-primary" %></td>
+        <td><%= link_to "削除", admins_user_path(user.id), method: :delete ,"data-confirm" => "削除しますか？",class: "btn btn-danger" %></td>
+      </tr>
+      <% end %>
+     </table>
+    </div>
+    </div>
+	</div>
+  <div class="pagenate">
+    <%= paginate(@users) %>
+  </div>
+  </div>
+</main>
