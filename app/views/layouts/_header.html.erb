@@ -1,4 +1,34 @@
 <header>
+  <% if admin_signed_in? %>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">Song with a memory(管理者)</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-header">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "トップ", admins_top_path, class:"nav-link" %> <span class="sr-only">(現位置)</span></a>
+          </li>
+          <li class="nav-item">
+            <%= link_to '商品追加', new_admins_product_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '商品一覧', admins_products_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ユーザー一覧', admins_users_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '購入履歴一覧', admins_orders_path, class:"nav-link" %>
+          </li>
+        </ul>
+      </div>
+      <div class="float-right">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </div>
+    </nav>
+  <% else %>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#">Song with a memory</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
@@ -26,4 +56,5 @@
         <% end %>
       </div>
     </nav>
+  <% end %>
 </header>
