@@ -13,6 +13,12 @@ Label.create(label_name:"オザキ")
 Category.create(category_name: "Jpop")
 Category.create(category_name: "ozaki")
 
+Disc.create(disc_number: "1", product_id:13)
+Disc.create(disc_number: "10", product_id:14)
+Song.create(name: "aamrchildren", disc_id:1)
+Song.create(name: "終わりなき旅", disc_id:1)
+Song.create(name: "I love you", disc_id:2)
+
 
 
 Product.create(
@@ -83,11 +89,8 @@ user = User.new(
     prefectures: 2,
 	city: "青森市",
     block: "中央区3-1",
-<<<<<<< Updated upstream
+
 	password: "sudasuda")
-=======
-	password: "sudasudasuda")
->>>>>>> Stashed changes
 user.save!
 
 Cart.create(product_id: 1, user_id: 1, number:3)
