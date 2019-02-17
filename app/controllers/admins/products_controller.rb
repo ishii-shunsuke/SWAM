@@ -22,7 +22,7 @@ logger.debug @product.errors.inspect
   def show
     @product = Product.find(params[:id])
     @discs = @product.discs
-    @songs = @discs.find(params[:id]).songs
+
   end
 
 private

@@ -27,14 +27,7 @@
             <td>ジャンル</td>
             <td><%=@product.category.category_name %></td>
         </tr>
-        <tr>
-             <td>曲名</td>
-            <td><span>Disk</span><% @discs.each do |disc|%><%= disc.disc_number%><% end %><br>
-            <span>1.</span><% @songs.each do |song|%>
-            <%= song.name %><% end %>
-            </td>
 
-        </tr>
         <tr>
             <td>在庫数</td>
             <td><%=@product.stock %><span>枚</span></td>
