@@ -15,7 +15,7 @@ Category.create(category_name: "ozaki")
 
 
 
-Product.create(
+product = Product.new(
 	title:"HOME",
 	artist_id: 1,
 	price: 2000,
@@ -23,8 +23,9 @@ Product.create(
     category_id: 1,
     period: "2000年代前半",
     stock: 10)
+product.save!
 
-Product.create(
+product = Product.new(
 	title:"I love you",
 	artist_id: 2,
 	price: 1300,
@@ -32,6 +33,7 @@ Product.create(
     category_id: 2,
     period: "1980年代",
     stock: 20)
+product.save!
 
 
 user = User.new(
