@@ -3,10 +3,10 @@
       <h1 class="add-products text-white">商品追加</h1>
          <div class="addditem">
             <%= form_for(@product,:url => {:action => :create}) do |f| %>
-	<table class="condensed text-white">
-		<tr>
-			<td class="text-white">年代</td>
-			<td><%= f.select :period,[["1980年代前半","1980年代前半"],["1980年代後半","1980年代後半"],["1990年代前半","1990年代前半"],["1990年代後半","1990年代後半"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代前後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
+    <table class="condensed text-white">
+        <tr>
+            <td class="text-white">年代</td>
+            <td><%= f.select :period,[["1980年代前半","1980年代前半"],["1980年代後半","1980年代後半"],["1990年代前半","1990年代前半"],["1990年代後半","1990年代後半"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代前後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
 
         </tr>
 
@@ -16,17 +16,10 @@
 
                 <%= f.fields_for :artists do |artist| %>
                 <%= artist.text_field :artist_name %>
+                <% end %>
 
-    <% end %>
 
-           <!--  <%= f.label :artist_id %> -->
-            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :include_blank => true %>
-            <input type="text" name="name" list="artist" class="mt-4">
-            <!-- <datalist id="artist">
-            <option value="Mr.children"></option>
-            <option value="Ed sheeran"></option>
-            <option value="RADWIMPS"></option>
-            </datalist> --></td>
+         </td>
         </tr>
 
 <tr>
@@ -44,29 +37,28 @@
 
         <tr>
             <td class="text-white">値段</td>
-            <td> <% number_field_tag 'price', nil, in: 1...1000000 %><input id="price" name="price" min="1" max="1000000" type="number" /><span class="text-white">円</span></td>
+            <td><%= f.number_field :price, min:1, max:10000000 %></td><span class="text-white">円</span>
         </tr>
 
         <tr>
             <td class="text-white">レーベル名</td>
-            <td>
-                <%= f.fields_for :labels do |label| %>
-                <%= label.text_field :label_name %>
-                <% end %>
+            <td>  <%= f.fields_for :labels do |label| %>
+                <%= label.text_field :label_name %></td>
+            <% end %>
+
 <!--
             <datalist id="label">
             <option value="TOY'S FACTORY"></option>
             <option value="ワーナーミュージック"></option>
             <option value="エイベックス"></option>
-            </datalist> --></td>
+            </datalist> -->
         </tr>
 
         <tr>
             <td class="text-white">ジャンル</td>
-            <td>
-                <%= f.collection_select :category_id, Category.all, :id, :category_name, :include_blank => true %></td>
-                <td><%= f.text_field :title, class:"product_title mt-4", placeholder:"title"%><
-
+            <td>  <%= f.fields_for :categories do |category| %>
+                <%= category.text_field :category_name %></td>
+                 <% end %>
         </tr>
 
         <tr>
@@ -94,7 +86,7 @@
 
         <tr>
             <td class="text-white">在庫数</td>
-            <td><% number_field_tag 'stock', nil %><input id="stock" name="stock" min="1"  type="number" /><span class="text-white">枚</span></td>
+            <td><%= f.number_field :price, min:1, max:10000000 %><span class="text-white">枚</span></td>
         </tr>
 
 
@@ -109,4 +101,3 @@
 
 </div>
 </main>
-

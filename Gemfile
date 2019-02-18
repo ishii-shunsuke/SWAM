@@ -69,3 +69,4 @@ gem "cocoon"
 gem "pry-rails"
 gem 'kaminari','~> 1.1.1'
 gem "ransack"
+gem 'jquery-ui-rails'
