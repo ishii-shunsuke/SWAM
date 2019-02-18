@@ -3,6 +3,12 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<%= notice %>
+<div class="color-red center text-big">
+<%= alert %>
+</div>
+
   <div class="field login-title text-white text-big">
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -14,7 +20,7 @@
   </div>
 
 
-  <div class="actions title text-big">
+  <div class="actions center year text-big">
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
