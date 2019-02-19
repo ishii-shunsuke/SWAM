@@ -5,6 +5,7 @@ class Users::ShippingAddressesController < ApplicationController
 
 	def create
 		shipping_address = ShippingAddress.new(shipping_address_params)
+		shipping_address.user_id = current_user.id
 		shipping_address.save
 		redirect_to users_shipping_addresses_path
 	end
@@ -23,12 +24,19 @@ class Users::ShippingAddressesController < ApplicationController
 		redirect_to users_shipping_addresses_path
 	end
 
+	def destroy
+		shipping_address = ShippingAddress.find(params[:id])
+        shipping_address.destroy
+        redirect_to users_shipping_addresses_path
+	end
+
 	def new_when_order
 		@shipping_address = ShippingAddress.new
 	end
 
 	def create_when_order
 		shipping_address = ShippingAddress.new(shipping_address_params)
+		shipping_address.user_id = current_user.id
 		shipping_address.save
 		redirect_to order_confirmation_path(shipping_address.id)
 	end

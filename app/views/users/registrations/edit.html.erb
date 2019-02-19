@@ -1,0 +1,73 @@
+<main>
+
+<div class="container-fluid">
+    <div class="text-white">
+      <h3 class="mypage-title">ユーザー情報の編集</h3>
+    <div class="row">
+      <div class="col-md-5">
+
+    <%= form_for @user,:url => {:action => :update} do |f| %>
+    <div class="field">
+    <%= f.label :last_name,"姓" %>
+        <%= f.text_field :last_name %>
+        </div>
+        <div class="field">
+    <%= f.label :first_name,"名" %>
+        <%= f.text_field :first_name %>
+        </div>
+        <div class="field">
+    <%= f.label :last_name_kana,"姓(カナ)" %>
+        <%= f.text_field :last_name_kana %>
+        </div>
+        <div class="field">
+    <%= f.label :first_name_kana,"名(カナ)" %>
+        <%= f.text_field :first_name_kana %>
+        </div>
+        <div class="field">
+    <%= f.label :post_number,"郵便番号" %>
+        <%= f.text_field :post_number %>
+        </div>
+        <div class="field">
+    <%= f.label :prefectures,"都道府県" %>
+        <%= f.select :prefectures, User.prefectures.keys, {prompt: '選択してください'} %>
+        </div>
+          <div class="field">
+    <%= f.label :city,"市町村" %>
+        <%= f.text_field :city %>
+        </div>
+         <div class="field">
+    <%= f.label :block,"番地・建物名" %>
+        <%= f.text_field :block %>
+        </div>
+       </div>
+       <div class="col-md-5">
+        <div class="field">
+    <%= f.label :phone_number,"電話番号" %>
+        <%= f.text_field :phone_number %>
+        </div>
+           <div class="field">
+    <%= f.label :email,"メールアドレス" %>
+        <%= f.text_field :email %>
+        </div>
+       <div class="field">
+      <%= f.label :password,"パスワード" %>
+      <%= f.password_field :password %>
+    </div>
+     <div class="field">
+      <%= f.label :password,"パスワード確認" %>
+      <%= f.password_field :password %>
+    </div>
+        <% end %>
+           </div>
+       </div>
+           <div class="row">
+               <div class="col text-center">
+            <%= link_to "変更を保存",user_registration_path, class: "btn btn-success" %>
+           </div>
+       </div>
+
+</div>
+</div>
+</div>
+</div>
+</main>
