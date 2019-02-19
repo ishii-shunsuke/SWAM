@@ -6,16 +6,16 @@
     <table class="condensed text-white">
         <tr>
             <td class="text-white">年代</td>
-            <td><%= f.select :period,[["1980年代前半","1980年代前半"],["1980年代後半","1980年代後半"],["1990年代前半","1990年代前半"],["1990年代後半","1990年代後半"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代前後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
+            <td><%= f.select :period,[["1980年代前半","1980年代前半"],["1980年代後半","1980年代後半"],["1990年代前半","1990年代前半"],["1990年代後半","1990年代後半"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
 
         </tr>
 
  <tr>
-            <td class="text-white">アーティスト</td>
-            <td>
+            <td>アーティスト</td>
+            <td class="text-white mt-4">
 
                 <%= f.fields_for :artists do |artist| %>
-                <%= artist.text_field :artist_name %>
+                <%= artist.text_field :artist_name, class:"product_artist mt-4"%>
                 <% end %>
 
 
@@ -31,19 +31,19 @@
 
         <tr>
             <td class="text-white mt-4">ジャケット画像</td>
-            <td><div class="form-group has-icon"><label class="control-label sr-only mt-4" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100'%></div></td>
+            <td><div class="form-group has-icon"><label class="control-label sr-only mt-4" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100', class:"product_jucket mt-4"%></div></td>
 
         </tr>
 
         <tr>
-            <td class="text-white">値段</td>
-            <td><%= f.number_field :price, min:1, max:10000000 %></td><span class="text-white">円</span>
+            <td class="text-white mt-4">値段</td>
+            <td><%= f.number_field :price, min:1, max:10000000 %><span class="text-white">円</span></td>
         </tr>
 
         <tr>
-            <td class="text-white">レーベル名</td>
+            <td class="text-white mt-4">レーベル名</td>
             <td>  <%= f.fields_for :labels do |label| %>
-                <%= label.text_field :label_name %></td>
+                <%= label.text_field :label_name, class:"product_label mt-4" %></td>
             <% end %>
 
 <!--
@@ -55,9 +55,9 @@
         </tr>
 
         <tr>
-            <td class="text-white">ジャンル</td>
+            <td class="text-white mt-4">ジャンル</td>
             <td>  <%= f.fields_for :categories do |category| %>
-                <%= category.text_field :category_name %></td>
+                <%= category.text_field :category_name, class:"product_artist mt-4" %></td>
                  <% end %>
         </tr>
 
@@ -86,7 +86,7 @@
 
         <tr>
             <td class="text-white">在庫数</td>
-            <td><%= f.number_field :price, min:1, max:10000000 %><span class="text-white">枚</span></td>
+            <td><%= f.number_field :stock, min:1, max:10000000 %><span class="text-white">枚</span></td>
         </tr>
 
 

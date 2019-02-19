@@ -2,7 +2,7 @@
     <div class="admin-title">
          <h1 class="text-white">商品詳細画面</h1>
    <div class="showitem text-white">
-	<table>
+	<table class="table">
 		<tr>
             <td>アーティスト名</td>
             <td><%=@product.artist.artist_name %></td>
@@ -19,6 +19,10 @@
             <td>値段</td>
             <td><%=@product.price %><span>円</span></td>
         </tr>
+         <tr>
+            <td>年代</td>
+            <td><%=@product.period %></td>
+        </tr>
         <tr>
             <td>レーベル名</td>
             <td><%=@product.label.label_name %></td>
@@ -30,9 +34,9 @@
 
          <tr>
              <td>曲名</td>
-            <td><span>Disk</span><% @product.discs.each do |disc|%><%= disc.disc_number%><br>
+            <td><% @product.discs.each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
             <% disc.songs.each do |song|%>
-            <%= song.name %><% end %>
+            <%= song.name %><br><% end %>
             <% end %>
             </td>
         </tr>
@@ -44,8 +48,8 @@
     </table>
    </div>
 
-   <%= link_to "編集", edit_admins_product_path(@product.id), class:"btn btn-success btn-enter" %>
-   <%= link_to "削除", admins_products_path(@product), class:"btn btn-danger btn-enter", method: :delete %>
+   <%= link_to "編集", edit_admins_product_path(@product.id), class: "btn btn-success btn-enter" %>
+   <%= link_to "削除", admins_product_path(@product.id), method: :delete, class: "btn btn-danger btn-enter" %>
 
 </div>
 </div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 	get '/order/complete', to:'users/orders#show'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	post '/order_address', to:'users/shipping_addresses#create_when_order'
+	get 'search', to: 'products#search', as: :search
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]
