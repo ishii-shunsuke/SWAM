@@ -22,14 +22,7 @@
 			   </div>
 			</div>
 			<div class="col text-center">
-				<h2 class="serch-title">
-					<% unless params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont].nil? %>
-					<%= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %>,
-					<% end %>
-					<% unless params[:q][:period_eq].nil? %>
-					<%= params[:q][:period_eq] %>
-					<% end %>
-				</h2>
+				<h2 class="serch-title">検索条件,Mr.children</h2>
 				<div class="input-group">
 					<%= search_form_for([:users,@q]) do |f| %>
 						<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等" %>
