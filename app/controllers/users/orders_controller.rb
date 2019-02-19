@@ -57,7 +57,7 @@ class Users::OrdersController < ApplicationController
 		order.save
 
 		#BuyProducts作成
- 		carts = Cart.all
+ 		carts = Cart.where(user_id: current_user.id)
 		carts.each do |cart|
 			buy_product = BuyProduct.new
 			buy_product.product_id = cart.product_id
