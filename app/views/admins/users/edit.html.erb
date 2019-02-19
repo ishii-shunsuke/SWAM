@@ -4,64 +4,65 @@
 	  	<h3 class="mypage-title">ユーザー情報の編集</h3>
 		<div class="row">
 			<div class="col-md-5">
-          <div class="form-group">
-		 <label for="lastname">姓</label>
-		   <input type="text" name="lastname" class="form-control-sm">
+
+		<%= form_for @user,:url => {:action => :update} do |f| %>
+		<div class="field">
+		<%= f.label :last_name,"姓" %>
+        <%= f.text_field :last_name %>
+        </div>
+        <div class="field">
+		<%= f.label :first_name,"名" %>
+        <%= f.text_field :first_name %>
+        </div>
+        <div class="field">
+		<%= f.label :last_name_kana,"姓(カナ)" %>
+        <%= f.text_field :last_name_kana %>
+        </div>
+        <div class="field">
+		<%= f.label :first_name_kana,"名(カナ)" %>
+        <%= f.text_field :first_name_kana %>
+        </div>
+        <div class="field">
+		<%= f.label :post_number,"郵便番号" %>
+        <%= f.text_field :post_number %>
+        </div>
+        <div class="field">
+		<%= f.label :prefectures,"都道府県" %>
+        <%= f.select :prefectures, User.prefectures.keys, {prompt: '選択してください'} %>
+        </div>
+          <div class="field">
+		<%= f.label :city,"市町村" %>
+        <%= f.text_field :city %>
+        </div>
+         <div class="field">
+		<%= f.label :block,"番地・建物名" %>
+        <%= f.text_field :block %>
+        </div>
+       </div>
+       <div class="col-md-5">
+        <div class="field">
+		<%= f.label :phone_number,"電話番号" %>
+        <%= f.text_field :phone_number %>
+        </div>
+           <div class="field">
+		<%= f.label :email,"メールアドレス" %>
+        <%= f.text_field :email %>
+        </div>
+       <div class="field">
+      <%= f.label :password,"パスワード" %>
+      <%= f.password_field :password %>
+    </div>
+     <div class="field">
+      <%= f.label :password,"パスワード確認" %>
+      <%= f.password_field :password %>
+    </div>
+		    <% end %>
 		</div>
-		<div class="form-group">
-		 <label for="firstname">名</label>
-		   <input type="text" name="firstname" class="form-control-sm">
-		</div>
-		<div class="form-group">
-		 <label for="lastname-kana">姓(カナ)</label>
-		   <input type="text" name="lastname-kana" class="form-control-sm">
-		</div>
-		<div class="form-group">
-		 <label for="firstname-kana">姓(カナ)</label>
-		   <input type="text" name="firstname-kana" class="form-control-sm">
-		</div>
-		<div class="form-group">
-		      <label for="post-number">郵便番号</label>
-		      <input type="text" name="post-number" class="form-control-sm">
-		    </div>
-		<div class="form-group">
-		      <label for="prefectures">都道府県</label>
-		      <select id="inputState" class="form-control-sm">
-		        <option selected>選択...</option>
-		        <option>...</option>
-		      </select>
-		    </div>
-		    <div class="form-group">
-		      <label for="city">市町村</label>
-		      <input type="text" name="city" class="form-control-sm">
-		    </div>
-             <div class="form-group">
-		    <label for="block">番地・建物名</label>
-		    <input type="text" name="block" class="form-control-sm">
-		  </div>
-          </div>
-		  <div class="col-md-5">
-          <div class="form-group">
-		 <label for="phonenumber">電話番号</label>
-		   <input type="tel" name="phonenumber" class="form-control-sm">
-		</div>
-		<div class="form-group">
-		 <label for="mail-adress">メールアドレス</label>
-		   <input type="email" name="mail-adress" class="form-control-sm">
-		</div>
-		<div class="form-group">
-		      <label for="password">パスワード入力</label>
-		      <input type="password" name="password" class="form-control-sm">
-		    </div>
-		<div class="form-group">
-		      <label for="password-confirm">パスワード確認</label>
-		      <input type="password" name="password-confirm" class="form-control-sm">
-		    </div>
            </div>
        </div>
            <div class="row">
            	   <div class="col text-center">
-           	<button type="button" class="btn btn-success btn-enter">変更を保存</button>
+           	 <%= link_to "変更を保存", admins_user_path(@user.id), class: "btn btn-success" %>
            </div>
        </div>
 

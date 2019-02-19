@@ -50,7 +50,7 @@ user = User.new(
     birthday: "1991-11-16",
 	gender: 0,
     phone_number: "090-0000-0000",
-    email: "aaazzz@yamadfa.com",
+    email: "aaazzzaaa@yamadfa.com",
     post_number: "000-0000",
     prefectures: 1,
 	city: "札幌市",
@@ -91,7 +91,6 @@ user = User.new(
     prefectures: 2,
 	city: "青森市",
     block: "中央区3-1",
-
 	password: "sudasuda")
 user.save!
 

@@ -2,6 +2,7 @@ class Admins::UsersController < ApplicationController
 
    def show
    	   @user = User.find(params[:id])
+       @orders = Order.all
    end
 
    def index
@@ -10,9 +11,17 @@ class Admins::UsersController < ApplicationController
    end
 
    def edit
+       @user = User.find(params[:id])
+   end
+
+   def update
+       @user = User.find(params[:id])
+       @user.update(user_params)
+       redirect_to admins_user_path
    end
 
    def destroy
+       @user = User.with_deleted.find_by(params[:id])
    	   user = User.find(params[:id])
    	   user.destroy
    	   redirect_to admins_users_path
