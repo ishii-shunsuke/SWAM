@@ -4,11 +4,15 @@
 			<h1 class="user-title text-center">ユーザー一覧</h1>
 			<div class="row">
 				<div class="col-md-6">
-					<input type="text" class="form-control keyword">
+        <div class="form-group">
+          <%= search_form_for(@search, url: admins_users_path, method: :get) do |f| %>
+                    <%= f.label :email_or_phone_number_cont, "検索" %>
+                    <%= f.text_field :email_or_phone_number_cont, class: "form-control" %>
+                </div>
 				</div>
                 <div class="col-md-2">
-                  
-                </div>
+                <div class="actions"><%= f.submit "検索", class: "btn btn-danger" %></div>
+          <% end %>
            </div>
            <div class="row">
            	<div class="col text-center">
@@ -24,20 +28,20 @@
 
       <% @users.each do |user| %>
       <tr>
-        <td><%= full_name(user) %></td>
+        <td>
+          <%= link_to full_name(user), admins_user_path(user.id) %>
+          </td>
         <td><%= full_address(user) %></td>
-        <td><%= user.email_address %></td>
+        <td><%= user.email %></td>
         <td><%= user.phone_number %></td>
         <td><%= link_to "編集", edit_admins_user_path(user.id), class: "btn btn-primary" %></td>
-        <td><%= link_to "削除", admins_user_path(user.id), method: :delete ,"data-confirm" => "削除しますか？",class: "btn btn-danger" %></td>
+        <td><%= link_to "削除", admins_user_path(user.id), method: :delete ,"data-confirm" => "会員を削除しますか？",class: "btn btn-danger" %></td>
       </tr>
       <% end %>
      </table>
     </div>
     </div>
 	</div>
-  <div class="pagenate">
-    <%= paginate(@users) %>
-  </div>
-  </div>
+    <%= paginate @users %>
+</div>
 </main>
