@@ -31,7 +31,6 @@ devise_for :users, controllers: {
 	end
 
 	devise_scope :user do
-    get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new_before_cart'
-    post '/users/carts', to:'users/sessions#create_before_cart', as:'cart_sign_in'
-  end
+    	get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new'
+  	end
 end

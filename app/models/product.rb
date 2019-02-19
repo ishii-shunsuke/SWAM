@@ -11,5 +11,4 @@ belongs_to :artist, optional: true
 belongs_to :label, optional: true
 belongs_to :category, optional: true
 
-
 end
