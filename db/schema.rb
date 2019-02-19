@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2019_02_16_090900) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "shipping_status"
+    t.integer "shipping_status", default: 1
     t.integer "user_id"
     t.string "shipping_name"
     t.string "shipping_post_number"

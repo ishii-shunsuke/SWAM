@@ -20,7 +20,11 @@
             	<td rowspan="<%= order.buy_products.count + 1 %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
                 <td rowspan="<%= order.buy_products.count + 1 %>"><%= order_total(order) %></td>
                 <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_address %></td>
-                <td rowspan="<%= order.buy_products.count + 1 %>">ステータス選択</td>
+                <%= form_for([:admins, order]) do |f| %>
+                    <td class="text-center" rowspan="<%= order.buy_products.count + 1 %>"><%= f.select :shipping_status, Order.shipping_statuses.keys, {}, {class:"form-control"} %><br>
+                        <%= f.submit "更新する", class:"btn btn-primary btn-enter" %>
+                    </td>
+                <% end %>
                 <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_status %></td>
             </tr>
               <% order.buy_products.each do |buy_product| %>
@@ -32,20 +36,6 @@
               <% end %>
         <% end %>
     </table>
-    <button type="button" class="btn btn-primary btn-enter mt-4" align="right">ステータスを更新する</button>
-
-<table border="3">
-    <tr>
-        <td rowspan="3">垂直方向の結合</td>
-        <td>データ1</td>
-    </tr>
-    <tr>
-        <td>データ2</td>
-    </tr>
-    <tr>
-        <td>データ3</td>
-    </tr>
-</table>
 </div>
 </div>
 </div>
