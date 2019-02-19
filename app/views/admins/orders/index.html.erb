@@ -4,38 +4,38 @@
    <div class="showitem text-white">
 	<table class="table-bordered" >
 		<tr>
-            <td>購入者</td>
-            <td>購入日</td>
-            <td>シングル/アルバム名</td>
-            <td>購入枚数</td>
-            <td>小計</td>
-            <td>購入価格総計</td>
-            <td>送付先</td>
-            <td>ステータス選択</td>
-            <td>ステータス</td>
+            <th>購入者</th>
+            <th>購入日</th>
+            <th>購入価格総計</th>
+            <th>送付先</th>
+            <th>ステータス選択</th>
+            <th>ステータス</th>
+            <th>シングル/アルバム名</th>
+            <th>購入枚数</th>
+            <th>小計</th>
         </tr>
-        <tr>
-        	<td rowspan="2">佐藤花子</td>
-        	<td rowspan="2">1月6日</td>
-        	<td>Ambition</td>
-        	<td>2枚</td>
-        	<td>1200円</td>
-        	<td rowspan="2">2200円</td>
-        	<td rowspan="2">東京区渋谷神泉</td>
-        	<td rowspan="2"><select name="ステータス">
-        	<option value="willsend">準備中</option>
-        	<option value="sending">配送中</option>
-        	<option value="sent">配送済</option>
-            </select></td>
-            <td rowspan="2"><button type="button" class="btn btn-success btn-enter">準備中</button></td>
-        </tr>
-        <tr>
-        	<td>DIVIDE</td>
-        	<td>1枚</td>
-        	<td>1000円</td>
-        </tr>
+        <% @orders.each do |order|%>
+            <tr>
+            	<td rowspan="<%= order.buy_products.count + 1 %>"><%= order.user.full_name %></td>
+            	<td rowspan="<%= order.buy_products.count + 1 %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
+                <td rowspan="<%= order.buy_products.count + 1 %>"><%= order_total(order) %></td>
+                <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_address %></td>
+                <%= form_for([:admins, order]) do |f| %>
+                    <td class="text-center" rowspan="<%= order.buy_products.count + 1 %>"><%= f.select :shipping_status, Order.shipping_statuses.keys, {}, {class:"form-control"} %><br>
+                        <%= f.submit "更新する", class:"btn btn-primary btn-enter" %>
+                    </td>
+                <% end %>
+                <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_status %></td>
+            </tr>
+              <% order.buy_products.each do |buy_product| %>
+                <tr>
+                    <td><%= buy_product.buy_title %></td>
+                    <td><%= buy_product.buy_number%><span>枚</span></td>
+                    <td><%= buy_product.buy_price%><span>円</span></td>
+                </tr>
+              <% end %>
+        <% end %>
     </table>
-    <button type="button" class="btn btn-primary btn-enter mt-4" align="right">ステータスを更新する</button>
 </div>
 </div>
 </div>

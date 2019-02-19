@@ -7,4 +7,10 @@ class User < ApplicationRecord
    def full_name
    	[last_name, first_name].join("")
    end
+
+  has_many :shipping_addresses
+  has_many :orders
+  has_many :carts
+  has_many :products, through: :carts
+  acts_as_paranoid
 end

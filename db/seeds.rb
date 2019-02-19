@@ -13,6 +13,12 @@ Label.create(label_name:"オザキ")
 Category.create(category_name: "Jpop")
 Category.create(category_name: "ozaki")
 
+Disc.create(disc_number: "1", product_id:13)
+Disc.create(disc_number: "10", product_id:14)
+Song.create(name: "aamrchildren", disc_id:1)
+Song.create(name: "終わりなき旅", disc_id:1)
+Song.create(name: "I love you", disc_id:2)
+
 
 
 product = Product.new(
@@ -44,7 +50,7 @@ user = User.new(
     birthday: "1991-11-16",
 	gender: 0,
     phone_number: "090-0000-0000",
-    email: "aaa@aaa.com",
+    email: "aaazzz@yamadfa.com",
     post_number: "000-0000",
     prefectures: 1,
 	city: "札幌市",
@@ -80,11 +86,12 @@ user = User.new(
     birthday: "1993-2-21",
 	gender: 0,
     phone_number: "090-2222-2222",
-    email: "suda@suda.com",
+    email: "sudazzz@suda.com",
     post_number: "222-2222",
     prefectures: 2,
 	city: "青森市",
     block: "中央区3-1",
+
 	password: "sudasuda")
 user.save!
 
