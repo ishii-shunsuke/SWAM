@@ -29,8 +29,13 @@ class Admins::UsersController < ApplicationController
 
 
    private
-    def user_params
+   def user_params
 		params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :gender, :phone_number, :email_adress, :post_number, :prefectures, :city, :block, :password, :password_confirmation)
-    end
+   end
+
+   private
+   def order_params
+    params.require(:order).permit(:shipping_status)
+   end
 end
 
