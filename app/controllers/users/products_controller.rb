@@ -7,7 +7,8 @@ class Users::ProductsController < ApplicationController
 
   def index
   	@q = Product.includes(discs: :songs).ransack(params[:q])
-    @products = @q.result(distinct: true).includes(:artist)
+    @products = @q.result(distinct: true).includes(:artist, :category)
+    @categories = Category.all
   end
 
   def search
