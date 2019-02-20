@@ -4,8 +4,10 @@
 
       <%= search_form_for([:admins, @q]) do |f| %>
   <div class="form-group">
-    <%= f.text_field :title_cont, class: "form-control",placeholder:"キーワード検索" %>
+    <%= f.text_field :title_or_price_or_period_or_stock_cont, class: "form-control",placeholder:"キーワード検索" %>
   </div>
+
+
 
 <%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
 
