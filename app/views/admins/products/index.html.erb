@@ -7,7 +7,7 @@
     <%= f.text_field :title_cont, class: "form-control",placeholder:"キーワード検索" %>
   </div>
 
-<%= f.select :period_eq, options_for_select([["1980年代前半", "1980年代前半"],["1980年代後半","1980年代後半"],["1990年代前半","1990年代前半"],["1990年代後半","1990年代後半"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
+<%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
 
   <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
   <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
