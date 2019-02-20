@@ -4,8 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
-
   enum gender: {
   	男:1,女:2
   }
@@ -23,6 +21,7 @@ class User < ApplicationRecord
    def full_name
    	[last_name, first_name].join("")
    end
+
 
   has_many :shipping_addresses
   has_many :orders
@@ -43,5 +42,7 @@ class User < ApplicationRecord
   validates :prefectures, presence: true
   validates :city, presence: true
   validates :block, presence: true
+
+  #self.abstract_class = true
 
 end

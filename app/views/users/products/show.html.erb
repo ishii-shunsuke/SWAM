@@ -6,44 +6,54 @@
 				<div class="col-md-4">
 					<h4>ジャケット画像</h4>
 					<div class="d-flex">
-					<%= image_tag 'image.jpg', :size =>'100x100'%>
+                        <%= attachment_image_tag @user,:image, fallback: "no_image.png", size: '150x150' %>
 				    </div>
 				</div>
-				<div class="col-md-4">
-					<h4>シフクノオト</h4>
-					<h5>Mr.children<br>
-					2000年代</h5>
+				<div class="col-md-5">
+					<h4><%=@product.title %></h4>
+					<h5><%=@product.artist.artist_name %><br>
+					<%=@product.period %></h5>
 
-					<p>値段：1,919円<br>
-					   在庫数：有</p>
+					<p><span>値段：</span><%=@product.price %><span>円</span><br><span>在庫数：</span><%if @product.stock<1 %><span>在庫なし</span><% elsif @product.stock<=3 %><span>残りわずか</span><% else %><span>在庫あり</span></p><% end %>
 　　　　　　　　　　</div>
-                <div class="col-md-4">
-                	<h5>数量</h5>
-                	<select class="form-control">
+
+
+  <%= form_for @cart do |f| %>
+            <p>数量</p>
+            <div><%= f.number_field :number, min:1, max:10000000 %></div>
+            <%= f.hidden_field :product_id, :value => params[:id] %>
+            <div><%= f.submit "カートに追加", class: "btn btn-success btn-enter mt-4"%></div>
+            <% end %>
+
+<!--
                     <option value="1" selected="selected">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                    </select>
-                    <button type="button" class="btn btn-success btn-enter">カートに入れる</button>
+                 </select> -->
+                   <!--  <button type="button" class="btn btn-success btn-enter">カートに入れる</button> -->
                 </div>
                 </div>
                 <div class="row">
                 	<div class="col text-center">
-                		<table class="table table-bordered">
+                		<table class="table table-bordered mt-4">
                 			<tr>
                               <td>レーベル名</td>
-                              <td>トイズファクトリー</td>
+                              <td><%=@product.label.label_name %></td>
                             </tr>
                             <tr>
                               <td>ジャンル</td>
-                              <td>J-pop</td>
+                              <td><%=@product.category.category_name %></td>
                             </tr>
                             <tr>
                              <td>曲名</td>
-                             <td>Disk1…</td>
+                             <td><% @product.discs.each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
+                             <% disc.songs.each do |song|%>
+                             <%= song.name %><br><% end %>
+                             <% end %></td>
                             </tr>
+
                 		</table>
                 	</div>
                 </div>

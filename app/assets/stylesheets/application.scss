@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
  */
  @import "bootstrap";
 
@@ -21,7 +22,6 @@ body {
 
 .container {
   width: auto;
-  max-width: 1000px;
   padding: 0px 15px;
 }
 
@@ -51,7 +51,8 @@ body {
 }
 
 .mypage-title {
-	margin-top:100px;
+	margin-top:50px;
+	text-align:center;
 }
 
 .buy-history-title {

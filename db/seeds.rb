@@ -13,15 +13,14 @@ Label.create(label_name:"オザキ")
 Category.create(category_name: "Jpop")
 Category.create(category_name: "ozaki")
 
-Disc.create(disc_number: "1", product_id:13)
-Disc.create(disc_number: "10", product_id:14)
+Disc.create(disc_number: "1", product_id:1)
+Disc.create(disc_number: "10", product_id:2)
 Song.create(name: "aamrchildren", disc_id:1)
 Song.create(name: "終わりなき旅", disc_id:1)
 Song.create(name: "I love you", disc_id:2)
 
 
-
-Product.create(
+product = Product.new(
 	title:"HOME",
 	artist_id: 1,
 	price: 2000,
@@ -29,8 +28,9 @@ Product.create(
     category_id: 1,
     period: "2000年代前半",
     stock: 10)
+product.save!
 
-Product.create(
+product = Product.new(
 	title:"I love you",
 	artist_id: 2,
 	price: 1300,
@@ -38,6 +38,7 @@ Product.create(
     category_id: 2,
     period: "1980年代",
     stock: 20)
+product.save!
 
 
 user = User.new(
@@ -48,13 +49,23 @@ user = User.new(
     birthday: "1991-11-16",
 	gender: 1,
     phone_number: "090-0000-0000",
-    email: "aaazzz@yamadfa.com",
+    email: "aaazzzaaa@yamadfa.com",
     post_number: "000-0000",
     prefectures: 1,
 	city: "札幌市",
     block: "中央区北23条西50丁目3-2",
 	password: "aaaaaa")
 user.save!
+
+Disc.create(disc_number: "1", product_id:1)
+Disc.create(disc_number: "2", product_id:1)
+Disc.create(disc_number: "3", product_id:1)
+Disc.create(disc_number: "1", product_id:2)
+Disc.create(disc_number: "2", product_id:2)
+
+Song.create(name: "aamrchildren", song_number: 1, disc_id:1)
+Song.create(name: "終わりなき旅",song_number: 2, disc_id:1)
+Song.create(name: "I love you", song_number: 3, disc_id:1)
 
 admin = Admin.new(email:"a@a", password: "aaaaaa")
 admin.save!
@@ -89,7 +100,6 @@ user = User.new(
     prefectures: 2,
 	city: "青森市",
     block: "中央区3-1",
-
 	password: "sudasuda")
 user.save!
 

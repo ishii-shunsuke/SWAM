@@ -1,97 +1,100 @@
-<main>
-	<div class="container-fluid">
-		<div class="text-white">
-			<div class="row">
-				<div class="col-md-2">
-					<h5 class="period">年代で選ぶ</h5>
-					<div class="form-group">
-					<button type="button" class="btn-sm btn-primary">1980年代</button>
-				   </div>
-				   <div class="form-group">
-					<button type="button" class="btn-sm btn-primary">1990年代</button>
-				   </div>
-				   <div class="form-group">
-					<button type="button" class="btn-sm btn-primary">2000年代前半</button>
-				   </div>
-				   <div class="form-group">
-					<button type="button" class="btn-sm btn-primary">2000年代後半</button>
-				   </div>
-				   <div class="form-group">
-					<button type="button" class="btn-sm btn-primary">2010年代前半</button>
-				   </div>
-				   <div class="form-group">
-					<button type="button" class="btn-sm btn-primary">2010年代後半</button>
-				   </div>
-				</div>
-				<div class="col text-center">
-				<h2 class="serch-title">検索条件,Mr.children</h2>
-				<div class="input-group">
-	　　　　　　　　<input type="text" class="form-control-lg" placeholder="検索フォーム">
-	　　　　　　<span class="input-group-btn">
-		　　　<button type="button" class="btn btn-warning">絞り込む</button>
-	　　　　　</span>
-	         </div>
-	         <table class="table table-hover table-bordered">
-	<thead>
-		
-		<tr>
-			<th></th>
-			<th>アルバム名</th>
-			<th>アーティスト名</th>
-			<th>年代</th>
-			<th>価格</th>
-			<th>在庫</th>
-		</tr>
-
-		<% @products.each do |product| %>
-<tr>
-		<td>ジャケット画像</td>
-		<td><%= product.title %></td>
-		<td>></td>
-		<td></td>
-		<% end %>
-</tr>
-		<tr>
-			<th></th>
-			<th>アルバム名</th>
-			<th>アーティスト名</th>
-			<th>年代</th>
-			<th>価格</th>
-			<th>在庫</th>
-		</tr>
-	</thead>
-    
-    
-	<tbody>
-		<td>ジャケット画像</td>
-		<td>HOME</td>
-		<td>Mr.children</td>
-		<td>2000年代</td>
-		<td>1,919円</td>
-		<td>有</td>
-		</tbody>
-
-
-  </table>
-　　　　　　　</div>
-  
-
-			</div>
-		</div>
+<div class="container-fluid text-white">
 		<div class="row">
-			<div class="col text-left">
-					   <h6 class="serch">名前で検索</h6>
+			<div class="col-md-2">
+				<h5 class="period">絞り込み検索</h5>
+				<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等", class:"mt-4" %><br>
+						<%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]), {}, class:"mt-4" %><br>
+						<%= f.collection_select :category_id_eq, @categories, :id, :category_name, {include_blank: "指定なし"}, class:"mt-4" %><br>
+						<%= f.submit "絞り込む", class:"btn btn-primary mt-4" %>
+				<% end %>
+					<!--<%= search_form_for([:users,@q], html: {class: 'period_form'}) do |f| %>
+						<%= f.hidden_field :period_eq, value:"1980年代" %>
+						<%= f.submit"　1980年代　", class:"btn btn-info mt-4" %>
+					<% end %>
+
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.hidden_field :period_eq, value:"1990年代" %>
+						<%= f.submit"　1990年代　", class:"btn btn-info mt-4" %>
+					<% end %>
+
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.hidden_field :period_eq, value:"2000年代前半" %>
+						<%= f.submit"2000年代前半", class:"btn btn-info mt-4" %>
+					<% end %>
+
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.hidden_field :period_eq, value:"2000年代後半" %>
+						<%= f.submit"2000年代後半", class:"btn btn-info mt-4" %>
+					<% end %>
+
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.hidden_field :period_eq, value:"2010年代前半" %>
+						<%= f.submit"2010年代前半", class:"btn btn-info mt-4" %>
+					<% end %>
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.hidden_field :period_eq, value:"2000年代後半" %>
+						<%= f.submit"2010年代後半", class:"btn btn-info mt-4 mb-4" %>
+					<% end %>
+
+			    <h6>名前で検索</h6>
 				<div class="input-group">
-	　　　　　　　　<input type="text" class="form-control-sm" placeholder="検索フォーム">
-	　　　　　　<span class="input-group-btn">
-		　　　<button type="button" class="btn btn-warning">Search</button>
-	　　　　　</span>
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等" %><br>
+						<%= f.submit "検索", class:"btn btn-primary mt-3" %>
+					<% end %>
 				</div>
+			-->
 			</div>
+			<div class="col clearfix">
+				<div class="float-left serch-title text-left">
+					<strong><u>検索条件</u></strong><br>
+					名前:
+					<%# unless params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont].nil? %>
+					<strong class="text-warning"><%#= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %></strong>
+					<%# end %><br>
+					年代:
+					<%# unless params[:q][:period_eq].nil? or params[:q][:period_eq] == "" %>
+					<strong class="text-secondary"><%#= params[:q][:period_eq] %></strong>
+					<%# end %><br>
+					ジャンル:
+					<%# unless params[:q][:category_id_eq].nil? or params[:q][:category_id_eq] == "" %>
+					<strong class="text-info"><%#= @categories.find(params[:q][:category_id_eq]).category_name %></strong>
+					<%# end %>
+				</div>
+				<div class="clearfix"></div>
+				<% @products.each do |product| %>
+				<div class="float-left mt-4 ml-4">
+					<div>
+						<%= image_tag 'image.jpg', :size =>'100x100'%>
+					</div>
+					<div>
+						<%= link_to "#{product.title}", users_product_path(product.id) %><br>
+						Artist:<%= product.artist.artist_name %><br>
+						Period:<%= product.period %><br>
+						Price:<%= product.price %><br>
+						Stock:
+							<% if product.stock >= 3 %>
+								有
+							<% elsif product.stock > 0 %>
+								残りわずか
+							<% else %>
+								無
+							<% end %>
+						<div>
+							<ul class="list-unstyled">
+							<% product.discs.each do |disc| %>
+								<li><strong><u>Disc<%= disc.disc_number %></u></strong></li>
+								<ul class="list-unstyled ml-5">
+									<% disc.songs.each do |song| %>
+										<li><%= song.song_number %>.<%= song.name %></li>
+									<% end %>
+								</ul>
+							<% end %>
+							</ul>
+						</div>
+				</div>
+　　　　　　　</div>
+			<% end %>
 		</div>
-		</div>
-	</div>
-</main>
-		<% @products.each do |product| %>
-		<%= product.title %>
-<% end %>
+</div>

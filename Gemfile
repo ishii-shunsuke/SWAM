@@ -70,6 +70,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem "cocoon"
 gem "pry-rails"
-gem 'ransack'
+gem "ransack"
+gem 'jquery-ui-rails'
 gem 'paranoia'
 gem 'kaminari'

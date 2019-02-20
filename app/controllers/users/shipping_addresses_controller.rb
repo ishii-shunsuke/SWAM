@@ -11,7 +11,7 @@ class Users::ShippingAddressesController < ApplicationController
 	end
 
 	def index
-		@shipping_addresses = ShippingAddress.all
+		@shipping_addresses = ShippingAddress.where(user_id: current_user.id)
 	end
 
 	def edit

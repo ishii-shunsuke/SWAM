@@ -16,8 +16,7 @@ class UsersController < ApplicationController
 
 
 	def show
-		@user = User.new
-		#@user = User.find(current_user.id)
+		@user = User.find(current_user.id)
 		#@cart = Cart.find(params[:id])
         @carts = Cart.all
 	end

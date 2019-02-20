@@ -19,9 +19,12 @@ devise_for :users, controllers: {
 	get '/order/complete', to:'users/orders#show'
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	post '/order_address', to:'users/shipping_addresses#create_when_order'
+	get 'search', to: 'products#search', as: :search
+	# post '/users/products', to:'carts#create'
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]
+		get 'search', to: 'products#search'
 	end
 	resources :carts, only: [:index, :create, :update, :destroy]
 	namespace :admins do
@@ -31,7 +34,6 @@ devise_for :users, controllers: {
 	end
 
 	devise_scope :user do
-    get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new_before_cart'
-    post '/users/carts', to:'users/sessions#create_before_cart', as:'cart_sign_in'
-  end
+    	get 'cart/sign_in/:product_id/:number', to: 'users/sessions#new'
+  	end
 end

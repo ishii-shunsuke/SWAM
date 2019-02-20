@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
-
-
 	before_action :configure_permitted_parameters, if: :devise_controller? #deviseコントローラが動いたら、configure_permitted_parametersを処理する。
-
 
 	def after_sign_in_before_cart_path_for(resource)
   		carts_path
