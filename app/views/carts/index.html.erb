@@ -11,44 +11,42 @@
 			<th>アーティスト名</th>
 			<th>単価</th>
 			<th>数量</th>
+			<th></th>
 			<th>金額（税込)</th>
 			<th></th>
 		</tr>
 	</thead>
-	
-    
+    <% @carts.each do |cart| %>
 	<tbody>
-		<td>ジャケット画像</td>
-		<td>キセキ</td>
-		<td>GReeeeN</td>
-		<td>1,919円</td>
+		<td><%= attachment_image_tag cart.product, :jacket_image,fallback: "no_image.png", size: '100x100' %></td>
+		<td><%= cart.product.title %></td>
+		<td><%= cart.product.artist.artist_name %></td>
+		<td><%= cart.product.price %></td>
+		<%= form_for(cart) do |f| %>
 		<td>
-            <select class="form-control col-md-6">
-            <option value="1" selected="selected">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            </select>
-            </div>
+            <%= f.number_field :number, value: cart.number, in: 1...100 %>
 　　　　　</td>
-		<td>1.919円</td>
+        <td>
+        	<%= f.submit '金額確認' %>
+        </td>
+       <% end %>
+		<td>
+			<%= cart.sum_of_price %></td>
 		<td>
 			<span class="form-inline">
-				<%= link_to "削除", carts_path, method: :delete,"data-confirm" => "カートから削除しますか？", class: "btn-sm btn-danger" %>
+				<%= link_to "削除", cart_path(cart.id), method: :delete,"data-confirm" => "カートから削除しますか？", class: "btn-sm btn-danger" %>
 			</span>
 		</td>
+		<% end %>
 	</tbody>
  </table>
  </div>
-	
-    
  <div class="row">
  <div class="col-md-9">
 	<%= link_to "お買い物を続ける", root_path, class: "btn-lg btn-primary" %>
  </div>
  <div class="col-md-3">
-	<%= link_to "次に進む", root_path, class: "btn-lg btn-success" %>
+	<%= link_to "次に進む", order_set_address_path, class: "btn-lg btn-success" %>
  </div>
 </div>
 </div>
