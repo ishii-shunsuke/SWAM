@@ -5,7 +5,7 @@ class Admins::ProductsController < ApplicationController
 
   def index
     	 # @products = Product.all
-    @q = Product.ransack(params[:q])
+    @q = Product.page(params[:page]).ransack(params[:q])
     @labels = Label.all
     @categories = Category.all
     @products = @q.result(distinct: true).includes(:label, :category)
@@ -14,6 +14,7 @@ class Admins::ProductsController < ApplicationController
 
   def search
     @q = Product.search(search_params)
+    @products = @products.page(params[:page]).per(5)
     @products = @q.result(distinct: true)
   end
 
@@ -45,7 +46,7 @@ class Admins::ProductsController < ApplicationController
     category = Category.find_by(category_name: params[:product][:categories][:category_name])
     @product.category_id = category.id
 
-logger.debug @product.errors.inspect
+# logger.debug @product.errors.inspect
 
     @product.save
     redirect_to admins_product_path(@product.id)

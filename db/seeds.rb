@@ -13,6 +13,12 @@ Label.create(label_name:"オザキ")
 Category.create(category_name: "Jpop")
 Category.create(category_name: "ozaki")
 
+Disc.create(disc_number: "1", product_id:1)
+Disc.create(disc_number: "10", product_id:2)
+Song.create(name: "aamrchildren", disc_id:1)
+Song.create(name: "終わりなき旅", disc_id:1)
+Song.create(name: "I love you", disc_id:2)
+
 
 product = Product.new(
 	title:"HOME",
