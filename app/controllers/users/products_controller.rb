@@ -6,6 +6,7 @@ class Users::ProductsController < ApplicationController
    end
 
    def index
+   	   	@products = Product.where(period: "1980年代")
    end
 
 end
