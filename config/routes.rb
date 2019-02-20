@@ -24,6 +24,7 @@ devise_for :users, controllers: {
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]
+		get 'search', to: 'products#search'
 	end
 	resources :carts, only: [:index, :create, :update, :destroy]
 	namespace :admins do

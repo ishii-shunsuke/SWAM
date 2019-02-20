@@ -20,7 +20,6 @@ Song.create(name: "終わりなき旅", disc_id:1)
 Song.create(name: "I love you", disc_id:2)
 
 
-
 product = Product.new(
 	title:"HOME",
 	artist_id: 1,
@@ -57,6 +56,16 @@ user = User.new(
     block: "中央区北23条西50丁目3-2",
 	password: "aaaaaa")
 user.save!
+
+Disc.create(disc_number: "1", product_id:1)
+Disc.create(disc_number: "2", product_id:1)
+Disc.create(disc_number: "3", product_id:1)
+Disc.create(disc_number: "1", product_id:2)
+Disc.create(disc_number: "2", product_id:2)
+
+Song.create(name: "aamrchildren", song_number: 1, disc_id:1)
+Song.create(name: "終わりなき旅",song_number: 2, disc_id:1)
+Song.create(name: "I love you", song_number: 3, disc_id:1)
 
 admin = Admin.new(email:"a@a", password: "aaaaaa")
 admin.save!

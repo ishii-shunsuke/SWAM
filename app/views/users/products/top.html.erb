@@ -10,31 +10,45 @@
 			<div class= "subtitle">
 				<h5>年代で探す</h5>
 			</div>
-
 		<div>
-			<button type="button" class="btn btn-info year">1960年代</button>
+			<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+				<%= f.hidden_field :period_eq, value:"1980年代" %>
+				<%= f.submit"　1980年代　", class:"btn btn-info year" %>
+			<% end %>
 
-			<button type="button" class="btn btn-info year">1970年代</button>
+			<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+				<%= f.hidden_field :period_eq, value:"1990年代" %>
+				<%= f.submit"　1990年代　", class:"btn btn-info year" %>
+			<% end %>
 
-			<button type="button" class="btn btn-info year">1980年代</button>
+			<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+				<%= f.hidden_field :period_eq, value:"2000年代前半" %>
+				<%= f.submit"2000年代前半", class:"btn btn-info year" %>
+			<% end %>
 
-			<button type="button" class="btn btn-info year">1990年代</button>
+			<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+				<%= f.hidden_field :period_eq, value:"2000年代後半" %>
+				<%= f.submit"2000年代後半", class:"btn btn-info year" %>
+			<% end %>
 		</div>
 
 		<div>
-			<button type="button" class="btn btn-info year">2000年代</button>
-
-			<button type="button" class="btn btn-info year">2010年代</button>
+			<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+				<%= f.hidden_field :period_eq, value:"2010年代前半" %>
+				<%= f.submit"2010年代前半", class:"btn btn-info year" %>
+			<% end %>
+			<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+				<%= f.hidden_field :period_eq, value:"2000年代後半" %>
+				<%= f.submit"2010年代後半", class:"btn btn-info year" %>
+			<% end %>
 		</div>
 
 		<div class= "subtitle">
-				<h5>キーワードで探す</h5>
-			</div>
-
-<form class= "searchbox">
-<input type="text">
-<input type="submit" value="Search">
-</form>
-
+			<h5>キーワードで探す</h5>
+			<%= search_form_for([:users,@q]) do |f| %>
+					<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等" %>
+					<%= f.submit "検索" %>
+			<% end %>
+		</div>
 	</div>
 </div>

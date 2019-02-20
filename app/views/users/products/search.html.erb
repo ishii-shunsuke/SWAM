@@ -1,0 +1,106 @@
+<div class="container-fluid text-white">
+		<div class="row">
+			<div class="col-md-2">
+				<h5 class="period">年代で選ぶ</h5>
+				<div class="form-group">
+					<button type="button" class="btn-sm btn-primary">1980年代</button>
+			    </div>
+			   <div class="form-group">
+				<button type="button" class="btn-sm btn-primary">1990年代</button>
+			   </div>
+			   <div class="form-group">
+				<button type="button" class="btn-sm btn-primary">2000年代前半</button>
+			   </div>
+			   <div class="form-group">
+				<button type="button" class="btn-sm btn-primary">2000年代後半</button>
+			   </div>
+			   <div class="form-group">
+				<button type="button" class="btn-sm btn-primary">2010年代前半</button>
+			   </div>
+			   <div class="form-group">
+				<button type="button" class="btn-sm btn-primary">2010年代後半</button>
+			   </div>
+			</div>
+			<div class="col text-center">
+				<h2 class="serch-title">検索条件,Mr.children</h2>
+				<div class="input-group">
+					<%= search_form_for([:users,@q]) do |f| %>
+						<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等" %>
+						<%= f.submit "絞る" %>
+					<% end %>
+	         	</div>
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th></th>
+						<td>ジャケット画像</td>
+					</tr>
+					<tr>
+						<th width="5%">アルバム名</th>
+						<% @products.each do |product| %>
+							<td width="10%"><%= product.title %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<th>アーティスト名</th>
+						<% @products.each do |product| %>
+							<td><%= product.artist.artist_name %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<th>年代</th>
+						<% @products.each do |product| %>
+							<td><%= product.period %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<th>価格</th>
+						<% @products.each do |product| %>
+							<td><%= product.price %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<th>在庫</th>
+						<% @products.each do |product| %>
+							<td>
+								<% if product.stock >= 3 %>
+									有
+								<% elsif product.stock > 0 %>
+									残りわずか
+								<% else %>
+									無
+								<% end %>
+							</td>
+						<% end %>
+					</tr>
+					<tr>
+						<th>曲名</th>
+						<% @products.each do |product| %>
+							<td>
+								<ul class="list-unstyled">
+								<% product.discs.each do |disc| %>
+									<li><strong><u>Disc<%= disc.disc_number %></u></strong></li>
+									<ul class="list-unstyled ml-5">
+										<% disc.songs.each do |song| %>
+											<li><%= song.song_number %>.<%= song.name %></li>
+										<% end %>
+									</ul>
+								<% end %>
+								<ul>
+							</td>
+						<% end %>
+					</tr>
+				</table>
+　　　　　　　</div>
+		</div>
+		<div class="row">
+			<div class="col text-left">
+					   <h6 class="serch">名前で検索</h6>
+				<div class="input-group">
+	　　　　　　　　<input type="text" class="form-control-sm" placeholder="検索フォーム">
+	　　　　　　<span class="input-group-btn">
+		　　　<button type="button" class="btn btn-warning">Search</button>
+	　　　　　</span>
+				</div>
+			</div>
+		</div>
+</div>
