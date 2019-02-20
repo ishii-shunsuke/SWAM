@@ -5,42 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-Artist.create(artist_name:"Mr.children")
-Artist.create(artist_name:"尾崎豊")
-Label.create(label_name:"ミスチル")
-Label.create(label_name:"オザキ")
-Category.create(category_name: "Jpop")
-Category.create(category_name: "ozaki")
-
-Disc.create(disc_number: "1", product_id:1)
-Disc.create(disc_number: "10", product_id:2)
-Song.create(name: "aamrchildren", disc_id:1)
-Song.create(name: "終わりなき旅", disc_id:1)
-Song.create(name: "I love you", disc_id:2)
-
-
-product = Product.new(
-	title:"HOME",
-	artist_id: 1,
-	price: 2000,
-    label_id: 1,
-    category_id: 1,
-    period: "2000年代前半",
-    stock: 10)
-product.save!
-
-product = Product.new(
-	title:"I love you",
-	artist_id: 2,
-	price: 1300,
-    label_id: 2,
-    category_id: 2,
-    period: "1980年代",
-    stock: 20)
-product.save!
-
-
 user = User.new(
 	last_name: "山田",
 	first_name: "太郎",
@@ -56,20 +20,6 @@ user = User.new(
     block: "中央区北23条西50丁目3-2",
 	password: "aaaaaa")
 user.save!
-
-Disc.create(disc_number: "1", product_id:1)
-Disc.create(disc_number: "2", product_id:1)
-Disc.create(disc_number: "3", product_id:1)
-Disc.create(disc_number: "1", product_id:2)
-Disc.create(disc_number: "2", product_id:2)
-
-Song.create(name: "aamrchildren", song_number: 1, disc_id:1)
-Song.create(name: "終わりなき旅",song_number: 2, disc_id:1)
-Song.create(name: "I love you", song_number: 3, disc_id:1)
-
-admin = Admin.new(email:"admin@admin", password: "aaaaaa")
-admin.save!
-
 
 user = User.new(
 	last_name: "有村",
@@ -103,11 +53,6 @@ user = User.new(
 	password: "sudasuda")
 user.save!
 
-Cart.create(product_id: 1, user_id: 1, number:3)
-Cart.create(product_id: 2, user_id: 1, number:5)
-Cart.create(product_id: 1, user_id: 2, number:3)
-Cart.create(product_id: 2, user_id: 3, number:5)
-
 ShippingAddress.create(
 	user_id: 1,
 	last_name: "山田",
@@ -132,3 +77,112 @@ ShippingAddress.create(
     block: "花園2-13-1",
 	phone_number: "090-0000-0000",
 	)
+
+admin = Admin.new(email:"admin@admin", password: "aaaaaa")
+admin.save!
+
+Artist.create(artist_name:"Mr.children")
+Artist.create(artist_name:"尾崎豊")
+Artist.create(artist_name:"坂本九")
+Artist.create(artist_name:"X")
+
+Label.create(label_name:"ミスチル")
+Label.create(label_name:"オザキ")
+Label.create(label_name:"サカモト")
+Label.create(label_name:"エックス")
+
+Category.create(category_name: "Jpop")
+Category.create(category_name: "ballade")
+Category.create(category_name: "rock")
+
+
+
+product = Product.new(
+    title:"HOME",
+    artist_id: 1,
+    price: 2000,
+   label_id: 1,
+   category_id: 1,
+   period: "2000年代前半",
+   stock: 10)
+product.save!
+
+product = Product.new(
+    title:"十七歳の地図",
+    artist_id: 2,
+    price: 1300,
+   label_id: 2,
+   category_id: 1,
+   period: "1990年代",
+   stock: 20)
+product.save!
+
+product = Product.new(
+    title:"上を向いて歩こう",
+    artist_id: 3,
+    price: 1300,
+   label_id: 3,
+   category_id: 2,
+   period: "1960年代",
+   stock: 20)
+product.save!
+
+product = Product.new(
+    title:"紅",
+    artist_id: 4,
+    price: 1300,
+   label_id: 4,
+   category_id: 3,
+   period: "1980年代",
+   stock: 20)
+product.save!
+
+
+
+Disc.create(disc_number: "1", product_id:1)
+Disc.create(disc_number: "2", product_id:1)
+Disc.create(disc_number: "3", product_id:1)
+Disc.create(disc_number: "1", product_id:2)
+Disc.create(disc_number: "1", product_id:3)
+Disc.create(disc_number: "1", product_id:4)
+
+
+
+i = 1
+while i <= 10
+    Song.create(name: "箒星1-#{i}", song_number: i , disc_id: 1)
+    i += 1
+end
+
+i = 1
+while i <= 11
+    Song.create(name: "しるし1-#{i}", song_number: i, disc_id: 2)
+    i += 1
+end
+
+i = 1
+while i <= 9
+    Song.create(name: "フェイク1-#{i}", song_number: i, disc_id: 3)
+    i += 1
+end
+
+i = 1
+while i <= 10
+    Song.create(name: "I LOVE YOU1-#{i}", song_number: i, disc_id: 4)
+    i += 1
+end
+
+i = 1
+while i <= 20
+    Song.create(name: "上を向いて歩こう1-#{i}", song_number: i, disc_id: 5)
+    i += 1
+end
+
+Song.create(name: "紅", song_number: 1, disc_id:6)
+Song.create(name: "20th CENTURY BOY", song_number: 2, disc_id:6)
+
+
+Cart.create(product_id: 1, user_id: 1, number:3)
+Cart.create(product_id: 2, user_id: 1, number:5)
+Cart.create(product_id: 1, user_id: 2, number:3)
+Cart.create(product_id: 2, user_id: 3, number:5)
