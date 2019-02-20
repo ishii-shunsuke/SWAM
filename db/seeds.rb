@@ -67,7 +67,7 @@ Song.create(name: "aamrchildren", song_number: 1, disc_id:1)
 Song.create(name: "終わりなき旅",song_number: 2, disc_id:1)
 Song.create(name: "I love you", song_number: 3, disc_id:1)
 
-admin = Admin.new(email:"a@a", password: "aaaaaa")
+admin = Admin.new(email:"admin@admin", password: "aaaaaa")
 admin.save!
 
 
