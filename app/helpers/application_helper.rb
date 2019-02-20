@@ -10,7 +10,6 @@ module ApplicationHelper
   	end
 
 
-
   	def full_address(address)
   		"#{address.prefectures} #{address.city} #{address.block}"
   	end

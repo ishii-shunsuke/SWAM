@@ -4,19 +4,20 @@
 			<h3>管理者トップページ</h3>
 		</div>
 				<p>
-					<button type="button" class="btn btn-primary btn-lg	btn-block admin-item">商品の追加</button>
+					<%=	link_to "商品の追加",new_admins_product_path, class: "btn btn-primary btn-lg	btn-block admin-item"%>
 				</p>
 
 				<p>
-					<button type="button" class="btn btn-primary btn-lg btn-block admin-item">商品一覧</button>
+					<%=	link_to "商品一覧",admins_products_path, class: "btn btn-primary btn-lg	btn-block admin-item"%>
 				</p>
 
 				<p>
-					<button type="button" class="btn btn-primary btn-lg btn-block admin-item">ユーザー一覧</button>
+					<%=	link_to "ユーザー一覧",admins_users_path, class: "btn btn-primary btn-lg	btn-block admin-item"%>
 				</p>
 
 				<p>
-					<button type="button" class="btn btn-primary btn-lg btn-block admin-item">購入履歴一覧</button>
+					<%=	link_to "購入履歴一覧",admins_orders_path, class: "btn btn-primary btn-lg	btn-block admin-item"%>
 				</p>
 	</div>
 </div>
+
