@@ -29,7 +29,9 @@
 				<% @products.each do |product| %>
 				<div class="float-left mt-4 ml-4">
 					<div>
-						<%= image_tag 'image.jpg', :size =>'100x100'%>
+						<%= link_to(users_product_path(product.id)) do %>
+							<%= attachment_image_tag product,:jacket_image, fallback: "no_image.png", size: '100x100' %>
+						<% end %>
 					</div>
 					<div>
 						<%= link_to "#{product.title}", users_product_path(product.id) %><br>
