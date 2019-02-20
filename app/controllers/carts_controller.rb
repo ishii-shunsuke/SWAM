@@ -1,6 +1,14 @@
 class CartsController < ApplicationController
 
  def index
+ 	 @user = User.find(current_user.id)
+ 	 @carts = Cart.where(user_id: current_user.id)
+ end
+
+ def update
+ 	 cart = Cart.find(params[:id])
+ 	 cart.update(cart_params)
+ 	 redirect_to carts_path
  end
 
  def create
@@ -14,6 +22,9 @@ class CartsController < ApplicationController
  end
 
  def destroy
+ 	 cart = Cart.find(params[:id])
+ 	 cart.destroy
+ 	 redirect_to carts_path
  end
 
  private
