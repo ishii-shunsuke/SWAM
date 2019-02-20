@@ -3,38 +3,52 @@
          <h1 class="text-white">購入履歴一覧</h1>
    <div class="showitem text-white">
 	<table class="table-bordered" >
-		<tr>
-            <th>購入者</th>
-            <th>購入日</th>
-            <th>購入価格総計</th>
-            <th>送付先</th>
-            <th>ステータス選択</th>
-            <th>ステータス</th>
-            <th>シングル/アルバム名</th>
-            <th>購入枚数</th>
-            <th>小計</th>
-        </tr>
-        <% @orders.each do |order|%>
-            <tr>
-            	<td rowspan="<%= order.buy_products.count + 1 %>"><%= order.user.full_name %></td>
-            	<td rowspan="<%= order.buy_products.count + 1 %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
-                <td rowspan="<%= order.buy_products.count + 1 %>"><%= order_total(order) %></td>
-                <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_address %></td>
-                <%= form_for([:admins, order]) do |f| %>
-                    <td class="text-center" rowspan="<%= order.buy_products.count + 1 %>"><%= f.select :shipping_status, Order.shipping_statuses.keys, {}, {class:"form-control"} %><br>
-                        <%= f.submit "更新する", class:"btn btn-primary btn-enter" %>
-                    </td>
-                <% end %>
-                <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_status %></td>
+        <thead>
+    		<tr>
+                <th>購入者</th>
+                <th>購入日</th>
+                <th>購入価格総計</th>
+                <th>送付先</th>
+                <th>ステータス選択</th>
+                <th>ステータス</th>
+                <th>商品名</th>
+                <th>購入枚数</th>
+                <th>小計</th>
             </tr>
-              <% order.buy_products.each do |buy_product| %>
+        </thead>
+        <tbody>
+            <% @orders.each do |order|%>
                 <tr>
-                    <td><%= buy_product.buy_title %></td>
-                    <td><%= buy_product.buy_number%><span>枚</span></td>
-                    <td><%= buy_product.buy_price%><span>円</span></td>
+                	<td rowspan="<%= order.buy_products.count %>"><%= full_name(order.user) %></td>
+                	<td rowspan="<%= order.buy_products.count %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
+                    <td rowspan="<%= order.buy_products.count %>"><%= order_total(order) %></td>
+                    <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_address %></td>
+                    <td class="text-center" rowspan="<%= order.buy_products.count %>">
+                        <%= form_for([:admins, order]) do |f| %>
+                            <%= f.select :shipping_status, Order.shipping_statuses.keys, {}, {class:"form-control"} %><br>
+                            <%= f.submit "更新する", class:"btn btn-primary btn-enter" %>
+                        <% end %>
+                    </td>
+                    <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_status %></td>
+                    <% order.buy_products.each_with_index do |buy_product, i| %>
+                        <% if i == 0 %>
+                            <td><%= buy_product.buy_title %></td>
+                            <td><%= buy_product.buy_number%><span>枚</span></td>
+                            <td><%= buy_product.buy_price%><span>円</span></td>
+                        <% end %>
+                    <% end %>
                 </tr>
-              <% end %>
-        <% end %>
+                  <% order.buy_products.each_with_index do |buy_product, i| %>
+                    <% if i >= 1 %>
+                        <tr>
+                            <td><%= buy_product.buy_title %></td>
+                            <td><%= buy_product.buy_number%><span>枚</span></td>
+                            <td><%= buy_product.buy_price%><span>円</span></td>
+                        </tr>
+                    <% end %>
+                  <% end %>
+            <% end %>
+        </tbody>
     </table>
 </div>
 </div>
