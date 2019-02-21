@@ -12,18 +12,20 @@
 				</div>
 				<div class="col clearfix">
 					<div class="float-left serch-title text-left">
-						<strong><u>検索条件</u></strong><br>
-						名前:
-						<% unless params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont].nil? %>
-						<strong class="text-warning"><%= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %></strong>
-						<% end %><br>
-						年代:
-						<% unless params[:q][:period_eq].nil? or params[:q][:period_eq] == "" %>
-						<strong class="text-secondary"><%= params[:q][:period_eq] %></strong>
-						<% end %><br>
-						ジャンル:
-						<% unless params[:q][:category_id_eq].nil? or params[:q][:category_id_eq] == "" %>
-						<strong class="text-info"><%= @categories.find(params[:q][:category_id_eq]).category_name %></strong>
+						<% unless params[:q].nil? %>
+							<strong><u>検索条件</u></strong><br>
+							名前:
+							<% unless params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont].nil? %>
+							<strong class="text-warning"><%= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %></strong>
+							<% end %><br>
+							年代:
+							<% unless params[:q][:period_eq].blank? %>
+							<strong class="text-secondary"><%= params[:q][:period_eq] %></strong>
+							<% end %><br>
+							ジャンル:
+							<% unless params[:q][:category_id_eq].blank? %>
+							<strong class="text-info"><%= @categories.find(params[:q][:category_id_eq]).category_name %></strong>
+							<% end %>
 						<% end %>
 					</div>
 					<div class="clearfix"></div>
