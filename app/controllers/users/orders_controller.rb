@@ -71,6 +71,9 @@ class Users::OrdersController < ApplicationController
 			product = cart.product
 			product.stock -= cart.number
 			product.save
+
+			#カート削除
+			cart.delete
 		end
 		redirect_to order_complete_path
 	end
