@@ -48,31 +48,43 @@ class Users::OrdersController < ApplicationController
 			shipping_address = ShippingAddress.find(shipping_address_id)
 		end
 
-		#Order作成
-		order = Order.new
-		order.shipping_name = full_name(shipping_address)
-		order.shipping_post_number = shipping_address.post_number
-		order.shipping_address = full_address(shipping_address)
-		order.user_id = current_user.id
-		order.save
+		carts = Cart.where(user_id: current_user.id)
+		if carts.none?{ |cart| cart.number > cart.product.stock }
+			#Order作成
+			order = Order.new
+			order.shipping_name = full_name(shipping_address)
+			order.shipping_post_number = shipping_address.post_number
+			order.shipping_address = full_address(shipping_address)
+			order.user_id = current_user.id
+			order.save
 
-		#BuyProducts作成
- 		carts = Cart.where(user_id: current_user.id)
-		carts.each do |cart|
-			buy_product = BuyProduct.new
-			buy_product.product_id = cart.product_id
-			buy_product.buy_title = cart.product.title
-			buy_product.buy_price = cart.product.price
-			buy_product.buy_number = cart.number
-			buy_product.order_id = order.id
-			buy_product.save
+			#BuyProducts作成
+			carts.each do |cart|
+				buy_product = BuyProduct.new
+				buy_product.product_id = cart.product_id
+				buy_product.buy_title = cart.product.title
+				buy_product.buy_price = cart.product.price
+				buy_product.buy_number = cart.number
+				buy_product.order_id = order.id
+				buy_product.save
 
-			#在庫減らす
-			product = cart.product
-			product.stock -= cart.number
-			product.save
+				#在庫減らす
+				product = cart.product
+				product.stock -= cart.number
+				product.save
+
+				#カート削除
+				cart.delete
+			end
+			redirect_to order_complete_path
+		else
+			carts.each do |cart|
+				if cart.number > cart.product.stock
+					flash["notice#{cart.id}"] = "「#{cart.product.title}」の枚数を#{cart.product.stock}枚以下に設定してください。"
+				end
+			end
+			redirect_to carts_path
 		end
-		redirect_to order_complete_path
 	end
 
 	def show
