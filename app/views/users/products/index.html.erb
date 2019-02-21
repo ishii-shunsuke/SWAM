@@ -9,43 +9,6 @@
 							<%= f.collection_select :category_id_eq, @categories, :id, :category_name, {include_blank: "指定なし"}, class:"mt-4" %><br>
 							<%= f.submit "絞り込む", class:"btn btn-primary mt-4" %>
 					<% end %>
-						<!--<%= search_form_for([:users,@q], html: {class: 'period_form'}) do |f| %>
-							<%= f.hidden_field :period_eq, value:"1980年代" %>
-							<%= f.submit"　1980年代　", class:"btn btn-info mt-4" %>
-						<% end %>
-
-						<%= search_form_for([:users,@q]) do |f| %>
-							<%= f.hidden_field :period_eq, value:"1990年代" %>
-							<%= f.submit"　1990年代　", class:"btn btn-info mt-4" %>
-						<% end %>
-
-						<%= search_form_for([:users,@q]) do |f| %>
-							<%= f.hidden_field :period_eq, value:"2000年代前半" %>
-							<%= f.submit"2000年代前半", class:"btn btn-info mt-4" %>
-						<% end %>
-
-						<%= search_form_for([:users,@q]) do |f| %>
-							<%= f.hidden_field :period_eq, value:"2000年代後半" %>
-							<%= f.submit"2000年代後半", class:"btn btn-info mt-4" %>
-						<% end %>
-
-						<%= search_form_for([:users,@q]) do |f| %>
-							<%= f.hidden_field :period_eq, value:"2010年代前半" %>
-							<%= f.submit"2010年代前半", class:"btn btn-info mt-4" %>
-						<% end %>
-						<%= search_form_for([:users,@q]) do |f| %>
-							<%= f.hidden_field :period_eq, value:"2000年代後半" %>
-							<%= f.submit"2010年代後半", class:"btn btn-info mt-4 mb-4" %>
-						<% end %>
-
-				    <h6>名前で検索</h6>
-					<div class="input-group">
-						<%= search_form_for([:users,@q]) do |f| %>
-							<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等" %><br>
-							<%= f.submit "検索", class:"btn btn-primary mt-3" %>
-						<% end %>
-					</div>
-				-->
 				</div>
 				<div class="col clearfix">
 					<div class="float-left serch-title text-left">
@@ -87,7 +50,7 @@
 								<% product.discs.each do |disc| %>
 									<li><strong><u>Disc<%= disc.disc_number %></u></strong></li>
 									<ul class="list-unstyled ml-5">
-										<% disc.songs.each do |song| %>
+										<% disc.songs.order("song_number asc").each do |song| %>
 											<li><%= song.song_number %>.<%= song.name %></li>
 										<% end %>
 									</ul>
