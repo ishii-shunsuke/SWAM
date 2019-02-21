@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+
+
 	def new
 	end
 
@@ -7,6 +10,10 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		user = User.find(params[:id])
+		user.update(user_params)
+		redirect_to users_path
+
 	end
 
 	def create
@@ -17,8 +24,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(current_user.id)
-		#@cart = Cart.find(params[:id])
-        @carts = Cart.all
+		@orders = Order.where(user_id: current_user.id)
 	end
 
 	def destroy

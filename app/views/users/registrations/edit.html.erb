@@ -57,15 +57,14 @@
       <%= f.label :password,"パスワード確認" %>
       <%= f.password_field :password %>
     </div>
-        <% end %>
-           </div>
-       </div>
+   </div>
+  </div>
            <div class="row">
                <div class="col text-center">
-            <%= link_to "変更を保存",user_registration_path, class: "btn btn-success" %>
+            <%= f.submit "変更を保存", class: "btn btn-success" %>
            </div>
        </div>
-
+<% end %>
 </div>
 </div>
 </div>
