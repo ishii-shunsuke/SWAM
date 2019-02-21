@@ -24,10 +24,10 @@
 		<td><%= cart.product.price %></td>
 		<%= form_for(cart) do |f| %>
 		<td>
-            <%= f.number_field :number, value: cart.number, in: 1...100 %>
+            <%= f.number_field :number, value: cart.number, in: 1...cart.product.stock %>
 　　　　　</td>
         <td>
-        	<%= f.submit '金額確認' %>
+        	<%= f.submit '数量変更' %>
         </td>
        <% end %>
 		<td>

@@ -20,7 +20,7 @@ class CartsController < ApplicationController
 
  def destroy
  	 cart = Cart.find(params[:id])
- 	 cart.destroy
+ 	 cart.delete
  	 redirect_to carts_path
  end
 
