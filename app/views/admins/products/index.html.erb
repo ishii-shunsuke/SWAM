@@ -82,7 +82,7 @@
         <td><%= product.category.category_name %></td>
         <td><%= product.stock %><span>個</span></td>
         <td><%= link_to "編集", edit_admins_product_path(product.id), class: "btn btn-success btn-enter" %></td>
-        <td><%= link_to "削除", admins_product_path(product.id), class: "btn btn-danger btn-enter", method: :delete %></td>
+        <td><%= link_to "削除", admins_product_path(product.id),  "data-confirm" => "商品を削除しますか？", class: "btn btn-danger btn-enter", method: :delete %></td>
       </tr>
 
         <% end %>

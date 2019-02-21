@@ -14,7 +14,7 @@ class Admins::ProductsController < ApplicationController
 
   def search
     @q = Product.search(search_params)
-    @products = @products.page(params[:page]).per(5)
+    @products = @products.page(params[:page]).per(10)
     @products = @q.result(distinct: true)
   end
 
@@ -55,7 +55,6 @@ class Admins::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-
   end
 
   def edit

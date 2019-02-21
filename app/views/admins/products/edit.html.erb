@@ -7,19 +7,14 @@
         <tr>
             <td class="text-white">年代</td>
             <td><%= f.select :period,[["1980年代","1980年代"],["1990年代","1990年代"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代前後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
-
         </tr>
 
  <tr>
             <td class="text-white">アーティスト</td>
-            <td>
 
-                <%= f.fields_for :artists do |artist| %>
-                <%= artist.text_field :artist_name, class: "product_artist mt-4" %>
-                <% end %>
+ <td> <%= f.text_field :artist_id, class:"product_title mt-4", value:@product.artist.artist_name%>
+ </td>
 
-
-         </td>
         </tr>
 
 <tr>
@@ -31,7 +26,7 @@
 
         <tr>
             <td class="text-white mt-4">ジャケット画像</td>
-            <td><div class="form-group has-icon"><label class="control-label sr-only mt-4" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100', class: "product_artist mt-4"%></div></td>
+            <td><div class="form-group has-icon"><label class="control-label sr-only mt-4" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100', class: "product_artist mt-4", value:@product.jacket_image%></div></td>
 
         </tr>
 
@@ -42,9 +37,8 @@
 
         <tr>
             <td class="text-white">レーベル名</td>
-            <td>  <%= f.fields_for :labels do |label| %>
-                <%= label.text_field :label_name, class: "product_artist mt-4" %></td>
-            <% end %>
+            <td> <%= f.text_field :label_id, class:"product_label mt-4", value:@product.label.label_name%>
+             </td>
 
 <!--
             <datalist id="label">
@@ -56,9 +50,9 @@
 
         <tr>
             <td class="text-white">ジャンル</td>
-            <td>  <%= f.fields_for :categories do |category| %>
-                <%= category.text_field :category_name, class: "product_artist mt-4" %></td>
-                 <% end %>
+            <td> <%= f.text_field :category_id, class:"product_title mt-4", value:@product.category.category_name%>
+            </td>
+
         </tr>
 
         <tr>

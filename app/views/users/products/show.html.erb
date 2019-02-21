@@ -6,7 +6,7 @@
 				<div class="col-md-4">
 					<h4>ジャケット画像</h4>
 					<div class="d-flex">
-                        <%= attachment_image_tag @user,:image, fallback: "no_image.png", size: '150x150' %>
+                        <%= attachment_image_tag @product,:jacket_image, fallback: "no_image.png", size: '150x150' %>
 				    </div>
 				</div>
 				<div class="col-md-5">
@@ -20,9 +20,14 @@
 
   <%= form_for @cart do |f| %>
             <p>数量</p>
-            <div><%= f.number_field :number, min:1, max:10000000 %></div>
+            <div><%= f.number_field :number, min:1, max:@product.stock %></div>
             <%= f.hidden_field :product_id, :value => params[:id] %>
-            <div><%= f.submit "カートに追加", class: "btn btn-success btn-enter mt-4"%></div>
+            <div>
+
+                <%= f.submit "カートに追加", class: "btn btn-success btn-enter mt-4"%>
+
+
+              </div>
             <% end %>
 
 <!--
@@ -40,17 +45,17 @@
                 		<table class="table table-bordered mt-4">
                 			<tr>
                               <td>レーベル名</td>
-                              <td><%=@product.label.label_name %></td>
+                              <td class="product_show"><%=@product.label.label_name %></td>
                             </tr>
                             <tr>
                               <td>ジャンル</td>
-                              <td><%=@product.category.category_name %></td>
+                              <td class="product_show"><%=@product.category.category_name %></td>
                             </tr>
                             <tr>
                              <td>曲名</td>
-                             <td><% @product.discs.each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
+                             <td class="product_show"><% @product.discs.each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
                              <% disc.songs.each do |song|%>
-                             <%= song.name %><br><% end %>
+                             <p class="indent"><%= song.song_number %><span>, </span><%= song.name %></p><% end %>
                              <% end %></td>
                             </tr>
 
