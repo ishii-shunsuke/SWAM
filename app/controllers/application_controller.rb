@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_before_cart_path_for(resource)
   		carts_path
 	end
-	
+
   protected
 
   def configure_permitted_parameters #deviseでNameを登録するのに必要な記述

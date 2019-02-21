@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
 
-	attachment:jacket_image
+	attachment :jacket_image
 
 
 	belongs_to :user

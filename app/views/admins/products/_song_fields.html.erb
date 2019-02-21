@@ -2,6 +2,7 @@
   <div class="form-group mt-4">
 
     <%= f.label :song %>
+    <%= f.number_field :song_number, min:1, max:99 %>
     <%= f.text_field :name %>
     <%= link_to_remove_association "削除", f %>
   </div>
