@@ -1,99 +1,84 @@
 <main>
-
-<div class="container">
+  <div class="container">
     <div class="text-white">
       <h3 class="title">ユーザー情報の編集</h3>
-    <div class="row">
-      <div class="col-md-5 right">
+      <%= form_for @user,:url => {:action => :update} do |f| %>
+        <div class="row">
+          <div class="col-md-5 right">
+            <div class="field ">
+              <%= f.label :名前（姓） %><br />
+              <%= f.text_field :last_name, autofocus: true%>
+            </div>
+            <div class="field ">
+              <%= f.label :名前（名） %><br />
+              <%= f.text_field :first_name, autofocus: true%>
+            </div>
+            <div class="field ">
+              <%= f.label :名前（姓・カナ） %><br />
+              <%= f.text_field :last_name_kana, autofocus: true%>
+            </div>
+            <div class="field ">
+              <%= f.label :名前（名・カナ） %><br />
+              <%= f.text_field :first_name_kana, autofocus: true%>
+            </div>
+            <div class="birth_date_field gap-top">
+              <%= f.label :生年月日 %>
+              <%= raw sprintf(
+              f.date_select(:birthday, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1), date_separator: '%s'),'年 ', '月 ') + '日' %>
+            </div>
+            <div class="field" style="width: 180px; margin-left: 265px;">
+              <%= f.label :性別 %><br />
+              <%= f.select :gender, User.genders.keys, {prompt: '選択してください'}, class: 'form-control' %>
+            </div>
+            <div class="field ">
+              <%= f.label :電話番号 %><br />
+              <%= f.text_field :phone_number, autofocus: true%>
+            </div>
+            <div class="field ">
+              <%= f.label :メールアドレス %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+          </div>
 
-    <%= form_for @user,:url => {:action => :update} do |f| %>
-<div class="field ">
-    <%= f.label :名前（姓） %><br />
-    <%= f.text_field :last_name, autofocus: true%>
-    </div>
-
-    <div class="field ">
-      <%= f.label :名前（名） %><br />
-      <%= f.text_field :first_name, autofocus: true%>
-    </div>
-
-    <div class="field ">
-      <%= f.label :名前（姓・カナ） %><br />
-      <%= f.text_field :last_name_kana, autofocus: true%>
-    </div>
-
-    <div class="field ">
-      <%= f.label :名前（名・カナ） %><br />
-      <%= f.text_field :first_name_kana, autofocus: true%>
-    </div>
-
-    <div class="birth_date_field gap-top">
-  <%= f.label :生年月日 %>
-  <%= raw sprintf(
-            f.date_select(:birthday, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1), date_separator: '%s'),'年 ', '月 ') + '日' %>
-</div>
-
-    <div class="field gender-width">
-      <%= f.label :性別 %><br />
-      <%= f.select :gender, User.genders.keys, {prompt: '選択してください'}, class: 'form-control' %>
-    </div>
-
-    <div class="field ">
-      <%= f.label :電話番号 %><br />
-      <%= f.text_field :phone_number, autofocus: true%>
-    </div>
-
-    <div class="field ">
-      <%= f.label :メールアドレス %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-  </div>
-
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-5">
-    <div class="field text-white">
-      <%= f.label :郵便番号 %><br />
-      <%= f.text_field :post_number, autofocus: true%>
-    </div>
-
-    <div class="field text-white gender-width">
-      <%= f.label :都道府県 %><br />
-      <%= f.select :prefectures, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control'%>
-    </div>
-
-    <div class="field text-white">
-      <%= f.label :市区町村 %><br />
-      <%= f.text_field :city, autofocus: true%>
-    </div>
-
-    <div class="field text-white">
-      <%= f.label :番地・建物名 %><br />
-      <%= f.text_field :block, autofocus: true%>
-    </div>
-
-    <div class="field text-white ">
-      <%= f.label :パスワード %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-     <br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-
-    <div class="field text-white">
-      <%= f.label :パスワード確認 %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-   </div>
-  </div>
-           <div class="row">
-               <div class="col text-center">
+          <div class="col-md-4 right">
+            <div class="field text-white">
+              <%= f.label :郵便番号 %><br />
+              <%= f.text_field :post_number, autofocus: true%>
+            </div>
+            <div class="field text-white gender-width" style="margin-left: 170px;">
+              <%= f.label :都道府県 %><br />
+              <%= f.select :prefectures, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control'%>
+            </div>
+            <div class="field text-white">
+              <%= f.label :市区町村 %><br />
+              <%= f.text_field :city, autofocus: true%>
+            </div>
+            <div class="field text-white">
+              <%= f.label :番地・建物名 %><br />
+              <%= f.text_field :block, autofocus: true%>
+            </div>
+            <div class="field text-white ">
+              <%= f.label :パスワード %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> 文字以上)</em>
+                <br />
+                <%= f.password_field :password, autocomplete: "new-password" %>
+              <% end %>
+            </div>
+            <div class="field text-white">
+              <%= f.label :パスワード確認 %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div style="margin:  auto !important;">
             <%= f.submit "変更を保存", class: "btn btn-success" %>
-           </div>
-       </div>
-       <% end %>
-</div>
-</div>
-
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </main>
+
+
