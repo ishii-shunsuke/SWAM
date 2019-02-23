@@ -1,56 +1,92 @@
 <main>
 	<div class="container-fluid">
-	  <div class="text-white">
+	  <div class="text-white user-big">
 		<div class="row">
-			<div class="col-md-5 offset-md-1">
-		<h3 class="mypage-title">ユーザー情報</h3>
+			<div class="col-md-4 offset-md-1">
+		<h3 class="user-mytitle">ユーザー情報</h3>
         <div class="field">
 		
         </div>
+
         <%= form_for @user,:url => {:action => :show} do |f| %>
-		<div class="field">
-		<%= f.label :last_name,"姓" %>
-        <%= f.text_field :last_name, readonly: true %>
+
+	<table>
+		<tr>
+			<div class="field ">
+		<th><%= f.label :last_name,"姓" %></th>
+        <td><%= f.text_field :last_name, readonly: true %></td>
+    	</tr>
         </div>
+        <tr>
+
+        <tr>
+			<div class="field ">
+		<th><%= f.label :first_name,"名" %></th>
+        <td><%= f.text_field :first_name, readonly: true %></td>
+    	</tr>
+        </div>
+        <tr>
+
+
         <%= f.label :last_name,"名" %>
         <%= f.text_field :first_name, readonly: true %>
         </div>
 		<div class="field">
-		<%= f.label :last_name_kana,"姓(カナ)" %>
-        <%= f.text_field :last_name_kana, readonly: true %>
+		<th><%= f.label :last_name_kana,"姓(カナ)" %></th>
+        <td><%= f.text_field :last_name_kana, readonly: true %></td>
         </div>
+        </tr>
+        <tr>
 		<div class="field">
-		<%= f.label :first_name_kana,"名(カナ)" %>
-        <%= f.text_field :first_name_kana, readonly: true %>
+		<th><%= f.label :first_name_kana,"名(カナ)" %></th>
+        <td><%= f.text_field :first_name_kana, readonly: true %></td>
         </div>
+    	</tr>
+    	<tr>
 		<div class="field">
-		<%= f.label :email_address,"メールアドレス" %>
-        <%= f.text_field :email, readonly: true %>
+		<th><%= f.label :email_address,"メールアドレス" %></th>
+        <td><%= f.text_field :email, readonly: true %></td>
         </div>
+    	</tr>
+    	<tr>
 		<div class="field">
-		<%= f.label :phone_number,"電話番号" %>
-        <%= f.text_field :phone_number, readonly: true %>
+		<th><%= f.label :phone_number,"電話番号" %></th>
+        <td><%= f.text_field :phone_number, readonly: true %></td>
         </div>
+    </tr>
+    <tr>
         <div class="field">
-		<%= f.label :prefectures,"都道府県" %>
-        <%= f.text_field :prefectures, readonly: true %>
+		<th><%= f.label :prefectures,"都道府県" %></th>
+        <td><%= f.text_field :prefectures, readonly: true %></td>
         </div>
+    </td>
+    <tr>
         <div class="field">
-		<%= f.label :city,"市町村" %>
-        <%= f.text_field :city, readonly: true %>
+		<th><%= f.label :city,"市町村" %></th>
+        <td><%= f.text_field :city, readonly: true %></td>
         </div>
+    </tr>
+    <tr>
         <div class="field">
-		<%= f.label :block,"番地・建物名" %>
-        <%= f.text_field :block, readonly: true %>
+		<th><%= f.label :block,"番地・建物名" %></th>
+        <td><%= f.text_area :block, readonly: true %></td>
         </div>
+    </tr>
         <% end %>
+        <tr>
 		<div class="form-group">
-		 <label for="shipping-address">配送先</label>
-		   <%= link_to "配送先の確認", users_shipping_addresses_path, class: "btn btn-success" %>
+		 <th><label for="shipping-address">配送先</label></th>
+		   <td><%= link_to "配送先の確認", users_shipping_addresses_path, class: "btn btn-success" %></td>
 		</div>
+	</tr>
+
+
+
+</table>
+
 	  </div>
-		<div class="col-md-6">
-			<h3 class="buy-history-title">購入履歴一覧</h3>
+		<div class="col-md-7 ">
+			<h3 class="user-title">購入履歴一覧</h3>
 		<table class="table table-hover table-bordered">
 	<thead>
 		<tr>
@@ -90,14 +126,13 @@
   </table>
 	</div>
 	</div>
-	<div class="row">
-		<div class="col-md-3">
+
+		<div class="little-left user-edit">
       <%= link_to "登録情報の編集", edit_user_registration_path, class: "btn btn-success" %>
 		</div>
-		<div class="col-md-3">
+		<div class="paginate ">
       <%= link_to "退会", user_registration_path, method: :delete,"data-confirm" => "退会しますか？",class: "btn btn-danger" %>
-		</div>
-	</div>
+
 </div>
  </div>
 </main>
