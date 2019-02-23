@@ -72,7 +72,7 @@
                         <% if i == 0 %>
                             <td><%= buy_product.buy_title %></td>
                             <td><%= buy_product.buy_number%><span>枚</span></td>
-                            <td><%= buy_product.buy_price%><span>円</span></td>
+                            <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
                         <% end %>
                     <% end %>
                 </tr>
@@ -81,7 +81,7 @@
                         <tr>
                             <td><%= buy_product.buy_title %></td>
                             <td><%= buy_product.buy_number%><span>枚</span></td>
-                            <td><%= buy_product.buy_price%><span>円</span></td>
+                            <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
                         </tr>
                     <% end %>
                   <% end %>
