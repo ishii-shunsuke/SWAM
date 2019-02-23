@@ -21,4 +21,20 @@ module ApplicationHelper
   		end
   		total
   	end
+
+    def cart_total(cart)
+      total = 0
+      cart.each do |cart|
+        total += cart.product.price * cart.number
+      end
+      total
+    end
+
+    def cart_number_total(cart)
+      total = 0
+      cart.each do |cart|
+        total += cart.number
+      end
+      total
+    end
 end

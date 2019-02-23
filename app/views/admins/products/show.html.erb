@@ -35,8 +35,8 @@
          <tr>
              <td>曲名</td>
             <td><% @product.discs.each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
-            <% disc.songs.each do |song|%>
-            <%= song.name %><br><% end %>
+           <% disc.songs.order("song_number asc").each do |song|%>
+             <p class="indent"><%= song.song_number %><span>, </span><%= song.name %></p><% end %>
             <% end %>
             </td>
         </tr>
@@ -48,8 +48,8 @@
     </table>
    </div>
 
-   <%= link_to "編集", edit_admins_product_path(@product.id), class: "btn btn-success btn-enter" %>
-   <%= link_to "削除", admins_product_path(@product.id), method: :delete, class: "btn btn-danger btn-enter" %>
+   <%= link_to "編集", edit_admins_product_path(@product.id), class: "btn btn-success btn-enter mb-4" %>
+   <%= link_to "削除", admins_product_path(@product.id), method: :delete, "data-confirm" => "商品を削除しますか？", class: "btn btn-danger btn-enter mb-4" %>
 
 </div>
 </div>

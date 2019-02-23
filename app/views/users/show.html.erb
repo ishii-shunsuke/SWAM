@@ -27,6 +27,10 @@
         </div>
         <tr>
 
+
+        <%= f.label :last_name,"名" %>
+        <%= f.text_field :first_name, readonly: true %>
+        </div>
 		<div class="field">
 		<th><%= f.label :last_name_kana,"姓(カナ)" %></th>
         <td><%= f.text_field :last_name_kana, readonly: true %></td>
@@ -87,22 +91,38 @@
 	<thead>
 		<tr>
 			<th>購入日</th>
+			<th>ステータス</th>
+			<th>送付先</th>
 			<th>シングル/アルバム名</th>
 			<th>購入枚数</th>
 			<th>小計</th>
-			<th>ステータス</th>
 		</tr>
 	</thead>
-
-
-	<tbody>
-		<td>1月2日</td>
-		<td>キセキ</td>
-		<td></td>
-		<td>1,919円</td>
-		<td><%= %></td>
-		
-		</tbody>
+ <tbody>
+            <% @orders.each do |order|%>
+                <tr>
+                	<td rowspan="<%= order.buy_products.count %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
+                    <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_status %></td>
+                    <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_address %></td>
+                    <% order.buy_products.each_with_index do |buy_product, i| %>
+                        <% if i == 0 %>
+                            <td><%= buy_product.buy_title %></td>
+                            <td><%= buy_product.buy_number%><span>枚</span></td>
+                            <td><%= buy_product.buy_price%><span>円</span></td>
+                        <% end %>
+                    <% end %>
+                </tr>
+                  <% order.buy_products.each_with_index do |buy_product, i| %>
+                    <% if i >= 1 %>
+                        <tr>
+                            <td><%= buy_product.buy_title %></td>
+                            <td><%= buy_product.buy_number%><span>枚</span></td>
+                            <td><%= buy_product.buy_price%><span>円</span></td>
+                        </tr>
+                    <% end %>
+                  <% end %>
+            <% end %>
+        </tbody>
   </table>
 	</div>
 	</div>

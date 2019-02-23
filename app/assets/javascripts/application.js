@@ -24,3 +24,4 @@ $(function() {
         $('#formTag').attr('action', `/order/confirmation/${this.value}`);
     });
 })
+

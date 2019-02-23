@@ -11,7 +11,6 @@ class Users::ProductsController < ApplicationController
     @categories = Category.all
   end
 
-
   def search
     @q = Product.search(search_params)
     @products = @products.page(params[:page]).per(5)
