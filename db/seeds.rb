@@ -104,6 +104,7 @@ product = Product.new(
     price: 2000,
    label_id: 1,
    category_id: 1,
+   jacket_image_id: 1,
    period: "2000年代前半",
    stock: 10)
 product.save!
@@ -114,6 +115,7 @@ product = Product.new(
     price: 1300,
    label_id: 2,
    category_id: 1,
+   jacket_image_id: 1,
    period: "1990年代",
    stock: 20)
 product.save!
@@ -124,6 +126,7 @@ product = Product.new(
     price: 1300,
    label_id: 3,
    category_id: 2,
+   jacket_image_id: 1,
    period: "1960年代",
    stock: 20)
 product.save!
@@ -134,6 +137,7 @@ product = Product.new(
     price: 1300,
    label_id: 4,
    category_id: 3,
+   jacket_image_id: 1,
    period: "1980年代",
    stock: 20)
 product.save!

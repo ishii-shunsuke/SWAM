@@ -20,7 +20,7 @@
 
   <%= form_for @cart do |f| %>
             <p>数量</p>
-            <div><%= f.number_field :number, min:1, max:@product.stock %></div>
+            <div><%= f.number_field :number, min:1, max:@product.stock, :value => 1 %></div>
             <%= f.hidden_field :product_id, :value => params[:id] %>
             <div>
 
@@ -53,8 +53,8 @@
                             </tr>
                             <tr>
                              <td>曲名</td>
-                             <td class="product_show"><% @product.discs.each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
-                             <% disc.songs.each do |song|%>
+                             <td class="product_show"><% @product.discs.order("disc_number asc").each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
+                             <% disc.songs.order("song_number asc").each do |song|%>
                              <p class="indent"><%= song.song_number %><span>, </span><%= song.name %></p><% end %>
                              <% end %></td>
                             </tr>

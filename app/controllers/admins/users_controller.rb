@@ -17,6 +17,7 @@ class Admins::UsersController < ApplicationController
    def update
        user = User.find(params[:id])
        user.update(user_params)
+       logger.debug user.errors.inspect
        redirect_to admins_user_path
    end
 
