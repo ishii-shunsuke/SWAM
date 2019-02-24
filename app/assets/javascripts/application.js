@@ -25,3 +25,13 @@ $(function() {
     });
 })
 
+$(function(){
+    $('.filled-btn').mouseover(function(){
+        $(this).parents('#background-1980').animate({'opacity': '1'}, 150);
+    });
+
+    $('.filled-btn').mouseout(function(){
+        $(this).parents('.toumei').css({'background': 'rgba(255,255,255,0.4)'});
+    });
+});
+
