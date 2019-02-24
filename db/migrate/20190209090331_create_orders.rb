@@ -1,6 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
-    create_table :orders do |t|
+    create_table :orders, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.integer :shipping_status, default: 1
       t.integer :user_id
       t.string :shipping_name
