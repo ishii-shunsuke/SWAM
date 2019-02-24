@@ -27,6 +27,7 @@
             <td>レーベル名</td>
             <td><%=@product.label.label_name %></td>
         </tr>
+
         <tr>
             <td>ジャンル</td>
             <td><%=@product.category.category_name %></td>
@@ -36,7 +37,7 @@
              <td>曲名</td>
             <td><% @product.discs.order("disc_number asc").each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
            <% disc.songs.order("song_number asc").each do |song|%>
-             <p class="indent"><%= song.song_number %><span>, </span><%= song.name %></p><% end %>
+             <p class="indent"><%= song.song_number %><span>. </span><%= song.name %></p><% end %>
             <% end %>
             </td>
         </tr>

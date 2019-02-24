@@ -1,6 +1,5 @@
 <main>
 	<div class="container">
-		<div class="text-white">
 			<div class="user-title">
 			  <div class="row">
 				<div class="col-md-4">
@@ -9,7 +8,7 @@
                         <%= attachment_image_tag @product,:jacket_image, fallback: "no_image.png", size: '150x150' %>
 				    </div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5 text-white">
 					<h4><%=@product.title %></h4>
 					<h5><%=@product.artist.artist_name %><br>
 					<%=@product.period %></h5>
@@ -41,18 +40,18 @@
                 </div>
                 </div>
                 <div class="row">
-                	<div class="col text-center">
-                		<table class="table table-bordered mt-4">
+                	<div class="col text-center text-black">
+                		<table class="table table-bordered mt-4 table-light">
                 			<tr>
-                              <td>レーベル名</td>
+                              <td class="table-active">レーベル名</td>
                               <td class="product_show"><%=@product.label.label_name %></td>
                             </tr>
                             <tr>
-                              <td>ジャンル</td>
+                              <td class="table-active">ジャンル</td>
                               <td class="product_show"><%=@product.category.category_name %></td>
                             </tr>
                             <tr>
-                             <td>曲名</td>
+                             <td class="table-active">曲名</td>
                              <td class="product_show"><% @product.discs.order("disc_number asc").each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
                              <% disc.songs.order("song_number asc").each do |song|%>
                              <p class="indent"><%= song.song_number %><span>, </span><%= song.name %></p><% end %>
@@ -64,6 +63,5 @@
                 </div>
 			 </div>
 		    </div>
-		</div>
 	</div>
 </main>

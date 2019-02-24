@@ -9,10 +9,14 @@
 
 
 
-<%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
+<%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]), :prompt => "年代" %>
+
 
   <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
   <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
+
+
+
 
 
   <div class="actions"><%= f.submit "絞り込み" %></div>

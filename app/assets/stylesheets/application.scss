@@ -16,8 +16,10 @@
  */
  @import "bootstrap";
 
-body {
-	background-color: #333333;
+
+body{
+	background: image-url('cddark.jpeg');
+	background-size: 100% 100%;
 }
 
 .container {
@@ -35,7 +37,7 @@ body {
 }
 
 .aaa {
-	height: 400px
+	height: 400px;
 }
 
 .guest {
@@ -74,8 +76,21 @@ body {
 
 .btn-field {
 	margin-bottom:20px;
-
+}
 .withdrawal {
 	margin-top:75px;
+}
 
+.maintitle{
+    font-family:"Courier New";
+	font-size: 40px;
+	margin-top:200px;
+}
+
+.subtitle{
+	font-family:"Courier New";
+}
+
+.logo{
+	 width: 50%;
 }
