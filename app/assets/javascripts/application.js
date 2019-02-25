@@ -10,14 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require popper
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
-//= require jquery3
-//= require popper
+//= require jquery
 //= require bootstrap-sprockets
 //= require cocoon
+//= require_tree .
 
 $(function() {
     $('#formTag input[type=radio]').change( function() {
@@ -25,13 +25,18 @@ $(function() {
     });
 })
 
-$(function(){
-    $('.filled-btn').mouseover(function(){
-        $(this).parents('#background-1980').animate({'opacity': '1'}, 150);
-    });
+$(function() {
+	$('.filled-btn').mouseover(function(){
+	    $(this).animate({opacity: '1'}, 150);
+	});
 
-    $('.filled-btn').mouseout(function(){
-        $(this).parents('.toumei').css({'background': 'rgba(255,255,255,0.4)'});
-    });
+	$('.filled-btn').mouseout(function(){
+    $(this).animate({opacity: '0.5'}, 150);
 });
+})
+
+
+
+
+
 
