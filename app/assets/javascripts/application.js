@@ -26,11 +26,11 @@ $(function() {
 })
 
 $(function() {
-	$('.filled-btn').mouseover(function(){
+	$('.btn-background').mouseover(function(){
 	    $(this).animate({opacity: '1'}, 150);
 	});
 
-	$('.filled-btn').mouseout(function(){
+	$('.btn-background').mouseout(function(){
     $(this).animate({opacity: '0.5'}, 150);
 });
 })

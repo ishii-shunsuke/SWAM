@@ -97,18 +97,35 @@ body {
 }
 
 #background-1980 {
-	width:30%;
+	width:335px;
 	height:300px;
+	position:relative;
 }
 
-.filled-btn {
-	width:300px;
+.btn-background {
+	width:335px;
 	height:300px;
-	background: image-url('ozaki.jpg');
+	background-image: url('ozaki.jpg');
 	background-size: cover;
 	background-position: center;
 	opacity: 0.5;
 }
+#btn-1990{
+	background-image: image-url('larc.jpg');
+}
+#btn-2000e{
+	background-image: image-url('mrchildren.jpg');
+}
+#btn-2000l{
+	background-image: image-url('aiko.jpg');
+}
+#btn-2010e{
+	background-image: image-url('exile.jpg');
+}
+#btn-2010l{
+	background-image: image-url('mrchildren2.png');
+}
+
 
 .show-table {
 	font-size: 30px;

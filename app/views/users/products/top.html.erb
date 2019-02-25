@@ -7,58 +7,54 @@
 		</div>
 	</div>
 <div class="mt-4 mb-5 container">
-	<div class="text-white text-center">
+	<div class="text-light text-center">
 				<h5>年代で探す</h5>
 		<div class="d-flex flex-row mt-4">
 			<div id="background-1980" class="mr-5">
-					<%= search_form_for([:users,@q], class:"period_option") do |f| %>
-						<%= f.hidden_field :period_eq, value:"1980年代" %>
-						<%= f.submit "1980年代", class:"btn btn-lg filled-btn" %>
-					<% end %>
+				<span>1980年代</span>
+				<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+					<%= f.hidden_field :period_eq, value:"1980年代" %>
+					<%= f.submit "", class:"btn btn-lg btn-background", id:"btn-1980" %>
+				<% end %>
 			</div>
 
 			<div id="background-1980" class="mr-5">
-				<div class="toumei">
-					<%= search_form_for([:users,@q], class:"period_option w-100") do |f| %>
-						<%= f.hidden_field :period_eq, value:"1990年代" %>
-						<%= f.submit "1990年代", class:"btn btn-lg filled-btn" %>
-					<% end %>
-				</div>
+				<span>1990年代</span>
+				<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+					<%= f.hidden_field :period_eq, value:"1990年代" %>
+					<%= f.submit "", class:"btn btn-lg btn-background", id:"btn-1990" %>
+				<% end %>
 			</div>
 
 			<div id="background-1980">
-				<div class="toumei">
-					<%= search_form_for([:users,@q], class:"period_option") do |f| %>
-						<%= f.hidden_field :period_eq, value:"2000年代前半" %>
-						<%= f.submit"2000年代前半", class:"btn btn-lg filled-btn" %>
-					<% end %>
-				</div>
+				<span>2000年代前半</span>
+				<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+					<%= f.hidden_field :period_eq, value:"2000年代前半" %>
+					<%= f.submit"", class:"btn btn-lg btn-background", id:"btn-2000e" %>
+				<% end %>
 			</div>
 		</div>
-		<div class="d-flex flex-row mt-4">
+		<div class="d-flex flex-row mt-5">
 			<div id="background-1980" class="mr-5">
-				<div class="toumei">
-					<%= search_form_for([:users,@q], class:"period_option") do |f| %>
-						<%= f.hidden_field :period_eq, value:"2000年代後半" %>
-						<%= f.submit"2000年代後半", class:"btn btn-lg filled-btn" %>
-					<% end %>
-				</div>
+				<span>2000年代後半</span>
+				<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+					<%= f.hidden_field :period_eq, value:"2000年代後半" %>
+					<%= f.submit"", class:"btn btn-lg btn-background", id:"btn-2000l" %>
+				<% end %>
 			</div>
 			<div id="background-1980" class="mr-5">
-				<div class="toumei">
-					<%= search_form_for([:users,@q], class:"period_option") do |f| %>
-						<%= f.hidden_field :period_eq, value:"2010年代前半" %>
-						<%= f.submit"2010年代前半", class:"btn btn-lg filled-btn" %>
-					<% end %>
-				</div>
+				<span>2010年代前半</span>
+				<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+					<%= f.hidden_field :period_eq, value:"2010年代前半" %>
+					<%= f.submit"", class:"btn btn-lg btn-background", id:"btn-2010e" %>
+				<% end %>
 			</div>
 			<div id="background-1980">
-				<div class="toumei">
-					<%= search_form_for([:users,@q], class:"period_option") do |f| %>
-						<%= f.hidden_field :period_eq, value:"2010年代後半" %>
-						<%= f.submit"2010年代後半", class:"btn btn-lg filled-btn" %>
-					<% end %>
-				</div>
+				<span>2010年代後半</span>
+				<%= search_form_for([:users,@q], class:"period_option") do |f| %>
+					<%= f.hidden_field :period_eq, value:"2010年代後半" %>
+					<%= f.submit"", class:"btn btn-lg btn-background", id:"btn-2010l" %>
+				<% end %>
 			</div>
 		</div>
 
