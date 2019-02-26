@@ -27,11 +27,11 @@ $(function() {
 
 $(function() {
 	$('.btn-background').mouseover(function(){
-	    $(this).animate({opacity: '1'}, 150);
+	    $(this).animate({opacity: '1'}, 400);
 	});
 
 	$('.btn-background').mouseout(function(){
-    $(this).animate({opacity: '0.5'}, 150);
+    $(this).animate({opacity: '0.5'}, 500);
 });
 })
 

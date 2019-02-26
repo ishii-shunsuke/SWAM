@@ -1,8 +1,8 @@
-<main>
+<main role="main" class="flex-shrink-0">
 	<div class="container text-light">
 	<div class="bg-light text-dark p-2 cart-title mb-3"><h3>カート</h3></div>
 	<% flash.each do |key, value| %>
-		<%= content_tag :div, value, class: "flash flash-#{key} text-danger" %>
+		<%= content_tag :div, value, class: "flash flash-#{key} text-warning" %>
 	<% end %>
 	<% @carts.each do |cart| %>
 		<%= form_for(cart) do |f| %>
@@ -30,7 +30,7 @@
 			</div>
 		<% end %>
 	<% end %>
-	<div class="row mt-5">
+	<div class="row mt-5 mb-5">
 		<div class="col-7">
 			<%= link_to "お買い物を続ける", root_path, class: "btn-lg btn-primary", data: {"turbolinks" => false} %>
 		</div>
