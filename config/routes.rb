@@ -20,6 +20,8 @@ devise_for :users, controllers: {
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	post '/order_address', to:'users/shipping_addresses#create_when_order'
 	get 'search', to: 'products#search', as: :search
+	post '/admins/products/new/createe', to: 'admins/products#createe'
+	post '/admins/products/new/create', to: 'admins/products#create'
 	# post '/users/products', to:'carts#create'
 	namespace :users do
 		resources :shipping_addresses
