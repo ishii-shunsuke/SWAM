@@ -3,61 +3,18 @@
       <h1 class="product-index text-white">商品一覧</h1>
 
       <%= search_form_for([:admins, @q]) do |f| %>
-  <div class="form-group">
-    <%= f.text_field :title_or_price_or_period_or_stock_cont, class: "form-control",placeholder:"キーワード検索" %>
-  </div>
+        <div class="form-group">
+          <%= f.text_field :title_or_price_or_period_or_stock_cont, class: "form-control",placeholder:"キーワード検索" %>
+        </div>
+        <%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
+        <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
+        <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
+        <div class="actions mt-4"><%= f.submit "絞り込み" %></div>
+      <% end %>
 
-
-
-<%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
-
-  <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
-  <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
-
-
-  <div class="actions"><%= f.submit "絞り込み" %></div>
-
-<% end %>
-
-　　　<!-- <div>
-          <select name="年代">
-          <option value="period">年代</option>
-          <option value="1860">1980年代前半</option>
-          <option value="1860">1980年代後半</option>
-          <option value="1860">1990年代前半</option>
-          <option value="1860">1990年代後半</option>
-          <option value="1860">2000年代前半</option>
-          <option value="1860">2000年代後半</option>
-          <option value="1860">2010年代後半</option>
-          <option value="1860">2010年代後半</option>
-            </select>
-
-          <select name="レーベル名">
-            <option value="aaaa">レーベル名</option>
-            <option value="toys">トイズファクトリー</option>
-            <option value="aaaa">あああああ</option>
-            </select>
-    </div>
-    <div>
-           <select name="ジャンル">
-            <option value="toys">ジャンル</option>
-            <option value="toys">トイズファクトリー</option>
-            <option value="aaaa">あああああ</option>
-            </select>
-
-            <select name="在庫数">
-            <option value="rest">在庫数</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            </select>
-
-            <button type="button" class="btn btn-success btn-enter">絞り込み</button>
-    </div> -->
-
-    <table class="text-white table-bordered mt-5">
-      <tr>
-        <td>ジャケット画像</td>
+    <table class="table text-light mt-4 mb-5" id="table-center">
+      <tr class="bg-secondary">
+        <td></td>
         <td>シングル/アルバム名</td>
         <td>アーティスト名</td>
         <td>値段</td>
@@ -65,32 +22,25 @@
         <td>レーベル名</td>
         <td>ジャンル</td>
         <td>在庫数</td>
-        <td>編集</td>
-        <td>削除</td>
+        <td></td>
+        <td></td>
       </tr>
-
-
-      <% @products.each do |product|%>
-      <tr>
-        <td>
-        <%= link_to admins_product_path(product.id) do %><%= attachment_image_tag product,:jacket_image, fallback: "no_image.png", size: '100x100' %><% end %></td>
-        <td><%= link_to admins_product_path(product.id) do %><%= product.title %><% end %></td>
-        <td><%= product.artist.artist_name %></td>
-        <td><%= product.price %><span>円</span></td>
-         <td><%= product.period %></td>
-        <td><%= product.label.label_name %></td>
-        <td><%= product.category.category_name %></td>
-        <td><%= product.stock %><span>個</span></td>
-        <td><%= link_to "編集", edit_admins_product_path(product.id), class: "btn btn-success btn-enter" %></td>
-        <td><%= link_to "削除", admins_product_path(product.id),  "data-confirm" => "商品を削除しますか？", class: "btn btn-danger btn-enter", method: :delete %></td>
-      </tr>
-
-        <% end %>
-
+      <% @products.order("id desc").each do |product|%>
+        <tr>
+          <td>
+          <%= link_to admins_product_path(product.id) do %><%= attachment_image_tag product,:jacket_image, fallback: "no_image.png", size: '100x100' %><% end %></td>
+          <td><%= link_to admins_product_path(product.id) do %><%= product.title %><% end %></td>
+          <td><%= product.artist.artist_name %></td>
+          <td><%= product.price %><span>円</span></td>
+           <td><%= product.period %></td>
+          <td><%= product.label.label_name %></td>
+          <td><%= product.category.category_name %></td>
+          <td><%= product.stock %><span>個</span></td>
+          <td><%= link_to "編集", edit_admins_product_path(product.id), class: "btn btn-success btn-enter" %></td>
+          <td><%= link_to "削除", admins_product_path(product.id),  "data-confirm" => "商品を削除しますか？", class: "btn btn-danger btn-enter", method: :delete %></td>
+        </tr>
+      <% end %>
     </table>
-
-<div class="paginate"><%= paginate @products %></div>
-
-
+    <div class="paginate"><%= paginate @products %></div>
   </div>
 </main>
