@@ -14,13 +14,24 @@ before_action :authenticate_user!, except: [:create]
  end
 
  def create
- 	@cart = Cart.new(cart_params)
- 	if current_user != nil
-	 	@cart.user_id = current_user.id
-	 	@cart.save
-	 	redirect_to carts_path
+    @product = Product.find(params[:cart][:product_id])
+    @cart = Cart.find_by(product_id: @product.id)
+    if  # 重複する
+        @cart.present?
+        @cart.number = @cart.number + params[:cart][:number].to_i
+        @cart.save
+        redirect_to carts_path
     else
-    	redirect_to "/cart/sign_in/#{params[:cart][:product_id]}/#{params[:cart][:number]}"
+        # 重複してない
+        @cart.nil?
+        @cart = Cart.new(cart_params)
+         if current_user != nil
+             @cart.user_id = current_user.id
+             @cart.save
+             redirect_to carts_path
+        else
+            redirect_to "/cart/sign_in/#{params[:cart][:product_id]}/#{params[:cart][:number]}"
+        end
     end
  end
 

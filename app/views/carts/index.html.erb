@@ -19,7 +19,7 @@
 			<th></th>
 		</tr>
 	</thead>
-    <% @carts.each do |cart| %>
+	<% @carts.each do |cart| %>
 	<tbody>
 		<td><%= attachment_image_tag cart.product, :jacket_image,fallback: "no_image.png", size: '100x100' %></td>
 		<td><%= cart.product.title %></td>
@@ -40,8 +40,8 @@
 				<%= link_to "削除", cart_path(cart.id), method: :delete,"data-confirm" => "カートから削除しますか？", class: "btn-sm btn-danger" %>
 			</span>
 		</td>
-		<% end %>
 	</tbody>
+	<% end %>
  </table>
 <div class="btn-field">
  <div class="row">
