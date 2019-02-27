@@ -1,57 +1,48 @@
-<div class="container">
-	<div class="text-white">
- 	<div>
- 		<h3 class="cart-title">カート</h3>
-		<% flash.each do |key, value| %>
-			<%= content_tag :div, value, class: "flash flash-#{key} text-danger" %>
+<main role="main" class="flex-shrink-0">
+	<div class="container text-light">
+	<div class="bg-light text-dark p-2 cart-title mb-3"><h3>カート</h3></div>
+	<% flash.each do |key, value| %>
+		<%= content_tag :div, value, class: "flash flash-#{key} text-warning" %>
+	<% end %>
+	<% @carts.each do |cart| %>
+		<%= form_for(cart) do |f| %>
+			<div class="row mt-3 pb-4 border-bottom">
+				<div class="col-3 text-center">
+					<%= attachment_image_tag cart.product, :jacket_image,fallback: "no_image.png", size: '100x100' %>
+				</div>
+				<div class="col-5 row">
+					<div class="col-6">
+						<h5><%= cart.product.title %></h5>
+						<p><%= cart.product.artist.artist_name %></p>
+						<h5><%= cart.product.price %> 円</h5>
+					</div>
+					<div class="col-6 d-flex align-items-center">
+						数量 <%= f.number_field :number, value: cart.number, in: 1...cart.product.stock %>
+						<%= f.submit '数量変更', class:"ml-4" %>
+					</div>
+				</div>
+				<div class="col-2 d-flex align-items-center">
+					小計：<%= cart.sum_of_price %> 円
+				</div>
+				<div class="col-2 d-flex align-items-center">
+					<%= link_to "削除", cart_path(cart.id), method: :delete,"data-confirm" => "カートから削除しますか？", class: "btn-sm btn-danger", data: {"turbolinks" => false} %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	<div class="row mt-5 mb-5">
+		<div class="col-7">
+			<%= link_to "お買い物を続ける", root_path, class: "btn-lg btn-primary", data: {"turbolinks" => false} %>
+		</div>
+		<% if @carts.empty? %>
+			<h4>カートに商品がありません。</h4>
+		<% else %>
+			<div class="col-3">
+				<h4 class="ml-5">合計： <%= cart_total(@carts) %> 円</h4>
+			</div>
+			<div class="col-2">
+				<%= link_to "次に進む", order_set_address_path, class: "btn-lg btn-success", data: {"turbolinks" => false} %>
+			</div>
 		<% end %>
 	</div>
- <table class="table table-hover table-bordered">
-	<thead>
-		<tr>
-			<th></th>
-			<th>商品名</th>
-			<th>アーティスト名</th>
-			<th>単価</th>
-			<th>数量</th>
-			<th></th>
-			<th>金額（税込)</th>
-			<th></th>
-		</tr>
-	</thead>
-
-    <% @carts.each do |cart| %>
-	<tbody>
-		<td><%= attachment_image_tag cart.product, :jacket_image,fallback: "no_image.png", size: '100x100' %></td>
-		<td><%= cart.product.title %></td>
-		<td><%= cart.product.artist.artist_name %></td>
-		<td><%= cart.product.price %></td>
-		<%= form_for(cart) do |f| %>
-		<td>
-            <%= f.number_field :number, value: cart.number, in: 1...cart.product.stock %>
-　　　　　</td>
-        <td>
-        	<%= f.submit '数量変更' %>
-        </td>
-       <% end %>
-		<td>
-			<%= cart.sum_of_price %></td>
-		<td>
-			<span class="form-inline">
-				<%= link_to "削除", cart_path(cart.id), method: :delete,"data-confirm" => "カートから削除しますか？", class: "btn-sm btn-danger" %>
-			</span>
-		</td>
-	</tbody>
-	<% end %>
- </table>
-
- <div class="row">
- <div class="col-md-6">
-	<%= link_to "お買い物を続ける", root_path, class: "btn-lg btn-primary" %>
- </div>
- <p class="col-md-6" style="text-align: right;">
-	<%= link_to "次に進む", order_set_address_path, class: "btn-lg btn-success" %>
- </p>
-</div>
-</div>
- </div>
+</main>

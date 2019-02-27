@@ -14,32 +14,26 @@ before_action :authenticate_user!, except: [:create]
  end
 
  def create
- 	@product = Product.find(params[:cart][:product_id])
- 	# p "-----------------"
- 	# p @product
- 	# p @product.id
- 	#p "-----------------"
-	@cart = Cart.find_by(product_id: @product.id)
-	#p "-----------------"
- 	#p @cart
- 	#p "-----------------"
- 	if @cart.present?
- 		# 重複する
- 		@cart.number = @cart.number + params[:cart][:number].to_i
- 		@cart.save
- 		redirect_to carts_path
- 	else
- 		# 重複してない
- 		@cart = Cart.new(cart_params)
-	 	if current_user != nil
-		 	@cart.user_id = current_user.id
-		 	@cart.save
-		 	redirect_to carts_path
-	    else
-	    	redirect_to "/cart/sign_in/#{params[:cart][:product_id]}/#{params[:cart][:number]}"
-	    end
- 	end
 
+    @product = Product.find(params[:cart][:product_id])
+    @cart = Cart.find_by(product_id: @product.id)
+    if  # 重複する
+        @cart.present?
+        @cart.number = @cart.number + params[:cart][:number].to_i
+        @cart.save
+        redirect_to carts_path
+    else
+        # 重複してない
+        @cart.nil?
+        @cart = Cart.new(cart_params)
+         if current_user != nil
+             @cart.user_id = current_user.id
+             @cart.save
+             redirect_to carts_path
+        else
+            redirect_to "/cart/sign_in/#{params[:cart][:product_id]}/#{params[:cart][:number]}"
+        end
+    end
  end
 
  def destroy
