@@ -19,6 +19,7 @@
 			<th></th>
 		</tr>
 	</thead>
+
     <% @carts.each do |cart| %>
 	<tbody>
 		<td><%= attachment_image_tag cart.product, :jacket_image,fallback: "no_image.png", size: '100x100' %></td>
@@ -40,17 +41,17 @@
 				<%= link_to "削除", cart_path(cart.id), method: :delete,"data-confirm" => "カートから削除しますか？", class: "btn-sm btn-danger" %>
 			</span>
 		</td>
-		<% end %>
 	</tbody>
+	<% end %>
  </table>
 
  <div class="row">
- <div class="col-md-9">
+ <div class="col-md-6">
 	<%= link_to "お買い物を続ける", root_path, class: "btn-lg btn-primary" %>
  </div>
- <div class="col-md-3">
+ <p class="col-md-6" style="text-align: right;">
 	<%= link_to "次に進む", order_set_address_path, class: "btn-lg btn-success" %>
- </div>
+ </p>
 </div>
 </div>
  </div>

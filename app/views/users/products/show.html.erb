@@ -14,8 +14,17 @@
 					<h5><%=@product.artist.artist_name %><br>
 					<%=@product.period %></h5>
 
-					<p><span>値段：</span><%=@product.price %><span>円</span><br><span>在庫数：</span><%if @product.stock<1 %><span>在庫なし</span><% elsif @product.stock<=3 %><span>残りわずか</span><% else %><span>在庫あり</span></p><% end %>
-　　　　　　　　　　</div>
+					<p>
+            <span>値段：</span><%=@product.price %><span>円</span><br><span>在庫数：</span>
+            <%if @product.stock<1 %>
+              <span>在庫なし</span>
+              <% elsif @product.stock<=3 %>
+              <span>残りわずか</span>
+              <% else %>
+              <span>在庫あり</span>
+            </p>
+            <% end %>
+　　　　　</div>
 
 
   <%= form_for @cart do |f| %>

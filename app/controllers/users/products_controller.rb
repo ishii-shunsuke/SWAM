@@ -19,6 +19,10 @@ class Users::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    p "---------------------"
+    p params
+    p params[:id]
+    p "---------------------"
    	@cart = Cart.new
   end
 

@@ -17,7 +17,7 @@
  @import "bootstrap";
 
 body {
-	background-color: #333333;
+	background-color: rgba( 0, 0, 0, 0.3); ;
 }
 
 .container {
@@ -75,3 +75,30 @@ body {
 .withdrawal {
 	margin-top:75px;
 }
+
+.bg_test {
+    background-image: url(640x396xa6f98bd3afd315a81f4ea201.jpg);    /* 背景画像指定 */
+    background-size:  cover;                /* 画像のサイズ指定 */
+    height: 100%;
+}
+
+.header-margin{
+	margin-top: 60px;
+}
+.footer-margin{
+	margin-bottom: 62px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

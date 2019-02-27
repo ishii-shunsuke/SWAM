@@ -3,15 +3,15 @@
 		<div class="text-white">
 			<h1 class="user-title text-center">ユーザー一覧</h1>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
         <div class="form-group">
           <%= search_form_for(@search, url: admins_users_path, method: :get) do |f| %>
                     <%= f.label :email_or_phone_number_or_last_name_or_first_name_cont, "検索" %>
-                    <%= f.text_field :email_or_phone_number_or_last_name_or_first_name_cont, class: "form-control" %>
+                    <%= f.text_field :email_or_phone_number_or_last_name_or_first_name_cont, class: "form-control " %>
                 </div>
 				</div>
                 <div class="col-md-2">
-                <div class="actions"><%= f.submit "検索", class: "btn btn-danger" %></div>
+                <div class="actions kensaku"><%= f.submit "検索", class: "btn btn-danger" %></div>
           <% end %>
            </div>
            <div class="row">
