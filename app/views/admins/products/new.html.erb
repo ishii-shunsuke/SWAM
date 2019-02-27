@@ -1,51 +1,47 @@
 <main role="main" class="flex-shrink-0">
-    <div class="container admin-title">
-      <h1 class="add-products text-white">商品追加</h1>
-         <div class="addditem">
+    <div class="container admin-title admin-box">
+      <h1 class="add-products text-white text-center">商品追加</h1>
            <%= form_for(@product,:url => {:action => :create}) do |f| %>
 
-               <table class="condensed">
+               <table class="condensed text-white admin_add_item ">
                    <tr>
-                       <td class="text-white">年代</td>
+                       <td class="text-white" style="padding: 5px 10px;">年代</td>
                        <td><%= f.select :period,[["1980年代","1980年代"],["1990年代","1990年代"],["2000年代前半","2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]], :prompt => "選択してください" %></td>
                     </tr>
                     <tr>
-                        <td class="text-white">アーティスト</td>
-                        <td class="text-white mt-4">
+                        <td class="text-white" style="padding: 5px 10px;">アーティスト</td>
+                        <td class="text-white">
                            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name %>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-white">アルバム/シングル名</td>
-                        <td> <%= f.text_field :title, class:"product_title mt-4", placeholder:"title"%></td>
+                        <td class="text-white" style="padding: 5px 10px;">アルバム/シングル名</td>
+                        <td class="text-white"> <%= f.text_field :title, class:"product_title", placeholder:"title"%></td>
                     </tr>
                     <tr>
-                        <td class="text-white mt-4">ジャケット画像</td>
-                        <td><div class="form-group has-icon"><label class="control-label sr-only mt-4" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100', class:"product_jucket mt-4"%></div></td>
+                        <td class="text-white" style="padding: 5px 10px;"">ジャケット画像</td>
+                        <td><div class="form-group has-icon mt-4"><label class="control-label sr-only" for="inputEmail">JacketImage</label><%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", fallback: "no_image.png", size: '100×100', class:"product_jucket"%></div></td>
                     </tr>
                     <tr>
-                        <td class="text-white mt-4">値段</td>
+                        <td class="text-white" style="padding: 5px 10px;">値段</td>
                         <td><%= f.number_field :price, min:1, max:10000000 %><span class="text-white">円</span></td>
                     </tr>
                     <tr>
-                        <td class="text-white mt-4">レーベル名</td>
-                        <td>  <%= f.fields_for :labels do |label| %>
-                              <%= label.text_field :label_name, class:"product_label mt-4" %>
-                               <% end %>
+                        <td class="text-white" style="padding: 5px 10px;">レーベル名</td>
+                        <td>  <%= f.collection_select :label_id, Label.all, :id, :label_name %>
+                        <!--  <%= f.fields_for :labels do |label| %>
+                              <%= label.text_field :label_name, class:"product_label" %>
+                               <% end %> -->
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-white mt-4">ジャンル</td>
-                         <td class="text-white mt-4">
+                        <td class="text-white" style="padding: 5px 10px;">ジャンル</td>
+                         <td class="text-white">
                            <%= f.collection_select :category_id, Category.all, :id, :category_name %>
                        </td>
-                        <td>  <%= f.fields_for :categories do |category| %>
-                              <%= category.text_field :category_name, class:"product_artist mt-4" %>
-                              <% end %>
-                        </td>
                     </tr>
                     <tr>
-                        <td class="text-white">曲名</td>
+                        <td class="text-white" style="padding: 5px 10px;">曲名</td>
                         <td>
                             <div id="discs">
                                 <%= f.fields_for :discs do |disc| %>
@@ -58,19 +54,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-white">在庫数</td>
+                        <td class="text-white" style="padding: 5px 10px;">在庫数</td>
                         <td><%= f.number_field :stock, min:1, max:10000000 %><span class="text-white">枚</span></td>
                     </tr>
                 </table>
-            <%= f.submit "商品追加", class:"btn btn-primary btn-enter text-white mb-4" %>
+                <br>
+            <%= f.submit "商品追加", class:"btn btn-primary btn-enter text-white mb-4 addbot" %>
             <% end %>
-       </div>
-    </div>
 
- <td>
-                          <button type="button" data-toggle="modal" data-show="true" data-target="#modal-option" class="btn btn-primary">アーティストを追加する</button>
+                          <button type="button" data-toggle="modal" data-show="true" data-target="#modal-artist" class="btn btn-secondary btn-a">アーティストを追加する</button>
 
-                          <div class="modal fade" id="modal-option" tabindex="-1" role="dialog" aria-labelledby="myModalOptionLabel">
+                          <div class="modal fade" id="modal-artist" tabindex="-1" role="dialog" aria-labelledby="myModalOptionLabel">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -79,7 +73,7 @@
                                 </div>
                                 <div class="modal-body">
                                    <div>
-                                 <%= form_for(@artist,:url => {:action => :createe}) do |artist| %>
+                                 <%= form_for(@artist,:url => {:action => :artist_create}) do |artist| %>
                                     <span>アーティスト名</span>
                                      <%= artist.text_field :artist_name, class:"product_artist"%>
                                      <%= artist.submit "追加する", class:"btn btn-primary btn-enter text-white" %>
@@ -92,6 +86,58 @@
                               </div>
                             </div>
                           </div>
-                        </td>
+
+
+                       <button type="button" data-toggle="modal" data-show="true" data-target="#modal-label" class="btn btn-secondary btn-l">レーベル名を追加する</button>
+
+                          <div class="modal fade" id="modal-label" tabindex="-1" role="dialog" aria-labelledby="myModalOptionLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="myModalOptionLabel">レーベル名を追加する</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                   <div>
+                                 <%= form_for(@label,:url => {:action => :label_create}) do |label| %>
+                                    <span>レーベル名</span>
+                                     <%= label.text_field :label_name, class:"product_label"%>
+                                     <%= label.submit "追加する", class:"btn btn-primary btn-enter text-white" %>
+                                  <% end %>
+                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                           <button type="button" data-toggle="modal" data-show="true" data-target="#modal-category" class="btn btn-secondary btn-c">ジャンルを追加する</button>
+
+                          <div class="modal fade" id="modal-category" tabindex="-1" role="dialog" aria-labelledby="myModalOptionLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="myModalOptionLabel">ジャンルを追加する</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                   <div>
+                                 <%= form_for(@category,:url => {:action => :category_create}) do |category| %>
+                                    <span>ジャンル名</span>
+                                     <%= category.text_field :category_name, class:"product_category"%>
+                                     <%= category.submit "追加する", class:"btn btn-primary btn-enter text-white" %>
+                                  <% end %>
+                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+</div>
 
 </main>
