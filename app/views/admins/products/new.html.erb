@@ -2,7 +2,8 @@
     <div class="container admin-title">
       <h1 class="add-products text-white">商品追加</h1>
          <div class="addditem">
-            <%= form_for(@product,:url => {:action => :create}) do |f| %>
+           <%= form_for(@product,:url => {:action => :create}) do |f| %>
+
                <table class="condensed">
                    <tr>
                        <td class="text-white">年代</td>
@@ -25,7 +26,7 @@
                                 </div>
                                 <div class="modal-body">
                                    <div>
-                                  <%= form_for(@artist,:url => {:action => :createe}) do |artist| %>
+                                 <%= form_for(@artist,:url => {:action => :createe}) do |artist| %>
                                     <span>アーティスト名</span>
                                      <%= artist.text_field :artist_name, class:"product_artist"%>
                                      <%= artist.submit "追加する", class:"btn btn-primary btn-enter text-white" %>
