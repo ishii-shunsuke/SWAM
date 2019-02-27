@@ -209,8 +209,12 @@ body {
 #container-width {
 	max-width: 90%;
 }
+
 .bg_test {
     background-image: url(/images/640x396xa6f98bd3afd315a81f4ea201.jpg);    /* 背景画像指定 */
     background-size:  cover;                /* 画像のサイズ指定 */
     height: 100%;
+}
+.table-size {
+	font-size:14px;
 }
