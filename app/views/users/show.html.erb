@@ -1,136 +1,94 @@
-<main>
-	<div class="container-fluid">
-	  <div class="text-white user-big">
-		<div class="row">
-			<div class="col-md-4 offset-md-1">
-		<h3 class="user-mytitle">ユーザー情報</h3>
-        <div class="field">
-        </div>
-
-        <%= form_for @user,:url => {:action => :show} do |f| %>
-
-	<table>
-		<tr>
-			<div class="field ">
-		<th><%= f.label :last_name,"姓" %></th>
-        <td><%= f.text_field :last_name, readonly: true %></td>
-    	</tr>
-        </div>
-        <tr>
-
-        <tr>
-			<div class="field ">
-		<th><%= f.label :first_name,"名" %></th>
-        <td><%= f.text_field :first_name, readonly: true %></td>
-    	</tr>
-        </div>
-        <tr>
-
-
-
-        </div>
-		<div class="field">
-		<th><%= f.label :last_name_kana,"姓(カナ)" %></th>
-        <td><%= f.text_field :last_name_kana, readonly: true %></td>
-        </div>
-        </tr>
-        <tr>
-		<div class="field">
-		<th><%= f.label :first_name_kana,"名(カナ)" %></th>
-        <td><%= f.text_field :first_name_kana, readonly: true %></td>
-        </div>
-    	</tr>
-    	<tr>
-		<div class="field">
-		<th><%= f.label :email_address,"メールアドレス" %></th>
-        <td><%= f.text_field :email, readonly: true %></td>
-        </div>
-    	</tr>
-    	<tr>
-		<div class="field">
-		<th><%= f.label :phone_number,"電話番号" %></th>
-        <td><%= f.text_field :phone_number, readonly: true %></td>
-        </div>
-    </tr>
-    <tr>
-        <div class="field">
-		<th><%= f.label :prefectures,"都道府県" %></th>
-        <td><%= f.text_field :prefectures, readonly: true %></td>
-        </div>
-    </td>
-    <tr>
-        <div class="field">
-		<th><%= f.label :city,"市町村" %></th>
-        <td><%= f.text_field :city, readonly: true %></td>
-        </div>
-    </tr>
-    <tr>
-        <div class="field">
-		<th><%= f.label :block,"番地・建物名" %></th>
-        <td><%= f.text_area :block, readonly: true %></td>
-        </div>
-    </tr>
-        <% end %>
-        <tr>
-		<div class="form-group">
-		 <th><label for="shipping-address">配送先</label></th>
-		   <td><%= link_to "配送先の確認", users_shipping_addresses_path, class: "btn btn-success" %></td>
-		</div>
-	</tr>
-
-
-
-</table>
-
-	  </div>
-		<div class="col-md-7 ">
-			<h3 class="user-title">購入履歴一覧</h3>
-		<table class="table table-hover table-bordered">
-	<thead>
-		<tr>
-			<th>購入日</th>
-			<th>ステータス</th>
-			<th>送付先</th>
-			<th>シングル/アルバム名</th>
-			<th>購入枚数</th>
-			<th>小計</th>
-		</tr>
-	</thead>
- <tbody>
-            <% @orders.each do |order|%>
-                <tr>
-                	<td rowspan="<%= order.buy_products.count %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
-                    <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_status %></td>
-                    <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_address %></td>
-                    <% order.buy_products.each_with_index do |buy_product, i| %>
-                        <% if i == 0 %>
-                            <td><%= buy_product.buy_title %></td>
-                            <td><%= buy_product.buy_number%><span>枚</span></td>
-                            <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
+<main class="bg_test">
+    <div class="container-fluid">
+        <div class="row user-mytitle text-light p-4">
+            <div class="col-4">
+                <h3 class="bg-light text-dark">ユーザー情報</h3>
+                    <table>
+                        <%= form_for @user,:url => {:action => :show} do |f| %>
+                            <tr>
+                                <th><%= f.label :last_name,"姓" %></th>
+                                <td><%= f.text_field :last_name, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :first_name,"名" %></th>
+                                <td><%= f.text_field :first_name, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :last_name_kana,"姓(カナ)" %></th>
+                                <td><%= f.text_field :last_name_kana, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :first_name_kana,"名(カナ)" %></th>
+                                <td><%= f.text_field :first_name_kana, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :email_address,"メールアドレス" %></th>
+                                <td><%= f.text_field :email, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :phone_number,"電話番号" %></th>
+                                <td><%= f.text_field :phone_number, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :prefectures,"都道府県" %></th>
+                                <td><%= f.text_field :prefectures, readonly: true %></td>
+                            <tr>
+                                <th><%= f.label :city,"市町村" %></th>
+                                <td><%= f.text_field :city, readonly: true %></td>
+                            </tr>
+                            <tr>
+                                <th><%= f.label :block,"番地・建物名" %></th>
+                                <td><%= f.text_area :block, readonly: true %></td>
+                            </tr>
                         <% end %>
-                    <% end %>
-                </tr>
-                  <% order.buy_products.each_with_index do |buy_product, i| %>
-                    <% if i >= 1 %>
+                            <tr>
+                                <th>配送先</th>
+                                <td><%= link_to "配送先の確認", users_shipping_addresses_path, class: "btn btn-warning" %></td>
+                            </tr>
+                    </table>
+                    <%= link_to "登録情報の編集", edit_user_registration_path, class: "btn btn-info mt-4 ml-5" %>
+                    <%= link_to "退会", user_registration_path, method: :delete,"data-confirm" => "退会しますか？",class: "btn btn-danger mt-4 ml-5" %>
+            </div>
+            <div class="col-8">
+            <h3 class="bg-light text-dark">購入履歴一覧</h3>
+                <table class="table table-hover table-bordered text-center table-size" id="table-center">
+                    <thead>
                         <tr>
-                            <td><%= buy_product.buy_title %></td>
-                            <td><%= buy_product.buy_number%><span>枚</span></td>
-                            <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
+                            <th>購入日</th>
+                            <th>配送状況</th>
+                            <th>送付先</th>
+                            <th>シングル/アルバム名</th>
+                            <th>購入枚数</th>
+                            <th>小計</th>
                         </tr>
-                    <% end %>
-                  <% end %>
-            <% end %>
-        </tbody>
-  </table>
-	</div>
-	</div>
-
-		<div class="little-left user-edit">
-      <%= link_to "登録情報の編集", edit_user_registration_path, class: "btn btn-success" %>
-		</div>
-		<div class="paginate ">
-      <%= link_to "退会", user_registration_path, method: :delete,"data-confirm" => "退会しますか？",class: "btn btn-danger" %>
-
-</div>
- </div>
+                    </thead>
+                    <tbody>
+                        <% @orders.each do |order|%>
+                            <tr>
+                                <td rowspan="<%= order.buy_products.count %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
+                                <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_status %></td>
+                                <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_address %></td>
+                                <% order.buy_products.each_with_index do |buy_product, i| %>
+                                    <% if i == 0 %>
+                                        <td><%= buy_product.buy_title %></td>
+                                        <td><%= buy_product.buy_number%><span>枚</span></td>
+                                        <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
+                                    <% end %>
+                                <% end %>
+                            </tr>
+                              <% order.buy_products.each_with_index do |buy_product, i| %>
+                                <% if i >= 1 %>
+                                    <tr>
+                                        <td><%= buy_product.buy_title %></td>
+                                        <td><%= buy_product.buy_number%><span>枚</span></td>
+                                        <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
+                                    </tr>
+                                <% end %>
+                              <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </main>

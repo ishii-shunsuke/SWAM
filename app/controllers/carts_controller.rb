@@ -14,13 +14,21 @@ before_action :authenticate_user!, except: [:create]
  end
 
  def create
- 	@cart = Cart.new(cart_params)
- 	if current_user != nil
-	 	@cart.user_id = current_user.id
-	 	@cart.save
-	 	redirect_to carts_path
+    if current_user != nil
+        @product = Product.find(params[:cart][:product_id])
+        @cart = Cart.find_by(product_id: @product, user_id: current_user.id)
+        if @cart.present?
+            @cart.number = @cart.number + params[:cart][:number].to_i
+            @cart.save
+            redirect_to carts_path
+        else
+            @cart = Cart.new(cart_params)
+            @cart.user_id = current_user.id
+            @cart.save
+            redirect_to carts_path
+        end
     else
-    	redirect_to "/cart/sign_in/#{params[:cart][:product_id]}/#{params[:cart][:number]}"
+        redirect_to "/cart/sign_in/#{params[:cart][:product_id]}/#{params[:cart][:number]}"
     end
  end
 

@@ -1,12 +1,14 @@
 <header>
   <% if admin_signed_in? %>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Song with a memory(管理者)</a>
+    <nav class="navbar navbar-expand-md fixed-top">
+      <%= link_to admins_top_path do %>
+       <image src="/images/LOGO.png" alt="imgタグ" width="400" height="56">
+       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar-header">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto navnav">
           <li class="nav-item">
             <%= link_to "トップ", admins_top_path, class:"nav-link", data: {"turbolinks" => false} %> <span class="sr-only">(現位置)</span>
           </li>
@@ -29,12 +31,15 @@
       </div>
     </nav>
   <% else %>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <%= link_to "Song with a memory", root_path, class:"navbar-brand text-white", data: {"turbolinks" => false} %>
+
+    <nav class="navbar navbar-expand-md fixed-top">
+       <%= link_to root_path do %>
+       <image src="/images/LOGO.png" alt="imgタグ" width="400" height="56">
+       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbar-header">
+      <div class="collapse navbar-collapse navnav" id="navbar-header">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <%= link_to "トップ", root_path, class:"nav-link", data: {"turbolinks" => false} %> <span class="sr-only">(現位置)</span></a>
