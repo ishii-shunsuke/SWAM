@@ -155,7 +155,6 @@ Disc.create(disc_number: "1", product_id:3)
 Disc.create(disc_number: "1", product_id:4)
 
 
-
 i = 1
 while i <= 10
     Song.create(name: "箒星1-#{i}", song_number: i , disc_id: 1)
