@@ -14,32 +14,6 @@
                         <td class="text-white mt-4">
                            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name %>
                         </td>
-                        <td>
-                          <button type="button" data-toggle="modal" data-show="true" data-target="#modal-option" class="btn btn-primary">アーティストを追加する</button>
-
-                          <div class="modal fade" id="modal-option" tabindex="-1" role="dialog" aria-labelledby="myModalOptionLabel">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="myModalOptionLabel">アーティストを追加する</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                   <div>
-                                 <%= form_for(@artist,:url => {:action => :createe}) do |artist| %>
-                                    <span>アーティスト名</span>
-                                     <%= artist.text_field :artist_name, class:"product_artist"%>
-                                     <%= artist.submit "追加する", class:"btn btn-primary btn-enter text-white" %>
-                                     <% end %>
-                            </div>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
                     </tr>
                     <tr>
                         <td class="text-white">アルバム/シングル名</td>
@@ -92,4 +66,32 @@
             <% end %>
        </div>
     </div>
+
+ <td>
+                          <button type="button" data-toggle="modal" data-show="true" data-target="#modal-option" class="btn btn-primary">アーティストを追加する</button>
+
+                          <div class="modal fade" id="modal-option" tabindex="-1" role="dialog" aria-labelledby="myModalOptionLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="myModalOptionLabel">アーティストを追加する</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                   <div>
+                                 <%= form_for(@artist,:url => {:action => :createe}) do |artist| %>
+                                    <span>アーティスト名</span>
+                                     <%= artist.text_field :artist_name, class:"product_artist"%>
+                                     <%= artist.submit "追加する", class:"btn btn-primary btn-enter text-white" %>
+                                  <% end %>
+                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
 </main>
