@@ -5,44 +5,41 @@
         <div class="form-group">
           <%= f.text_field :title_or_price_or_period_or_stock_cont, class: "form-control",placeholder:"キーワード検索" %>
         </div>
-          <%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]), :prompt => "年代" %>
+        <%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]), :prompt => "年代" %>
+        <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
+        <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
+        <div class="actions mt-4"><%= f.submit "絞り込み" %></div>
+      <% end %>
 
-         <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
-         <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
-
-         <div class="actions"><%= f.submit "絞り込み" %></div>
-         <% end %>
-
-            <table class="text-white table-bordered mt-5">
-              <tr>
-                <td>ジャケット画像</td>
-                <td>シングル/アルバム名</td>
-                <td>アーティスト名</td>
-                <td>値段</td>
-                <td>年代</td>
-                <td>レーベル名</td>
-                <td>ジャンル</td>
-                <td>在庫数</td>
-                <td>編集</td>
-                <td>削除</td>
-              </tr>
-
-           <% @products.each do |product|%>
-             <tr>
-                <td>
-                   <%= link_to admins_product_path(product.id) do %><%= attachment_image_tag product,:jacket_image, fallback: "no_image.png", size: '100x100' %><% end %></td>
-                <td><%= link_to admins_product_path(product.id) do %><%= product.title %><% end %></td>
-                <td><%= product.artist.artist_name %></td>
-                <td><%= product.price %><span>円</span></td>
-                <td><%= product.period %></td>
-                <td><%= product.label.label_name %></td>
-                <td><%= product.category.category_name %></td>
-                <td><%= product.stock %><span>個</span></td>
-                <td><%= link_to "編集", edit_admins_product_path(product.id), class: "btn btn-success btn-enter" %></td>
-                <td><%= link_to "削除", admins_product_path(product.id),  "data-confirm" => "商品を削除しますか？", class: "btn btn-danger btn-enter", method: :delete %></td>
-            </tr>
-           <% end %>
-           </table>
-         <div class="paginate"><%= paginate @products %></div>
+    <table class="table text-light mt-4 mb-5" id="table-center">
+      <tr class="bg-light text-dark">
+        <td></td>
+        <td>シングル/アルバム名</td>
+        <td>アーティスト名</td>
+        <td>値段</td>
+        <td>年代</td>
+        <td>レーベル名</td>
+        <td>ジャンル</td>
+        <td>在庫数</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% @products.order("id desc").each do |product|%>
+        <tr>
+          <td>
+          <%= link_to admins_product_path(product.id) do %><%= attachment_image_tag product,:jacket_image, fallback: "no_image.png", size: '100x100' %><% end %></td>
+          <td><%= link_to admins_product_path(product.id) do %><%= product.title %><% end %></td>
+          <td><%= product.artist.artist_name %></td>
+          <td><%= product.price %><span>円</span></td>
+           <td><%= product.period %></td>
+          <td><%= product.label.label_name %></td>
+          <td><%= product.category.category_name %></td>
+          <td><%= product.stock %><span>個</span></td>
+          <td><%= link_to "編集", edit_admins_product_path(product.id), class: "btn btn-success btn-enter" %></td>
+          <td><%= link_to "削除", admins_product_path(product.id),  "data-confirm" => "商品を削除しますか？", class: "btn btn-danger btn-enter", method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="paginate"><%= paginate @products %></div>
   </div>
 </main>

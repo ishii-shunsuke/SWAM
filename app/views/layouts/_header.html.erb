@@ -10,24 +10,24 @@
       <div class="collapse navbar-collapse" id="navbar-header">
         <ul class="navbar-nav mr-auto navnav">
           <li class="nav-item">
-            <%= link_to "トップ", admins_top_path, class:"nav-link" %> <span class="sr-only">(現位置)</span>
+            <%= link_to "トップ", admins_top_path, class:"nav-link", data: {"turbolinks" => false} %> <span class="sr-only">(現位置)</span>
           </li>
           <li class="nav-item">
-            <%= link_to '商品追加', new_admins_product_path, class:"nav-link" %>
+            <%= link_to '商品追加', new_admins_product_path, class:"nav-link", data: {"turbolinks" => false} %>
           </li>
           <li class="nav-item">
-            <%= link_to '商品一覧', admins_products_path, class:"nav-link" %>
+            <%= link_to '商品一覧', admins_products_path, class:"nav-link", data: {"turbolinks" => false} %>
           </li>
           <li class="nav-item">
-            <%= link_to 'ユーザー一覧', admins_users_path, class:"nav-link" %>
+            <%= link_to 'ユーザー一覧', admins_users_path, class:"nav-link", data: {"turbolinks" => false} %>
           </li>
           <li class="nav-item">
-            <%= link_to '購入履歴一覧', admins_orders_path, class:"nav-link" %>
+            <%= link_to '購入履歴一覧', admins_orders_path, class:"nav-link", data: {"turbolinks" => false} %>
           </li>
         </ul>
       </div>
       <div class="float-right">
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, data: {"turbolinks" => false} %>
       </div>
     </nav>
   <% else %>
@@ -41,10 +41,10 @@
       <div class="collapse navbar-collapse navnav" id="navbar-header">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%= link_to "トップ", root_path, class:"nav-link" %> <span class="sr-only">(現位置)</span></a>
+            <%= link_to "トップ", root_path, class:"nav-link", data: {"turbolinks" => false} %> <span class="sr-only">(現位置)</span></a>
           </li>
           <li class="nav-item">
-            <%= link_to 'マイページ', users_path, class:"nav-link" %>
+            <%= link_to 'マイページ', users_path, class:"nav-link", data: {"turbolinks" => false} %>
           </li>
           <li class="nav-item">
             <%= link_to 'カート', carts_path, class:"nav-link", data: {"turbolinks"=>false} %>
@@ -54,7 +54,7 @@
       <div class="float-right">
         <% if user_signed_in? %>
           <span class="guest"><%= full_name(current_user) %>さんこんにちは</span>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {"turbolinks" => false} %>
         <% else %>
           <span class="guest">ゲストさんこんにちは</span>  <%= link_to "ログイン", new_user_session_path %><br>
           <span class="guest float-right">新規会員登録は <%= link_to "こちら", new_user_registration_path %>
