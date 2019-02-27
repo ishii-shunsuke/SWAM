@@ -34,13 +34,13 @@
 }
 
 .back{
-	background-image: image-url("memories2.jpg");
+	background-image: url(/images/memories2.jpg);
 	background-size: cover;
 	height:600px;
 }
 
 .back-image{
-  background-image: image-url("music3.jpg");
+  background-image: url(/images/music3.jpg);
   background-size: cover;
   height:600px;
   position: relative;
