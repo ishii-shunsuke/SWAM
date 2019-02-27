@@ -14,6 +14,7 @@ before_action :authenticate_user!, except: [:create]
  end
 
  def create
+
     @product = Product.find(params[:cart][:product_id])
     @cart = Cart.find_by(product_id: @product.id)
     if  # 重複する

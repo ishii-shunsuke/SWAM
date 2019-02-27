@@ -2,27 +2,32 @@
 <h2 class="text-white">ユーザーログインページ</h2>
 </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<% if admin_signed_in? %>
+  <p style="text-align: center;">管理者はユーザーログイン出来ません</p>
+<% else %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<div class="color-red center text-big">
-<%= alert %>
-</div>
+    <div class="color-red center text-big">
+      <%= alert %>
+    </div>
 
-  <div class="field login-title text-white text-big">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field login-title text-white text-big">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="field login-title text-white text-big">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="field login-title text-white text-big">
+      <%= f.label :パスワード %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
 
+    <div class="actions center year text-big">
+      <%= f.submit "ログイン" %>
+    </div>
 
-  <div class="actions center year text-big">
-    <%= f.submit "ログイン" %>
-  </div>
+  <% end %>
 <% end %>
+
 
 
 
