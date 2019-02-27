@@ -24,7 +24,6 @@ devise_for :users, controllers: {
 	post '/admins/products/new/label_create', to: 'admins/products#label_create'
 	post '/admins/products/new/category_create', to: 'admins/products#category_create'
 	post '/admins/products/new/create', to: 'admins/products#create'
-	# post '/users/products', to:'carts#create'
 	namespace :users do
 		resources :shipping_addresses
 		resources :products, only: [:index, :show]
@@ -34,10 +33,6 @@ devise_for :users, controllers: {
 	namespace :admins do
 		resources :users, only: [:index, :show, :edit ,:update, :destroy]
 		resources :products
-		#  do
-		# 	post :createe
-		# 	post :create
-		# end
 		resources :orders, only: [:index, :update]
 	end
 
