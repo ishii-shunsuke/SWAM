@@ -24,6 +24,10 @@ devise_for :users, controllers: {
 	post '/admins/products/new/label_create', to: 'admins/products#label_create'
 	post '/admins/products/new/category_create', to: 'admins/products#category_create'
 	post '/admins/products/new/create', to: 'admins/products#create'
+	# patch '/admins/products/new/artist_update', to: 'admins/products#artist_update'
+	# patch '/admins/products/new/label_update', to: 'admins/products#label_update'
+	# patch '/admins/products/new/category_update', to: 'admins/products#category_update'
+	# patch '/admins/products/new/update', to: 'admins/products#update'
 	# post '/users/products', to:'carts#create'
 	namespace :users do
 		resources :shipping_addresses

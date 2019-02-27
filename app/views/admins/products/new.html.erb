@@ -11,12 +11,12 @@
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">アーティスト</td>
                         <td class="text-white">
-                           <%= f.collection_select :artist_id, Artist.all, :id, :artist_name %>
+                           <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選択してください" %>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">アルバム/シングル名</td>
-                        <td class="text-white"> <%= f.text_field :title, class:"product_title", placeholder:"title"%></td>
+                        <td class="text-white"> <%= f.text_field :title, class:"product_title", placeholder:"タイトル"%></td>
                     </tr>
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;"">ジャケット画像</td>
@@ -24,11 +24,11 @@
                     </tr>
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">値段</td>
-                        <td><%= f.number_field :price, min:1, max:10000000 %><span class="text-white">円</span></td>
+                        <td><%= f.number_field :price, min:1, max:10000000,  placeholder:"値段" %><span class="text-white">円</span></td>
                     </tr>
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">レーベル名</td>
-                        <td>  <%= f.collection_select :label_id, Label.all, :id, :label_name %>
+                        <td>  <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選択してください" %>
                         <!--  <%= f.fields_for :labels do |label| %>
                               <%= label.text_field :label_name, class:"product_label" %>
                                <% end %> -->
@@ -37,7 +37,7 @@
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">ジャンル</td>
                          <td class="text-white">
-                           <%= f.collection_select :category_id, Category.all, :id, :category_name %>
+                           <%= f.collection_select :category_id, Category.all, :id, :category_name, :prompt => "選択してください" %>
                        </td>
                     </tr>
                     <tr>
@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">在庫数</td>
-                        <td><%= f.number_field :stock, min:1, max:10000000 %><span class="text-white">枚</span></td>
+                        <td><%= f.number_field :stock, min:1, max:10000000, placeholder:"在庫数"%><span class="text-white">枚</span></td>
                     </tr>
                 </table>
                 <br>

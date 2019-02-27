@@ -68,8 +68,11 @@ class Admins::ProductsController < ApplicationController
 
 # logger.debug @product.errors.inspect
 
-    @product.save
-    redirect_to admins_product_path (@product.id)
+    if @product.save
+    redirect_to admins_product_path(@product.id)
+    else
+      render :new,  notice:"項目を記入してください。"
+    end
 
   end
 
@@ -85,6 +88,24 @@ class Admins::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update(product_params)
     redirect_to admins_product_path(@product.id)
+  end
+
+  def artist_update
+    @artist = Artist.new(artist_params)
+    @artist.save
+    redirect_to edit_admins_product_path
+  end
+
+  def label_update
+    @label = Label.new(label_params)
+    @label.save
+    redirect_to edit_admins_product_path
+  end
+
+  def category_update
+    @category = Category.new(category_params)
+    @category.save
+    redirect_to edit_admins_product_path
   end
 
   def destroy
