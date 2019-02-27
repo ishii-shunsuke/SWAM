@@ -108,3 +108,38 @@ body {
 	display:inline-block;
 	float: right;
 }
+
+.condensed{
+	margin: 0 auto;
+}
+
+.addbot{
+	margin: 0 auto;
+	display: block;
+}
+
+.admin_box{
+	position: relative;
+}
+
+.btn-a{
+	position: absolute;
+    top: 225px;
+    right: 300px;
+}
+
+.btn-l{
+	position: absolute;
+    top: 350px;
+    right: 300px;
+}
+
+.btn-c{
+	position: absolute;
+    top: 400px;
+    right: 300px;
+}
+
+.admin_add_item{
+	padding:100px;
+}
