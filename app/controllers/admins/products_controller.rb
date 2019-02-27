@@ -1,6 +1,6 @@
 class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
-  protect_from_forgery :except => [:create]
+  # protect_from_forgery :except => [:create]
 
 	def top
 	end
@@ -29,9 +29,21 @@ class Admins::ProductsController < ApplicationController
     @category = Category.new
 	end
 
-  def createe
-    @artist = Artist.new
+  def artist_create
+    @artist = Artist.new(artist_params)
     @artist.save
+    redirect_to new_admins_product_path
+  end
+
+  def label_create
+    @label = Label.new(label_params)
+    @label.save
+    redirect_to new_admins_product_path
+  end
+
+  def category_create
+    @category = Category.new(category_params)
+    @category.save
     redirect_to new_admins_product_path
   end
 
@@ -44,15 +56,15 @@ class Admins::ProductsController < ApplicationController
     # artist = Artist.find_by(artist_name: params[:product][:artists][:artist_name])
     # @product.artist_id = artist.id
 
-    @label = Label.new(label_name: params[:product][:labels][:label_name])
-    @label.save
-    label = Label.find_by(label_name: params[:product][:labels][:label_name])
-    @product.label_id = label.id
+    # @label = Label.new(label_name: params[:product][:labels][:label_name])
+    # @label.save
+    # label = Label.find_by(label_name: params[:product][:labels][:label_name])
+    # @product.label_id = label.id
 
-    @category = Category.new(category_name: params[:product][:categories][:category_name])
-    @category.save
-    category = Category.find_by(category_name: params[:product][:categories][:category_name])
-    @product.category_id = category.id
+    # @category = Category.new(category_name: params[:product][:categories][:category_name])
+    # @category.save
+    # category = Category.find_by(category_name: params[:product][:categories][:category_name])
+    # @product.category_id = category.id
 
 # logger.debug @product.errors.inspect
 
@@ -83,11 +95,26 @@ class Admins::ProductsController < ApplicationController
 
 private
     def product_params
-        params.require(:product).permit(:title,:jacket_image,:price,:period,:stock, discs_attributes: [:id, :disc_number, :_destroy, songs_attributes: [:id, :name, :song_number, :_destroy]],artists_attributes: [:id, :artist_name, :product_id, :_destroy],labels_attributes: [:id, :label_name, :product_id, :_destroy])
+        params.require(:product).permit(:title,:jacket_image,:price,:period,:stock,:artist_id,:category_id,:label_id, discs_attributes: [:id, :disc_number, :_destroy, songs_attributes: [:id, :name, :song_number, :_destroy]],artists_attributes: [:id, :artist_name, :product_id, :_destroy])
     end
 
     def search_params
       params.require(:q).permit!
     end
 
+    def artist_params
+      params.require(:artist).permit(:artist_name)
+    end
+
+     def label_params
+      params.require(:label).permit(:label_name)
+    end
+
+     def category_params
+      params.require(:category).permit(:category_name)
+    end
+
+    # def product_params
+    #     params.require(:product).permit(:title,:jacket_image,:price,:period,:stock, discs_attributes: [:id, :disc_number, :_destroy, songs_attributes: [:id, :name, :song_number, :_destroy]],artists_attributes: [:id, :artist_name, :product_id, :_destroy],labels_attributes: [:id, :label_name, :product_id, :_destroy])
+    # end
 end

@@ -20,7 +20,9 @@ devise_for :users, controllers: {
 	get '/order_address/new', to:'users/shipping_addresses#new_when_order'
 	post '/order_address', to:'users/shipping_addresses#create_when_order'
 	get 'search', to: 'products#search', as: :search
-	post '/admins/products/new/createe', to: 'admins/products#createe'
+	post '/admins/products/new/artist_create', to: 'admins/products#artist_create'
+	post '/admins/products/new/label_create', to: 'admins/products#label_create'
+	post '/admins/products/new/category_create', to: 'admins/products#category_create'
 	post '/admins/products/new/create', to: 'admins/products#create'
 	# post '/users/products', to:'carts#create'
 	namespace :users do
@@ -31,10 +33,11 @@ devise_for :users, controllers: {
 	resources :carts, only: [:index, :create, :update, :destroy]
 	namespace :admins do
 		resources :users, only: [:index, :show, :edit ,:update, :destroy]
-		resources :products do
-			post :createe
-			post :create
-		end
+		resources :products
+		#  do
+		# 	post :createe
+		# 	post :create
+		# end
 		resources :orders, only: [:index, :update]
 	end
 
