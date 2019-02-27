@@ -19,7 +19,7 @@
 					<div class="float-left serch-title text-left">
 						<% unless params[:q].nil? %>
 							<strong><u>検索条件</u></strong><br>
-							名前:
+							アーティスト名:
 							<% unless params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont].nil? %>
 							<strong class="text-primary"><%= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %></strong>
 							<% end %><br>
@@ -43,10 +43,10 @@
 							</div>
 							<div>
 								<%= link_to "#{product.title}", users_product_path(product.id) %><br>
-								Artist:<%= product.artist.artist_name %><br>
-								Period:<%= product.period %><br>
-								Price:<%= product.price %><br>
-								Stock:
+								<%= product.artist.artist_name %><br>
+								<%= product.period %><br>
+								価格:<%= product.price %><span>円</span><br>
+								在庫:
 									<% if product.stock >= 3 %>
 										有
 									<% elsif product.stock > 0 %>

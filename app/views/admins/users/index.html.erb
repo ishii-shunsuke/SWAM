@@ -1,47 +1,31 @@
 <main>
-	<div class="container">
-		<div class="text-white">
+	<div class="container text-light">
 			<h1 class="user-title text-center">ユーザー一覧</h1>
-			<div class="row">
-				<div class="col-md-6">
-        <div class="form-group">
-          <%= search_form_for(@search, url: admins_users_path, method: :get) do |f| %>
-                    <%= f.label :full_name_or_email_or_phone_number_or_last_name_or_first_name_cont, "検索" %>
-                    <%= f.text_field :full_name_or_email_or_phone_number_or_last_name_or_first_name_cont, class: "form-control" %>
-                </div>
-				</div>
-                <div class="col-md-2">
-                <div class="actions"><%= f.submit "検索", class: "btn btn-danger" %></div>
-          <% end %>
-           </div>
-           <div class="row">
-           	<div class="col text-center">
-           		<table class="table table-hover table-bordered">
-      <tr>
-        <td>名前</td>
-        <td>都道府県</td>
-        <td>メールアドレス</td>
-        <td>電話番号</td>
-        <td>編集</td>
-        <td>削除</td>
-      </tr>
+        <%= search_form_for(@search, url: admins_users_path, method: :get) do |f| %>
+            <%= f.text_field :email_or_phone_number_or_last_name_or_first_name_cont %>
+            <%= f.submit "検索", class: "btn btn-danger ml-4" %>
+        <% end %>
+      <table class="table table-hover text-center mt-4" id="table-center">
+        <tr class="bg-light text-dark">
+          <td>名前</td>
+          <td>都道府県</td>
+          <td>メールアドレス</td>
+          <td>電話番号</td>
+          <td>編集</td>
+          <td>削除</td>
+        </tr>
+        <% @users.order("id desc").each do |user| %>
+          <tr>
+            <td><%= link_to full_name(user), admins_user_path(user.id) %></td>
+            <td><%= full_address(user) %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone_number %></td>
+            <td><%= link_to "編集", edit_admins_user_path(user.id), class: "btn btn-primary" %></td>
+            <td><%= link_to "削除", admins_user_path(user.id), method: :delete ,"data-confirm" => "会員を削除しますか？",class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
 
-      <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= link_to full_name(user), admins_user_path(user.id) %>
-          </td>
-        <td><%= full_address(user) %></td>
-        <td><%= user.email %></td>
-        <td><%= user.phone_number %></td>
-        <td><%= link_to "編集", edit_admins_user_path(user.id), class: "btn btn-primary" %></td>
-        <td><%= link_to "削除", admins_user_path(user.id), method: :delete ,"data-confirm" => "会員を削除しますか？",class: "btn btn-danger" %></td>
-      </tr>
-      <% end %>
-     </table>
-    </div>
-    </div>
-	</div>
     <%= paginate @users %>
-</div>
 </main>
