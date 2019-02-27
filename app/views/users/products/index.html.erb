@@ -1,8 +1,13 @@
+
 <main role="main" class="flex-shrink-0">
-	<div class="container-fluid text-white">
-			<div class="row">
-				<div class="col-md-2">
-					<h5 class="period">絞り込み検索</h5>
+
+
+     <div class="back"></div>
+     <div class="back-image">
+			<div class="row text-white">
+
+				<div class="col-md-2 offset-md-1">
+					<h2 class="period" style="font-family:Cinzel">絞り込み検索</h2>
 					<%= search_form_for([:users,@q]) do |f| %>
 							<%= f.search_field :title_or_discs_songs_name_or_artist_artist_name_cont, placeholder:"曲名、アルバム名等", class:"mt-4" %><br>
 							<%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]), {include_blank: "指定なし"}, class:"mt-4" %><br>
@@ -14,17 +19,17 @@
 					<div class="float-left serch-title text-left">
 						<% unless params[:q].nil? %>
 							<strong><u>検索条件</u></strong><br>
-							名前:
+							キーワード:
 							<% unless params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont].nil? %>
-							<strong class="text-warning"><%= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %></strong>
+							<strong class="text-primary"><%= params[:q][:title_or_discs_songs_name_or_artist_artist_name_cont] %></strong>
 							<% end %><br>
 							年代:
 							<% unless params[:q][:period_eq].blank? %>
-							<strong class="text-secondary"><%= params[:q][:period_eq] %></strong>
+							<strong class="ttext-primary"><%= params[:q][:period_eq] %></strong>
 							<% end %><br>
 							ジャンル:
 							<% unless params[:q][:category_id_eq].blank? %>
-							<strong class="text-info"><%= @categories.find(params[:q][:category_id_eq]).category_name %></strong>
+							<strong class="text-primary"><%= @categories.find(params[:q][:category_id_eq]).category_name %></strong>
 							<% end %>
 						<% end %>
 					</div>
@@ -38,10 +43,10 @@
 							</div>
 							<div>
 								<%= link_to "#{product.title}", users_product_path(product.id) %><br>
-								Artist:<%= product.artist.artist_name %><br>
-								Period:<%= product.period %><br>
-								Price:<%= product.price %><br>
-								Stock:
+								<%= product.artist.artist_name %><br>
+								<%= product.period %><br>
+								価格:<%= product.price %><span>円</span><br>
+								在庫:
 									<% if product.stock >= 3 %>
 										有
 									<% elsif product.stock > 0 %>
@@ -56,6 +61,6 @@
 					<% end %>
 				</div>
 		</div>
-	</div>
+               </div>
 	<div class ="paginate"><%= paginate @products %></div>
 </main>

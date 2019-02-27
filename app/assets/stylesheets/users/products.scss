@@ -32,3 +32,38 @@
   margin: 100px auto 0;
   width:100px
 }
+
+.back{
+	background-image: image-url("memories2.jpg");
+	background-size: cover;
+	height:600px;
+}
+
+.back-image{
+  background-image: image-url("music3.jpg");
+  background-size: cover;
+  height:600px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;/*ブラー効果でボヤけた部分を非表示*/
+}
+
+.back-image:before{
+  content: '';
+  background: inherit;/*.bgImageで設定した背景画像を継承する*/
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -o-filter: blur(8px);
+  -ms-filter: blur(8px);
+  filter: blur(8px);
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;/*重なり順序を一番下にしておく*/
+}
+
+
+
+

@@ -1,5 +1,7 @@
 class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
+  protect_from_forgery :except => [:create]
+
 	def top
 	end
 
@@ -22,19 +24,25 @@ class Admins::ProductsController < ApplicationController
 		@product = Product.new
 		@disc = @product.discs.build
     @song = @disc.songs.build
-   @artist = Artist.new
-   @label = Label.new
+    @artist = Artist.new
+    @label = Label.new
+    @category = Category.new
 	end
+
+  def createe
+    @artist = Artist.new
+    @artist.save
+    redirect_to new_admins_product_path
+  end
 
 	def create
     # @product = current_user.product.build(product_params)
 
     @product = Product.new(product_params)
 
-    @artist = Artist.new(artist_name: params[:product][:artists][:artist_name])
-    @artist.save
-    artist = Artist.find_by(artist_name: params[:product][:artists][:artist_name])
-    @product.artist_id = artist.id
+
+    # artist = Artist.find_by(artist_name: params[:product][:artists][:artist_name])
+    # @product.artist_id = artist.id
 
     @label = Label.new(label_name: params[:product][:labels][:label_name])
     @label.save
@@ -49,7 +57,7 @@ class Admins::ProductsController < ApplicationController
 # logger.debug @product.errors.inspect
 
     @product.save
-    redirect_to admins_product_path(@product.id)
+    redirect_to admins_product_path (@product.id)
 
   end
 
