@@ -22,7 +22,7 @@ class Admins::UsersController < ApplicationController
    end
 
    def destroy
-       user = User.with_deleted.find_by(params[:id])
+       #User.with_deleted.find_by(id: 1).restore
    	   user = User.find(params[:id])
    	   user.destroy
    	   redirect_to admins_users_path
@@ -31,7 +31,7 @@ class Admins::UsersController < ApplicationController
 
    private
    def user_params
-		params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :gender, :phone_number, :email, :post_number, :prefectures, :city, :block, :password, :password_confirmation)
+		params.require(:user).permit(:full_name, :last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :gender, :phone_number, :email, :post_number, :prefectures, :city, :block, :password, :password_confirmation)
    end
 
    private
@@ -41,9 +41,9 @@ class Admins::UsersController < ApplicationController
 
    protected
 
-   def update_resource(resource, params)
-    resource.update_without_current_password(params)
-   end
+def update_resource(resource, params)
+ resource.update_without_password(params)
+end
 
  end
 
