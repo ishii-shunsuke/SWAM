@@ -38,10 +38,6 @@ devise_for :users, controllers: {
 	namespace :admins do
 		resources :users, only: [:index, :show, :edit ,:update, :destroy]
 		resources :products
-		#  do
-		# 	post :createe
-		# 	post :create
-		# end
 		resources :orders, only: [:index, :update]
 	end
 
