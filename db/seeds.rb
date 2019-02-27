@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.new(
+  full_name: "山田太郎",
 	last_name: "山田",
 	first_name: "太郎",
 	last_name_kana: "ヤマダ",
@@ -23,6 +24,7 @@ user = User.new(
 user.save!
 
 user = User.new(
+  full_name: "有村架純",
 	last_name: "有村",
 	first_name: "架純",
 	last_name_kana: "アリムラ",
@@ -39,6 +41,7 @@ user = User.new(
 user.save!
 
 user = User.new(
+  full_name: "菅田将暉",
 	last_name: "菅田",
 	first_name: "将暉",
 	last_name_kana: "スダ",
