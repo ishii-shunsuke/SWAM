@@ -1,12 +1,11 @@
 <main role="main" class="flex-shrink-0">
-    <div class="container admin-title">
-      <h1 class="product-index text-white">商品一覧</h1>
-
+  <div class="container admin-title">
+    <h1 class="product-index text-white">商品一覧</h1>
       <%= search_form_for([:admins, @q]) do |f| %>
         <div class="form-group">
           <%= f.text_field :title_or_price_or_period_or_stock_cont, class: "form-control",placeholder:"キーワード検索" %>
         </div>
-        <%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]) %>
+        <%= f.select :period_eq, options_for_select([["1980年代", "1980年代"],["1990年代","1990年代"],["2000年代前半", "2000年代前半"],["2000年代後半","2000年代後半"],["2010年代前半","2010年代前半"],["2010年代後半","2010年代後半"]]), :prompt => "年代" %>
         <%= f.collection_select :label_id_eq, @labels, :id, :label_name, :include_blank => 'レーベル' %>
         <%= f.collection_select :category_id_eq, @categories, :id, :category_name, :include_blank => 'ジャンル' %>
         <div class="actions mt-4"><%= f.submit "絞り込み" %></div>

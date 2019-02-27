@@ -31,7 +31,6 @@
             <td>ジャンル</td>
             <td><%=@product.category.category_name %></td>
         </tr>
-
          <tr>
              <td>曲名</td>
             <td><% @product.discs.order("disc_number asc").each do |disc|%><span>Disk</span><%= disc.disc_number%><br>
@@ -40,8 +39,7 @@
             <% end %>
             </td>
         </tr>
-
-        <tr>
+       <tr>
             <td>在庫数</td>
             <td><%=@product.stock %><span>枚</span></td>
         </tr>
