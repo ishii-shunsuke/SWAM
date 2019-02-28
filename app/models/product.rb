@@ -1,5 +1,9 @@
 class Product < ApplicationRecord
 
+validates :artist_id,presence:true
+validates :label_id,presence:true
+validates :category_id,presence:true
+
 attachment :jacket_image
 
 has_many :carts, dependent: :destroy
