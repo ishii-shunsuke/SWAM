@@ -2,7 +2,7 @@ class Admins::UsersController < ApplicationController
 
    def show
    	   @user = User.find(params[:id])
-       @orders = Order.all
+       @orders = Order.where(user_id: @user)
    end
 
    def index
