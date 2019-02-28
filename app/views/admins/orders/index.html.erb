@@ -32,7 +32,7 @@
                             <td rowspan="<%= order.buy_products.count %>"><%= order.shipping_status %></td>
                             <% order.buy_products.each_with_index do |buy_product, i| %>
                                 <% if i == 0 %>
-                                    <td><%= buy_product.buy_title %>ああああああ</td>
+                                    <td><%= buy_product.buy_title %></td>
                                     <td><%= buy_product.buy_number%><span>枚</span></td>
                                     <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
                                 <% end %>

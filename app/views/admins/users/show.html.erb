@@ -1,69 +1,51 @@
 <main>
-	<div class="container">
-		<div class="text-white">
-			<h3 class="user-title"><%= @user.last_name %>様情報</h3>
-			<div class="row">
-				 <div class="col-md-8">
-                    <div class="form-group">
-                         <h4>名前</h4>
-                       <%= full_name(@user) %>
-                    <div class="form-group">
-                         <h4>名(カナ)</h4>
-                      <%= @user.last_name_kana+@user.first_name_kana %>
-                    </div>
-                    <div class="form-group">
-                         <h4>郵便番号</h4>
-                       <%= @user.post_number %>
-                    </div>
-                    <div class="form-group">
-                         <h4>住所</h4>
-                      <%= full_address(@user) %>
-                    </div>
-
-                    </div>
-                	<div class="form-group">
-                         <h4>電話番号</h4>
-                       <%= @user.phone_number %>
-                    <div class="form-group">
-                         <h4>メールアドレス</h4>
-                       <%= @user.email %>
-                    </div>
-                <div class="col-md-3">
-                    <%= link_to "編集", edit_admins_user_path(@user.id), class: "btn btn-primary" %>
-                    </div>
+	<div class="container-fluid text-light">
+			<div class="row user-title">
+				<div class="col-3">
+                    <h3><%= @user.last_name %>様情報</h3>
+                        <h5 class="bg-light text-dark">名前</h5>
+                            <%= full_name(@user) %>
+                        <h5 class="bg-light text-dark mt-2">名(カナ)</h5>
+                            <%= @user.last_name_kana+@user.first_name_kana %>
+                        <h5 class="bg-light text-dark mt-2">郵便番号</h5>
+                            <%= @user.post_number %>
+                        <h5 class="bg-light text-dark mt-2">住所</h5>
+                            <%= full_address(@user) %>
+                        <h5 class="bg-light text-dark mt-2">電話番号</h5>
+                            <%= @user.phone_number %>
+                        <h5 class="bg-light text-dark mt-2">メールアドレス</h5>
+                            <%= @user.email %><br>
+                        <%= link_to "編集", edit_admins_user_path(@user.id), class: "btn btn-primary mt-4" %>
                 </div>
-                <h3>購入履歴一覧</h3>
-                <div class="row">
-                    <div class="col text-center">
-    <table class="table-bordered" >
-        <tr>
-            <td>購入日</td>
-            <td>購入価格総計</td>
-            <td>送付先</td>
-            <td>ステータス</td>
-            <td>シングル/アルバム名</td>
-            <td>購入枚数</td>
-            <td>小計</td>
-        </tr>
-        <% @orders.each do |order|%>
-        <tr>
-            <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
-            <td rowspan="<%= order.buy_products.count + 1 %>"><%= order_total(order) %></td>
-            <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_address %></td>
-             <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_status %></td>
-        </tr>
-           <% order.buy_products.each do |buy_product| %>
-                <tr>
-                    <td><%= buy_product.buy_title %></td>
-                    <td><%= buy_product.buy_number%><span>枚</span></td>
-                    <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
-                </tr>
-           <% end %>
-        <% end %>
-    </table>
-           </div>
+                <div class="col-9">
+                    <h3>購入履歴一覧</h3>
+                    <table class="table table-bordered table-size" id="table-center" >
+                        <tr class="bg-light text-dark">
+                            <td>購入日</td>
+                            <td>合計金額</td>
+                            <td>送付先</td>
+                            <td>ステータス</td>
+                            <td>シングル/アルバム名</td>
+                            <td>購入枚数</td>
+                            <td>小計</td>
+                        </tr>
+                        <% @orders.each do |order|%>
+                        <tr>
+                            <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.created_at.strftime('%Y年%m月%d日') %></td>
+                            <td rowspan="<%= order.buy_products.count + 1 %>"><%= order_total(order) %></td>
+                            <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_address %></td>
+                             <td rowspan="<%= order.buy_products.count + 1 %>"><%= order.shipping_status %></td>
+                        </tr>
+                           <% order.buy_products.each do |buy_product| %>
+                                <tr>
+                                    <td><%= buy_product.buy_title %></td>
+                                    <td><%= buy_product.buy_number%><span>枚</span></td>
+                                    <td><%= buy_product.buy_price * buy_product.buy_number%><span>円</span></td>
+                                </tr>
+                           <% end %>
+                        <% end %>
+                    </table>
+                </div>
           </div>
-            </div>
-		</div>
 	</div>
 </main>
