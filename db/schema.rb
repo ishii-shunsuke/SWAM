@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_02_24_085851) do
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.integer "artist_id"
-    t.string "jacket_image_id", null: false
+    t.string "jacket_image_id"
     t.integer "price"
     t.integer "label_id"
     t.integer "category_id"

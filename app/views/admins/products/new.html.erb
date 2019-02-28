@@ -29,9 +29,9 @@
                     <tr>
                         <td class="text-white" style="padding: 5px 10px;">レーベル名</td>
                         <td>  <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選択してください" %>
-                        <!--  <%= f.fields_for :labels do |label| %>
-                              <%= label.text_field :label_name, class:"product_label" %>
-                               <% end %> -->
+                        <!--  <%#= f.fields_for :labels do |label| %>
+                              <%#= label.text_field :label_name, class:"product_label" %>
+                               <%# end %> -->
                         </td>
                     </tr>
                     <tr>
@@ -60,7 +60,8 @@
                 </table>
                 <br>
             <%= f.submit "商品追加", class:"btn btn-primary btn-enter text-white mb-4 addbot" %>
-            <% end %>
+           <% end %>
+
 
                           <button type="button" data-toggle="modal" data-show="true" data-target="#modal-artist" class="btn btn-secondary btn-a">アーティストを追加する</button>
 

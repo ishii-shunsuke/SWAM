@@ -90,23 +90,23 @@ class Admins::ProductsController < ApplicationController
     redirect_to admins_product_path(@product.id)
   end
 
-  def artist_update
-    @artist = Artist.new(artist_params)
-    @artist.save
-    redirect_to edit_admins_product_path
-  end
+  # def artist_update
+  #   @artist = Artist.new(artist_params)
+  #   @artist.save
+  #   redirect_to edit_admins_product_path
+  # end
 
-  def label_update
-    @label = Label.new(label_params)
-    @label.save
-    redirect_to edit_admins_product_path
-  end
+  # def label_update
+  #   @label = Label.new(label_params)
+  #   @label.save
+  #   redirect_to edit_admins_product_path
+  # end
 
-  def category_update
-    @category = Category.new(category_params)
-    @category.save
-    redirect_to edit_admins_product_path
-  end
+  # def category_update
+  #   @category = Category.new(category_params)
+  #   @category.save
+  #   redirect_to edit_admins_product_path
+  # end
 
   def destroy
     @product =Product.find(params[:id])
@@ -116,7 +116,7 @@ class Admins::ProductsController < ApplicationController
 
 private
     def product_params
-        params.require(:product).permit(:title,:jacket_image,:price,:period,:stock,:artist_id,:category_id,:label_id, discs_attributes: [:id, :disc_number, :_destroy, songs_attributes: [:id, :name, :song_number, :_destroy]],artists_attributes: [:id, :artist_name, :product_id, :_destroy])
+        params.require(:product).permit(:title,:jacket_image,:price,:period,:stock,:artist_id,:category_id,:label_id, discs_attributes: [:id, :disc_number, :_destroy, songs_attributes: [:id, :name, :song_number, :_destroy]])
     end
 
     def search_params
