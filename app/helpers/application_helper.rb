@@ -1,9 +1,4 @@
 module ApplicationHelper
-	# def logged_in?
- #    	!current_user.nil?
- #  	end
-
-
 
   	def full_name(user)
   		"#{user.last_name} #{user.first_name}"
@@ -17,7 +12,7 @@ module ApplicationHelper
   	def order_total(order)
   		total = 0
   		order.buy_products.each do |buy_product|
-  			total += buy_product.buy_price
+  			total += buy_product.buy_price * buy_product.buy_number
   		end
   		total
   	end
